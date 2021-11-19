@@ -38,6 +38,20 @@ struct MainView: View {
                 .tabItem {
                     Label("Categories", systemImage: "tag")
                 }
+                .tag(TabScreen.Categories)
+        }
+        .onAppear {
+            // https://nemecek.be/blog/127/how-to-disable-automatic-transparent-tabbar-in-ios-15 - 19/11/2021
+            // Disable tabview bar transparency
+            if #available(iOS 13.0, *) {
+                let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
+                tabBarAppearance.configureWithDefaultBackground()
+                UITabBar.appearance().standardAppearance = tabBarAppearance
+                
+                if #available(iOS 15.0, *) {
+                    UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+                }
+            }
         }
     }
 }

@@ -16,6 +16,7 @@
 		F6447D272747D03F006C7CA7 /* SpendioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D262747D03F006C7CA7 /* SpendioTests.swift */; };
 		F6447D312747D03F006C7CA7 /* SpendioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D302747D03F006C7CA7 /* SpendioUITests.swift */; };
 		F6447D332747D03F006C7CA7 /* SpendioUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D322747D03F006C7CA7 /* SpendioUITestsLaunchTests.swift */; };
+		F6447D412747EDE2006C7CA7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D402747EDE2006C7CA7 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		F6447D2C2747D03F006C7CA7 /* SpendioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpendioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6447D302747D03F006C7CA7 /* SpendioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendioUITests.swift; sourceTree = "<group>"; };
 		F6447D322747D03F006C7CA7 /* SpendioUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendioUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F6447D402747EDE2006C7CA7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		F6447D0F2747D03E006C7CA7 /* Spendio */ = {
 			isa = PBXGroup;
 			children = (
+				F6447D3F2747EDC9006C7CA7 /* Views */,
 				F6447D102747D03E006C7CA7 /* SpendioApp.swift */,
 				F6447D122747D03E006C7CA7 /* ContentView.swift */,
 				F6447D142747D03F006C7CA7 /* Assets.xcassets */,
@@ -131,6 +134,14 @@
 				F6447D322747D03F006C7CA7 /* SpendioUITestsLaunchTests.swift */,
 			);
 			path = SpendioUITests;
+			sourceTree = "<group>";
+		};
+		F6447D3F2747EDC9006C7CA7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F6447D402747EDE2006C7CA7 /* MainView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +277,7 @@
 				F6447D1A2747D03F006C7CA7 /* Persistence.swift in Sources */,
 				F6447D132747D03E006C7CA7 /* ContentView.swift in Sources */,
 				F6447D1D2747D03F006C7CA7 /* Spendio.xcdatamodeld in Sources */,
+				F6447D412747EDE2006C7CA7 /* MainView.swift in Sources */,
 				F6447D112747D03E006C7CA7 /* SpendioApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

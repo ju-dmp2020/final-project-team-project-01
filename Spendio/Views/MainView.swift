@@ -16,25 +16,25 @@ struct MainView: View {
     
     var body: some View {
         TabView(selection: $selectedTabScreen) {
-            Text("History")
+            HistoryView()
                 .tabItem {
                     Label("History", systemImage: "clock.arrow.circlepath")
                 }
                 .tag(TabScreen.History)
             
-            Text("Recent Spendings")
+            RecentSpendingsView()
                 .tabItem {
                     Label("Recent Spendings", systemImage: "eurosign.circle")
                 }
                 .tag(TabScreen.RecentSpendings)
             
-            Text("Add Expense")
+            AddExpenseView()
                 .tabItem {
                     Label("Add Expense", systemImage: "plus")
                 }
                 .tag(TabScreen.AddExpense)
             
-            Text("Categories")
+            CategoriesView()
                 .tabItem {
                     Label("Categories", systemImage: "tag")
                 }

@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Spendio
+//@testable import Spendio
 
 class SpendioTests: XCTestCase {
 

@@ -24,7 +24,7 @@ struct MainView: View {
             
             RecentSpendingsView()
                 .tabItem {
-                    Label("Recent Spendings", systemImage: "eurosign.circle")
+                    Label("Recent Spendings", image: "Money")
                 }
                 .tag(TabScreen.RecentSpendings)
             

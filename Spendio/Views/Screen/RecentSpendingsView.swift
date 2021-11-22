@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct RecentSpendingsView: View {
+    @ObservedObject var expensesArray: Expenses
     var body: some View {
-        Text("Recent Spendings")
+        List{
+            
+        }
     }
 }
 
 struct RecentSpendingsView_Previews: PreviewProvider {
     static var previews: some View {
-        RecentSpendingsView()
+        RecentSpendingsView(expensesArray: Expenses())
     }
 }

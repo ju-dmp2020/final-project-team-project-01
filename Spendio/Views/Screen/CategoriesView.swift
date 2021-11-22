@@ -10,7 +10,7 @@ import SwiftUI
 struct CategoriesView: View {
     // Example data
     @State private var categories = ["Games", "Food", "Coffee"]
-    @State private var deleteConfirmationShow: Bool = false
+    @State private var showDeleteConfirmation: Bool = false
     var body: some View {
         NavigationView {
             List {
@@ -20,7 +20,7 @@ struct CategoriesView: View {
                     }
                     .swipeActions {
                         Button(role: .destructive) {
-                                deleteConfirmationShow = true
+                            showDeleteConfirmation = true
                             } label: {
                                 Image(systemName: "trash")
                             }
@@ -28,14 +28,12 @@ struct CategoriesView: View {
                     }
                     .confirmationDialog(
                         "Are you sure you want to delete \(category)?",
-                        isPresented: $deleteConfirmationShow,
+                        isPresented: $showDeleteConfirmation,
                         titleVisibility: .visible) {
                             Button("Yes", role: .destructive) {
-                                
+                                // TODO: call a ViewModel function to delete
                             }
-                            Button("No", role: .cancel) {
-                                
-                            }
+                            Button("Cancel", role: .cancel) {}
                         }
                 }
             }
@@ -43,8 +41,7 @@ struct CategoriesView: View {
             .listStyle(.grouped)
             .navigationTitle("Categories")
             .toolbar {
-                // EmptyView will be replaced with AddCategoryView()
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: AddCategoryView()) {
                     Image(systemName: "plus.circle")
                 }
             }

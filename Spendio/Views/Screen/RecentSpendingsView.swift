@@ -13,19 +13,21 @@ struct RecentSpendingsView: View {
     // Test
     @ObservedObject var expensesArray: Expenses
     var body: some View {
-        VStack {
-            if thrownError != nil {
-                APIErrorView(thrownError: $thrownError)
-            } else {
-                Text("Recent")
+        NavigationView {
+            VStack {
+                // 1. Graph
+                // 2. List
+            }
+            .navigationTitle("Recent")
+            .listStyle(.grouped)
+            .alert(item: $currencyVM.currencyError) { err in
+                Alert(title: Text("Whoops, an error occurred"),
+                      message: Text(err.error.localizedDescription)
+                )
             }
         }
         .onAppear {
-            Task {
-                do { try await currencyVM.fetch(baseCurrency: "hejhej") } catch {
-                    thrownError = error.localizedDescription
-                }
-            }
+            Task { await currencyVM.fetch(baseCurrency: "sek") }
         }
     }
 }

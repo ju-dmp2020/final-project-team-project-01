@@ -30,6 +30,7 @@
 		F68E38C4274C083E0031C04C /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E38C3274C083E0031C04C /* CurrencyViewModel.swift */; };
 		F68E38C6274C0D6B0031C04C /* CurrencyRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E38C5274C0D6B0031C04C /* CurrencyRatesModel.swift */; };
 		F68E38CA274C3F090031C04C /* APIErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E38C9274C3F090031C04C /* APIErrorView.swift */; };
+		F68E38CC274C48460031C04C /* CurrencyAPIErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E38CB274C48460031C04C /* CurrencyAPIErrorModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		F68E38C3274C083E0031C04C /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
 		F68E38C5274C0D6B0031C04C /* CurrencyRatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRatesModel.swift; sourceTree = "<group>"; };
 		F68E38C9274C3F090031C04C /* APIErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorView.swift; sourceTree = "<group>"; };
+		F68E38CB274C48460031C04C /* CurrencyAPIErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAPIErrorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				953084B9274B8F380078BC87 /* Expense.swift */,
 				953084BB274B90460078BC87 /* Expenses.swift */,
 				F68E38C5274C0D6B0031C04C /* CurrencyRatesModel.swift */,
+				F68E38CB274C48460031C04C /* CurrencyAPIErrorModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				F68E38C6274C0D6B0031C04C /* CurrencyRatesModel.swift in Sources */,
 				953084BC274B90460078BC87 /* Expenses.swift in Sources */,
 				953084BA274B8F380078BC87 /* Expense.swift in Sources */,
+				F68E38CC274C48460031C04C /* CurrencyAPIErrorModel.swift in Sources */,
 				F6447D1A2747D03F006C7CA7 /* Persistence.swift in Sources */,
 				F6447D432747FA16006C7CA7 /* HistoryView.swift in Sources */,
 				F6447D132747D03E006C7CA7 /* ContentView.swift in Sources */,

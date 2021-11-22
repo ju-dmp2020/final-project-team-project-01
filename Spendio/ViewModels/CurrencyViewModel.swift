@@ -7,21 +7,18 @@
 
 import Foundation
 
-
-enum CurrencyAPIError: Error {
-    case invalidURL, badRequest, decode
-}
-
 class CurrencyViewModel: ObservableObject {
     // Fetching currency rates from https://github.com/fawazahmed0/currency-api
     @Published var currencyRates: CurrencyRatesModel?
+    @Published var currencyError: CurrencyAPIErrorModel? = nil
     
     // Date is set as a parameter in case it has to be used
-    func fetch(baseCurrency: String, date: String = "latest") async throws {
+    func fetch(baseCurrency: String, date: String = "latest") async {
         let jsonURL = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/\(date)/currencies/\(baseCurrency).json"
         
         guard let url = URL(string: jsonURL) else {
-            throw CurrencyAPIError.invalidURL
+            self.currencyError = CurrencyAPIErrorModel(error: .invalidURL)
+            return
         }
         
         let request = URLRequest(url: url)
@@ -29,7 +26,10 @@ class CurrencyViewModel: ObservableObject {
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                throw CurrencyAPIError.badRequest
+                DispatchQueue.main.async {
+                    self.currencyError = CurrencyAPIErrorModel(error: .badRequest)
+                }
+                return
             }
             
             // Decoder
@@ -41,20 +41,9 @@ class CurrencyViewModel: ObservableObject {
                 self.currencyRates = decodedData
             }
         } catch {
-            throw CurrencyAPIError.decode
-        }
-    }
-}
-
-extension CurrencyAPIError: LocalizedError {
-    var errorDescription: String? {
-        switch self {
-        case .invalidURL:
-            return NSLocalizedString("Invalid URL", comment: "")
-        case .badRequest:
-            return NSLocalizedString("Currency rate data couldn't be recieved", comment: "")
-        case .decode:
-            return NSLocalizedString("Currency rate data couldn't be decoded", comment: "")
+            DispatchQueue.main.async {
+                self.currencyError = CurrencyAPIErrorModel(error: .decode)
+            }
         }
     }
 }

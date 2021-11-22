@@ -10,7 +10,7 @@ import SwiftUI
 struct AddCategoryView: View {
     @State var categoryName: String = ""
     @State private var showImageUploadSheet: Bool = false
-    @FocusState private var isNameFieldFocused: Bool
+    @FocusState private var nameFieldIsFocused: Bool
     
     @State var showActionSheet: Bool = false
     
@@ -20,15 +20,12 @@ struct AddCategoryView: View {
             // TextField
             Section(header: Text("Category name")) {
                 TextField("Name", text: $categoryName)
-                    .focused($isNameFieldFocused)
+                    .focused($nameFieldIsFocused)
                     .onAppear {
                         // Auto focus
                         DispatchQueue.main.asyncAfter(deadline: .now()+1) {
-                            isNameFieldFocused = true
+                            nameFieldIsFocused = true
                         }
-                    }
-                    .onSubmit {
-                        categoryName = ""
                     }
             }
             // Image Upload
@@ -38,6 +35,7 @@ struct AddCategoryView: View {
                 } label: {
                     Text("Upload Image")
                 }
+                .alignmentGuide(HorizontalAlignment.center){_ in 50}
                 .confirmationDialog("", isPresented: $showImageUploadSheet, titleVisibility: .hidden) {
                         Button("Take Photo") {
                             // TODO: Camera functionality
@@ -47,6 +45,16 @@ struct AddCategoryView: View {
                         }
                         Button("Cancel", role: .cancel) {}
                     }
+            }
+            // Submit Button
+            Section {
+                Button  {
+                    // TODO: Save data
+                    
+                } label: {
+                    Text("Save")
+                }
+                .alignmentGuide(HorizontalAlignment.center){_ in 20}
             }
             
         }

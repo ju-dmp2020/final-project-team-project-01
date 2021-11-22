@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CurrencyConverterModel: Decodable {
+struct CurrencyRatesModel: Decodable {
     let date: String
     let sek: [String: Double] // keys are dynamic, will be handled later
 }

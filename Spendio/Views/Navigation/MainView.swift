@@ -17,13 +17,13 @@ struct MainView: View {
     @StateObject var currencyViewModel = CurrencyViewModel()
     var body: some View {
         TabView(selection: $selectedTabScreen) {
-            HistoryView(expensesArray: expensesArray, currencyVM: currencyViewModel)
+            HistoryView(currencyVM: currencyViewModel, expensesArray: expensesArray)
                 .tabItem {
                     Label("History", systemImage: "clock.arrow.circlepath")
                 }
                 .tag(TabScreen.History)
             
-            RecentSpendingsView(expensesArray: expensesArray, currencyVM: currencyViewModel)
+            RecentSpendingsView(currencyVM: currencyViewModel, expensesArray: expensesArray)
                 .tabItem {
                     Label("Recent Spendings", image: "Money")
                 }
@@ -52,11 +52,6 @@ struct MainView: View {
                 if #available(iOS 15.0, *) {
                     UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
                 }
-            }
-            // Testing api
-            // Fetch function will be used in History and Recent view
-            Task {
-                await currencyViewModel.fetch(baseCurrency: "sek")
             }
         }
     }

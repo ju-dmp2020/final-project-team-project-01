@@ -7,16 +7,21 @@
 
 import Foundation
 
+
+enum CurrencyAPIError: Error {
+    case invalidURL, badRequest, decode
+}
+
 class CurrencyViewModel: ObservableObject {
     // Fetching currency rates from https://github.com/fawazahmed0/currency-api
-    @Published var currencies: CurrencyConverterModel?
+    @Published var currencyRates: CurrencyRatesModel?
     
-    func fetch(baseCurrency: String, date: String = "latest") async {
+    // Date is set as a parameter in case it has to be used
+    func fetch(baseCurrency: String, date: String = "latest") async throws {
         let jsonURL = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/\(date)/currencies/\(baseCurrency).json"
         
         guard let url = URL(string: jsonURL) else {
-            print("Invalid URL")
-            return
+            throw CurrencyAPIError.invalidURL
         }
         
         let request = URLRequest(url: url)
@@ -24,21 +29,32 @@ class CurrencyViewModel: ObservableObject {
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                print(URLError(.badServerResponse))
-                throw URLError(.badServerResponse)
+                throw CurrencyAPIError.badRequest
             }
             
             // Decoder
             let jsonDecoder = JSONDecoder()
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             
-            let decodedData = try jsonDecoder.decode(CurrencyConverterModel.self, from: data)
+            let decodedData = try jsonDecoder.decode(CurrencyRatesModel.self, from: data)
             DispatchQueue.main.async {
-                self.currencies = decodedData
+                self.currencyRates = decodedData
             }
         } catch {
-            print(error)
+            throw CurrencyAPIError.decode
         }
-        
+    }
+}
+
+extension CurrencyAPIError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .invalidURL:
+            return NSLocalizedString("Invalid URL", comment: "")
+        case .badRequest:
+            return NSLocalizedString("Currency rate data couldn't be recieved", comment: "")
+        case .decode:
+            return NSLocalizedString("Currency rate data couldn't be decoded", comment: "")
+        }
     }
 }

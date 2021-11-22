@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecentSpendingsView: View {
     @ObservedObject var expensesArray: Expenses
+    @ObservedObject var currencyVM: CurrencyViewModel
     var body: some View {
         List{
             
@@ -18,6 +19,6 @@ struct RecentSpendingsView: View {
 
 struct RecentSpendingsView_Previews: PreviewProvider {
     static var previews: some View {
-        RecentSpendingsView(expensesArray: Expenses())
+        RecentSpendingsView(expensesArray: Expenses(), currencyVM: CurrencyViewModel())
     }
 }

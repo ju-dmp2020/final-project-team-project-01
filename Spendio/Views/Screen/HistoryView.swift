@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HistoryView: View {
     @ObservedObject var expensesArray: Expenses
+    @ObservedObject var currencyVM: CurrencyViewModel
     var body: some View {
         Text("History")
     }
@@ -16,6 +17,6 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView(expensesArray: Expenses())
+        HistoryView(expensesArray: Expenses(), currencyVM: CurrencyViewModel())
     }
 }

@@ -8,16 +8,32 @@
 import SwiftUI
 
 struct RecentSpendingsView: View {
+    @ObservedObject var currencyVM: CurrencyViewModel
+    @State var thrownError: String? = nil
+    // Test
     @ObservedObject var expensesArray: Expenses
     var body: some View {
-        List{
-            
+        NavigationView {
+            VStack {
+                // 1. Graph
+                // 2. List
+            }
+            .navigationTitle("Recent")
+            .listStyle(.grouped)
+            .alert(item: $currencyVM.currencyError) { err in
+                Alert(title: Text("Whoops, an error occurred"),
+                      message: Text(err.error.localizedDescription)
+                )
+            }
+        }
+        .onAppear {
+            Task { await currencyVM.fetch(baseCurrency: "sek") }
         }
     }
 }
 
 struct RecentSpendingsView_Previews: PreviewProvider {
     static var previews: some View {
-        RecentSpendingsView(expensesArray: Expenses())
+        RecentSpendingsView(currencyVM: CurrencyViewModel(), expensesArray: Expenses())
     }
 }

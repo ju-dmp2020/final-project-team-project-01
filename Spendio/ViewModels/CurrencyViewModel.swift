@@ -8,13 +8,14 @@
 import Foundation
 
 class CurrencyViewModel: ObservableObject {
-    // Fetching currency rates from https://github.com/fawazahmed0/currency-api
-    @Published var currency: [String: Any]?
+    // Fetching currency rates from https://freecurrencyapi.net/
+    @Published var currency: CurrencyConverterModel?
     @Published var currencyError: CurrencyAPIErrorModel? = nil
     
-    // Date is set as a parameter in case it has to be used
-    func fetch(baseCurrency: String, date: String = "latest") async {
-        let jsonURL = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/\(date)/currencies/\(baseCurrency).json"
+    private var apiKey = "c9ff9520-4e00-11ec-8ed5-856ceff69779" // Will be replaced somewhere else
+    
+    func fetch(baseCurrency: String) async {
+        let jsonURL = "https://freecurrencyapi.net/api/v2/latest?apikey=\(apiKey)&base_currency=\(baseCurrency)"
         
         guard let url = URL(string: jsonURL) else {
             self.currencyError = CurrencyAPIErrorModel(error: .invalidURL)
@@ -32,17 +33,14 @@ class CurrencyViewModel: ObservableObject {
                 return
             }
             
-            // https://www.hackingwithswift.com/example-code/system/how-to-parse-json-using-jsonserialization - 25/11/2021
-            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                DispatchQueue.main.async {
-                    self.currency = json
-                }
-                return
-            }
+            // Decoder
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             
-            // If JSONSerialization Fails
+            let decodedData = try jsonDecoder.decode(CurrencyConverterModel.self, from: data)
             DispatchQueue.main.async {
-                self.currencyError = CurrencyAPIErrorModel(error: .decode)
+                self.currency = decodedData
+                print(decodedData)
             }
         } catch {
             DispatchQueue.main.async {

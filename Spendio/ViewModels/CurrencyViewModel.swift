@@ -9,7 +9,7 @@ import Foundation
 
 class CurrencyViewModel: ObservableObject {
     // Fetching currency rates from https://github.com/fawazahmed0/currency-api
-    @Published var currencyRates: CurrencyRatesModel?
+    @Published var currency: [String: Any]?
     @Published var currencyError: CurrencyAPIErrorModel? = nil
     
     // Date is set as a parameter in case it has to be used
@@ -32,13 +32,17 @@ class CurrencyViewModel: ObservableObject {
                 return
             }
             
-            // Decoder
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+            // https://www.hackingwithswift.com/example-code/system/how-to-parse-json-using-jsonserialization - 25/11/2021
+            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                DispatchQueue.main.async {
+                    self.currency = json
+                }
+                return
+            }
             
-            let decodedData = try jsonDecoder.decode(CurrencyRatesModel.self, from: data)
+            // If JSONSerialization Fails
             DispatchQueue.main.async {
-                self.currencyRates = decodedData
+                self.currencyError = CurrencyAPIErrorModel(error: .decode)
             }
         } catch {
             DispatchQueue.main.async {

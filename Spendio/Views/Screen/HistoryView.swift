@@ -15,7 +15,10 @@ struct HistoryView: View {
     var body: some View {
         NavigationView {
             List {
-                
+                // Remove it if u want
+                if let currency = currencyVM.currency?["sek"] {
+                    Text("\(currency)" as String)
+                }
             }
             .navigationTitle("History")
             .listStyle(.grouped)
@@ -36,3 +39,9 @@ struct HistoryView_Previews: PreviewProvider {
         HistoryView(currencyVM: CurrencyViewModel(), expensesArray: Expenses())
     }
 }
+
+// Example usage of currency rates
+/*
+if let currency = currencyVM.currency?["sek"] {
+    Text("\(currency)" as String)
+} */

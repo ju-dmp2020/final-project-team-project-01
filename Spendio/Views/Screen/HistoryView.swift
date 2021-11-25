@@ -27,6 +27,9 @@ struct HistoryView: View {
                       message: Text(err.error.localizedDescription)
                 )
             }
+            .toolbar {
+                FilterButtonView()
+            }
         }
         .onAppear {
             Task { await currencyVM.fetch(baseCurrency: "sek") }

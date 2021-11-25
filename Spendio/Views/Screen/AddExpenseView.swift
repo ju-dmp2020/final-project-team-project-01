@@ -14,41 +14,33 @@ struct AddExpenseView: View {
     @State private var date = Date()
     @State private var cost = ""
     var body: some View {
-        Form{
-            Section(header: Text("Title")){
-                TextField(
-                    "Title",
-                    text: $expense.title
-                )
-            }
-            Section(header: Text("Cost")){
-                TextField(
-                    "Cost",
-                    text: $cost
-                )
-                .keyboardType(.decimalPad)
-            }
-            
-            Section("Date"){
-                DatePicker(
-                        "Transaction Date",
-                        selection: $expense.transactionDate,
-                        displayedComponents: [.date]
-                    )
-            }
-            
-            Section{
-                Button("Add Expense"){
-                    expense.cost = Int(cost) ?? 0
-                    print("Added expense: title: \(expense.title) cost: \(expense.cost) date: \(expense.transactionDate)")
-                    expensesArray.addExpense(expense: expense)
+        NavigationView {
+            Form{
+                Section(header: Text("Title")){
+                    TextField("Title", text: $expense.title)
                 }
-                .onSubmit {
-                    print("Submitted!")
+                Section(header: Text("Cost")){
+                    TextField("Cost",text: $cost)
+                        .keyboardType(.decimalPad)
                 }
-                .alignmentGuide(HorizontalAlignment.center){_ in 50}
+                
+                Section("Date"){
+                    DatePicker("Transaction Date", selection: $expense.transactionDate, displayedComponents: [.date])
+                }
+                
+                Section{
+                    Button("Add Expense"){
+                        expense.cost = Int(cost) ?? 0
+                        print("Added expense: title: \(expense.title) cost: \(expense.cost) date: \(expense.transactionDate)")
+                        expensesArray.addExpense(expense: expense)
+                    }
+                    .onSubmit {
+                        print("Submitted!")
+                    }
+                    .alignmentGuide(HorizontalAlignment.center){_ in 50}
+                }
             }
-            
+            .navigationTitle("Add Expense")
         }
     }
 }

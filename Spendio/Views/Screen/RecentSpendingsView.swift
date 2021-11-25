@@ -10,6 +10,7 @@ import SwiftUI
 struct RecentSpendingsView: View {
     @ObservedObject var currencyVM: CurrencyViewModel
     @State var thrownError: String? = nil
+    @State private var isShowingSheet = false
     // Test
     @ObservedObject var expensesArray: Expenses
     var body: some View {
@@ -24,6 +25,9 @@ struct RecentSpendingsView: View {
                 Alert(title: Text("Whoops, an error occurred"),
                       message: Text(err.error.localizedDescription)
                 )
+            }
+            .toolbar {
+                FilterButtonView()
             }
         }
         .onAppear {

@@ -8,17 +8,59 @@
 import SwiftUI
 
 struct CategoryRowView: View {
-    let category: String
+    // View States
+    @State private var showDeleteConfirmation: Bool = false
+    @Binding var editViewActive: Bool
+    
+    // Example Data
+    @Binding var editViewCategoryId: Int
+    let categoryName: String
+    let categoryColor: Color
+    
     var body: some View {
         HStack {
-            Image(systemName: "photo")
-            Text(category)
+            Circle()
+                .fill(categoryColor)
+                .frame(width: 20, height: 20)
+                .padding(.trailing, 4)
+            Text(categoryName)
         }
+        .padding(.vertical, 10)
+        .swipeActions(edge: .trailing) {
+            Button(role: .destructive) {
+                showDeleteConfirmation = true
+            } label: {
+                Image(systemName: "trash")
+            }
+            
+        }
+        .swipeActions(edge: .leading) {
+            Button {
+                editViewActive.toggle()
+                editViewCategoryId = 5 // Example value
+            } label: {
+                Image(systemName: "square.and.pencil")
+            }
+            .tint(.blue)
+        }
+        .confirmationDialog(
+            "Are you sure you want to delete \(categoryName)?",
+            isPresented: $showDeleteConfirmation,
+            titleVisibility: .visible) {
+                Button("Yes", role: .destructive) {
+                    // TODO: call a ViewModel function to delete
+                }
+                Button("Cancel", role: .cancel) {}
+            }
     }
 }
 
 struct CategoryRowView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryRowView(category: "Coffee")
+        CategoryRowView(editViewActive: .constant(false),
+                        editViewCategoryId: .constant(1),
+                        categoryName: "Coffee",
+                        categoryColor: Color.brown
+        )
     }
 }

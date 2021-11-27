@@ -8,41 +8,32 @@
 import SwiftUI
 
 struct CategoriesView: View {
+    @State private var editViewActive: Bool = false
+    @State private var editViewCategoryId = 0 // Example value
     // Example data
     @State private var categories = ["Games", "Food", "Coffee"]
-    @State private var showDeleteConfirmation: Bool = false
     var body: some View {
         NavigationView {
-            List {
-                ForEach (categories, id: \.self) { category in
-                    NavigationLink(destination: CategoryView(category: category)) {
-                        CategoryRowView(category: category)
+            VStack {
+                // Always hidden & redirects to EditCategoryView on swipe action
+                NavigationLink("", isActive: $editViewActive) {
+                    EditCategoryView(id: $editViewCategoryId)
+                }.hidden().frame(width: 0, height: 0)
+                
+                List {
+                    ForEach (categories, id: \.self) { category in
+                        CategoryRowView(editViewActive: $editViewActive,
+                                        editViewCategoryId: $editViewCategoryId,
+                                        categoryName: category,
+                                        categoryColor: Color.brown)
                     }
-                    .swipeActions {
-                        Button(role: .destructive) {
-                            showDeleteConfirmation = true
-                            } label: {
-                                Image(systemName: "trash")
-                            }
-
-                    }
-                    .confirmationDialog(
-                        "Are you sure you want to delete \(category)?",
-                        isPresented: $showDeleteConfirmation,
-                        titleVisibility: .visible) {
-                            Button("Yes", role: .destructive) {
-                                // TODO: call a ViewModel function to delete
-                            }
-                            Button("Cancel", role: .cancel) {}
-                        }
                 }
-            }
-            .padding(.top)
-            .listStyle(.grouped)
-            .navigationTitle("Categories")
-            .toolbar {
-                NavigationLink(destination: AddCategoryView()) {
-                    Image(systemName: "plus.circle")
+                .listStyle(.grouped)
+                .navigationTitle("Categories")
+                .toolbar {
+                    NavigationLink(destination: AddCategoryView()) {
+                        Image(systemName: "plus.circle")
+                    }
                 }
             }
         }

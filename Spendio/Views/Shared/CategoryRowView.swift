@@ -21,9 +21,11 @@ struct CategoryRowView: View {
         HStack {
             Circle()
                 .fill(categoryColor)
-                .frame(width: 15, height: 15)
+                .frame(width: 20, height: 20)
+                .padding(.trailing, 4)
             Text(categoryName)
         }
+        .padding(.vertical, 10)
         .swipeActions(edge: .trailing) {
             Button(role: .destructive) {
                 showDeleteConfirmation = true

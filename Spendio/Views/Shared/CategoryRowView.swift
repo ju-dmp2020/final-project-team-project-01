@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct CategoryRowView: View {
-    let category: String
+    let categoryName: String
+    let categoryColor: Color
     var body: some View {
         HStack {
-            Image(systemName: "photo")
-            Text(category)
+            Circle()
+                .fill(categoryColor)
+                .frame(width: 15, height: 15)
+            Text(categoryName)
         }
     }
 }
 
 struct CategoryRowView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryRowView(category: "Coffee")
+        CategoryRowView(categoryName: "Coffee", categoryColor: .brown)
     }
 }

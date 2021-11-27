@@ -9,11 +9,8 @@ import SwiftUI
 
 struct AddCategoryView: View {
     @State var categoryName: String = ""
-    @State private var showImageUploadSheet: Bool = false
     @FocusState private var nameFieldIsFocused: Bool
-    
-    @State var showActionSheet: Bool = false
-    
+    @State var categoryColor = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2) // Default color
     
     var body: some View {
         Form {
@@ -28,29 +25,15 @@ struct AddCategoryView: View {
                         }
                     }
             }
-            // Image Upload
+            // ColorPicker
             Section {
-                Button {
-                    showImageUploadSheet = true
-                } label: {
-                    Text("Upload Image")
-                }
-                .alignmentGuide(HorizontalAlignment.center){_ in 50}
-                .confirmationDialog("", isPresented: $showImageUploadSheet, titleVisibility: .hidden) {
-                        Button("Take Photo") {
-                            // TODO: Camera functionality
-                        }
-                        Button("Gallery") {
-                            // TODO: Choose en existing photo from gallery
-                        }
-                        Button("Cancel", role: .cancel) {}
-                    }
+                ColorPicker("Select a color", selection: $categoryColor)
             }
             // Submit Button
             Section {
                 Button  {
                     // TODO: Save data
-                    
+                    print(categoryColor)
                 } label: {
                     Text("Save")
                 }

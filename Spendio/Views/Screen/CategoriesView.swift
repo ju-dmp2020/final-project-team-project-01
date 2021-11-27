@@ -17,7 +17,7 @@ struct CategoriesView: View {
             VStack {
                 // Always hidden & redirects to EditCategoryView on swipe action
                 NavigationLink("", isActive: $editViewActive) {
-                    EmptyView() // Will be replaced with EditCategoryView()
+                    EditCategoryView(id: $editViewCategoryId)
                 }.hidden().frame(width: 0, height: 0)
                 
                 List {

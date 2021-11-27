@@ -27,7 +27,7 @@ struct AddCategoryView: View {
             }
             // ColorPicker
             Section {
-                ColorPicker("Select a color", selection: $categoryColor)
+                ColorPicker("Select a color", selection: $categoryColor, supportsOpacity: false)
             }
             // Submit Button
             Section {

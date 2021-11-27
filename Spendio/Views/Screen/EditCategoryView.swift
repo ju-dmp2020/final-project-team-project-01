@@ -18,7 +18,7 @@ struct EditCategoryView: View {
                     TextField("Name", text: $categoryName)
                 }
                 Section {
-                    ColorPicker("Select a color", selection: $categoryColor)
+                    ColorPicker("Select a color", selection: $categoryColor, supportsOpacity: false)
                 }
                 Section {
                     Button {

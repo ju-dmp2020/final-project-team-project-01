@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		953084BA274B8F380078BC87 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953084B9274B8F380078BC87 /* Expense.swift */; };
 		953084BC274B90460078BC87 /* Expenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953084BB274B90460078BC87 /* Expenses.swift */; };
+		95E64A82275676E7004BD257 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 95E64A81275676E7004BD257 /* SwiftUICharts */; };
 		F6089046274FFA27004E09D0 /* FilterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6089045274FFA27004E09D0 /* FilterButtonView.swift */; };
 		F6089048274FFA67004E09D0 /* FilterSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6089047274FFA67004E09D0 /* FilterSheetView.swift */; };
 		F608904A27500227004E09D0 /* CurrencyConverterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F608904927500227004E09D0 /* CurrencyConverterModel.swift */; };
@@ -87,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95E64A82275676E7004BD257 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +247,9 @@
 			dependencies = (
 			);
 			name = Spendio;
+			packageProductDependencies = (
+				95E64A81275676E7004BD257 /* SwiftUICharts */,
+			);
 			productName = Spendio;
 			productReference = F6447D0D2747D03E006C7CA7 /* Spendio.app */;
 			productType = "com.apple.product-type.application";
@@ -317,6 +322,9 @@
 				Base,
 			);
 			mainGroup = F6447D042747D03E006C7CA7;
+			packageReferences = (
+				95E64A80275676E7004BD257 /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = F6447D0E2747D03E006C7CA7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -727,6 +735,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		95E64A80275676E7004BD257 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = exactVersion;
+				version = "2.0.0-beta.2";
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		95E64A81275676E7004BD257 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95E64A80275676E7004BD257 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		F6447D1B2747D03F006C7CA7 /* Spendio.xcdatamodeld */ = {

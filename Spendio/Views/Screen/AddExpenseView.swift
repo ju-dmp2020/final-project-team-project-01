@@ -37,7 +37,7 @@ struct AddExpenseView: View {
                     .onSubmit {
                         print("Submitted!")
                     }
-                    .alignmentGuide(HorizontalAlignment.center){_ in 50}
+                    .centerHorizontally()
                 }
             }
             .navigationTitle("Add Expense")

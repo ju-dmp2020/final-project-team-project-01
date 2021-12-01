@@ -27,7 +27,7 @@ struct EditCategoryView: View {
                     } label: {
                         Text("Save")
                     }
-                    .alignmentGuide(HorizontalAlignment.center){_ in 20}
+                    .centerHorizontally()
                 }
             }
         }

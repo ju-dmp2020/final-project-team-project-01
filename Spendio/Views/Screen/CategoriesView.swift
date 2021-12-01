@@ -10,6 +10,7 @@ import SwiftUI
 struct CategoriesView: View {
     @State private var editViewActive: Bool = false
     @State private var editViewCategoryId = 0 // Example value
+    @Environment(\.managedObjectContext) private var viewContext
     // Example data
     @State private var categories = ["Games", "Food", "Coffee"]
     var body: some View {

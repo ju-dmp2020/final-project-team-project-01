@@ -10,6 +10,7 @@
 		953084BA274B8F380078BC87 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953084B9274B8F380078BC87 /* Expense.swift */; };
 		953084BC274B90460078BC87 /* Expenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953084BB274B90460078BC87 /* Expenses.swift */; };
 		955A9531275776E500163FCF /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A9530275776E500163FCF /* ViewExtensions.swift */; };
+		955A953327577CDF00163FCF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A953227577CDF00163FCF /* CoreDataManager.swift */; };
 		95E64A82275676E7004BD257 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 95E64A81275676E7004BD257 /* SwiftUICharts */; };
 		F6089046274FFA27004E09D0 /* FilterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6089045274FFA27004E09D0 /* FilterButtonView.swift */; };
 		F6089048274FFA67004E09D0 /* FilterSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6089047274FFA67004E09D0 /* FilterSheetView.swift */; };
@@ -18,7 +19,6 @@
 		F61623712749604300B7DAAE /* CategoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61623702749604300B7DAAE /* CategoryRowView.swift */; };
 		F6162374274983A400B7DAAE /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6162373274983A400B7DAAE /* AddCategoryView.swift */; };
 		F6447D112747D03E006C7CA7 /* SpendioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D102747D03E006C7CA7 /* SpendioApp.swift */; };
-		F6447D132747D03E006C7CA7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D122747D03E006C7CA7 /* ContentView.swift */; };
 		F6447D152747D03F006C7CA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6447D142747D03F006C7CA7 /* Assets.xcassets */; };
 		F6447D182747D03F006C7CA7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6447D172747D03F006C7CA7 /* Preview Assets.xcassets */; };
 		F6447D1A2747D03F006C7CA7 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D192747D03F006C7CA7 /* Persistence.swift */; };
@@ -57,6 +57,7 @@
 		953084B9274B8F380078BC87 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		953084BB274B90460078BC87 /* Expenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expenses.swift; sourceTree = "<group>"; };
 		955A9530275776E500163FCF /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		955A953227577CDF00163FCF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F6089045274FFA27004E09D0 /* FilterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonView.swift; sourceTree = "<group>"; };
 		F6089047274FFA67004E09D0 /* FilterSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSheetView.swift; sourceTree = "<group>"; };
 		F608904927500227004E09D0 /* CurrencyConverterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterModel.swift; sourceTree = "<group>"; };
@@ -65,7 +66,6 @@
 		F6162373274983A400B7DAAE /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
 		F6447D0D2747D03E006C7CA7 /* Spendio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spendio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6447D102747D03E006C7CA7 /* SpendioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendioApp.swift; sourceTree = "<group>"; };
-		F6447D122747D03E006C7CA7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F6447D142747D03F006C7CA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6447D172747D03F006C7CA7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F6447D192747D03F006C7CA7 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -190,11 +190,11 @@
 				F6447D3F2747EDC9006C7CA7 /* Views */,
 				F68E38C2274C07FD0031C04C /* ViewModels */,
 				F6447D102747D03E006C7CA7 /* SpendioApp.swift */,
-				F6447D122747D03E006C7CA7 /* ContentView.swift */,
 				F6447D142747D03F006C7CA7 /* Assets.xcassets */,
 				F6447D192747D03F006C7CA7 /* Persistence.swift */,
 				F6447D1B2747D03F006C7CA7 /* Spendio.xcdatamodeld */,
 				F6447D162747D03F006C7CA7 /* Preview Content */,
+				955A953227577CDF00163FCF /* CoreDataManager.swift */,
 			);
 			path = Spendio;
 			sourceTree = "<group>";
@@ -386,8 +386,8 @@
 				F6447D1A2747D03F006C7CA7 /* Persistence.swift in Sources */,
 				F6447D432747FA16006C7CA7 /* HistoryView.swift in Sources */,
 				F608904A27500227004E09D0 /* CurrencyConverterModel.swift in Sources */,
-				F6447D132747D03E006C7CA7 /* ContentView.swift in Sources */,
 				F6447D472747FA60006C7CA7 /* AddExpenseView.swift in Sources */,
+				955A953327577CDF00163FCF /* CoreDataManager.swift in Sources */,
 				F6447D452747FA34006C7CA7 /* RecentSpendingsView.swift in Sources */,
 				F6162374274983A400B7DAAE /* AddCategoryView.swift in Sources */,
 				F6089048274FFA67004E09D0 /* FilterSheetView.swift in Sources */,

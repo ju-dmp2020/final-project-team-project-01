@@ -12,40 +12,40 @@ struct CoreDataManager {
     let controller = PersistenceController.shared
     // Maybe put context variable outside functions
     
-    func addCategory(name: String) {
+    func addCategory(name: String) throws {
         let context = controller.container.viewContext
         
         let newCategory = Category(context: context)
+        newCategory.id = UUID()
         newCategory.name = name
         
         do {
             try context.save()
         } catch {
-            print(error)
+            throw error
         }
     }
     
     
-    func getAllCategories(){
+     func fetchAllCategories() throws -> [Category]  {
         let context = controller.container.viewContext
         // Kolla på CategoriesViewModel
         // Skapa extensions för fetchRequest parameter??
-        
-        let request = Category.fetchRequest()
+         
+         let request: NSFetchRequest<Category> = Category.fetchRequest()
         request.sortDescriptors = []
         
-        let fetchedRe
-        sultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
       
         do {
             try fetchedResultsController.performFetch()
-            guard let catogries = fetchedResultsController.fetchedObjects else {
-                return
+            guard let categories = fetchedResultsController.fetchedObjects else {
+                return []
             }
-            return catogries
+            return categories
             
         } catch {
-            print(error)
+            throw error
         }
         
         

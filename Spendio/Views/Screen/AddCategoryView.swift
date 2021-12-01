@@ -11,6 +11,7 @@ struct AddCategoryView: View {
     @State var categoryName: String = ""
     @FocusState private var nameFieldIsFocused: Bool
     @State var categoryColor = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2) // Default color
+    @ObservedObject var categoryViewModel: CategoryViewModel
     
     var body: some View {
         Form {
@@ -33,7 +34,9 @@ struct AddCategoryView: View {
             Section {
                 Button  {
                     // TODO: Save data
+                    try! categoryViewModel.add(name: categoryName) // handle error later
                     print(categoryColor)
+                    //print(categoryColor.cgColor?.components)
                 } label: {
                     Text("Save")
                 }
@@ -44,10 +47,11 @@ struct AddCategoryView: View {
         .navigationTitle("New category")
         .navigationBarTitleDisplayMode(.inline)
     }
+    
 }
 
 struct AddCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCategoryView(categoryName: "")
+        AddCategoryView(categoryName: "", categoryViewModel: CategoryViewModel())
     }
 }

@@ -12,12 +12,15 @@ struct CoreDataManager {
     let controller = PersistenceController.shared
     // Maybe put context variable outside functions
     
-    func addCategory(name: String) throws {
+    func addCategory(name: String, color: [Float]) throws {
         let context = controller.container.viewContext
         
         let newCategory = Category(context: context)
         newCategory.id = UUID()
         newCategory.name = name
+        newCategory.colorRed = color[0]
+        newCategory.colorGreen = color[1]
+        newCategory.colorBlue = color[2]
         
         do {
             try context.save()

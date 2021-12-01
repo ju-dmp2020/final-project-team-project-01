@@ -26,10 +26,7 @@ struct CategoriesView: View {
                 List {
                     if let categories = categoryViewModel.categories {
                         ForEach (categories) { category in
-                            CategoryRowView(editViewActive: $editViewActive,
-                                            editViewCategoryId: $editViewCategoryId,
-                                            categoryName: category.name,
-                                            categoryColor: Color.brown)
+                            CategoryRowView(editViewActive: $editViewActive, category: category)
                         } // send obj later
                     }
                     

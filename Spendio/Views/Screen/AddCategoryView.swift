@@ -34,9 +34,12 @@ struct AddCategoryView: View {
             Section {
                 Button  {
                     // TODO: Save data
-                    try! categoryViewModel.add(name: categoryName) // handle error later
-                    print(categoryColor)
-                    //print(categoryColor.cgColor?.components)
+                    if let CGColor = categoryColor.cgColor?.components {
+                        let floatColor = CGColor.map{Float($0)}
+                        try! categoryViewModel.add(name: categoryName, color: floatColor) // handle error later
+                    }
+                    
+ 
                 } label: {
                     Text("Save")
                 }

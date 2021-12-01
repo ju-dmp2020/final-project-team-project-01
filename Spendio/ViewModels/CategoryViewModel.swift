@@ -26,9 +26,10 @@ class CategoryViewModel: ObservableObject {
         }
     }
     
-    func add(name: String) throws {
+    func add(name: String, color: [Float]) throws {
+        
         do {
-            try coreDataManager.addCategory(name: name)
+            try coreDataManager.addCategory(name: name, color: color)
         } catch {
             throw error
         }

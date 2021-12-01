@@ -11,19 +11,16 @@ struct CategoryRowView: View {
     // View States
     @State private var showDeleteConfirmation: Bool = false
     @Binding var editViewActive: Bool
-    
-    // Example Data
-    @Binding var editViewCategoryId: Int
-    let categoryName: String
-    let categoryColor: Color
+    // Category Object
+    let category: CategoryModel
     
     var body: some View {
         HStack {
             Circle()
-                .fill(categoryColor)
+                .fill(Color(.sRGB, red: Double(category.colorRed), green: Double(category.colorGreen), blue: Double(category.colorBlue)))
                 .frame(width: 20, height: 20)
                 .padding(.trailing, 4)
-            Text(categoryName)
+            Text(category.name)
         }
         .padding(.vertical, 10)
         .swipeActions(edge: .trailing) {
@@ -37,14 +34,13 @@ struct CategoryRowView: View {
         .swipeActions(edge: .leading) {
             Button {
                 editViewActive.toggle()
-                editViewCategoryId = 5 // Example value
             } label: {
                 Image(systemName: "square.and.pencil")
             }
             .tint(.blue)
         }
         .confirmationDialog(
-            "Are you sure you want to delete \(categoryName)?",
+            "Are you sure you want to delete \(category.name)?",
             isPresented: $showDeleteConfirmation,
             titleVisibility: .visible) {
                 Button("Yes", role: .destructive) {
@@ -54,7 +50,7 @@ struct CategoryRowView: View {
             }
     }
 }
-
+/*
 struct CategoryRowView_Previews: PreviewProvider {
     static var previews: some View {
         CategoryRowView(editViewActive: .constant(false),
@@ -64,3 +60,4 @@ struct CategoryRowView_Previews: PreviewProvider {
         )
     }
 }
+*/

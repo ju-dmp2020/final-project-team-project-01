@@ -9,12 +9,11 @@ import SwiftUI
 
 struct CategoriesView: View {
     @State private var editViewActive: Bool = false
+    @State private var AddViewActive: Bool = false
     @State private var editViewCategoryId = 0 // Example value
     // ViewModel
     @Environment(\.managedObjectContext) var viewContext
     @StateObject var categoryViewModel =  CategoryViewModel()
-    // Example data
-    @State private var categories = ["Games", "Food", "Coffee"]
     var body: some View {
         NavigationView {
             VStack {
@@ -34,7 +33,8 @@ struct CategoriesView: View {
                 .listStyle(.grouped)
                 .navigationTitle("Categories")
                 .toolbar {
-                    NavigationLink(destination: AddCategoryView(categoryViewModel: categoryViewModel)) {
+                    NavigationLink(destination: AddCategoryView(categoryViewModel: categoryViewModel, AddViewActive: $AddViewActive),
+                                   isActive: $AddViewActive) {
                         Image(systemName: "plus.circle")
                     }
                 }

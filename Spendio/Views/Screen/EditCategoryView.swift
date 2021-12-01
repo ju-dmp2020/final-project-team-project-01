@@ -11,6 +11,11 @@ struct EditCategoryView: View {
     @Binding var id: Int // Example value
     @State var categoryName: String = "" // Will be changed to a fetch result from db
     @State var categoryColor = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2) // Will be changed to a fetch result from db
+    
+    var disableForm: Bool {
+        categoryName.count < 3
+    }
+    
     var body: some View {
         VStack {
             Form {
@@ -28,7 +33,7 @@ struct EditCategoryView: View {
                         Text("Save")
                     }
                     .centerHorizontally()
-                }
+                }.disabled(disableForm)
             }
         }
         .navigationBarTitle("Edit Category")

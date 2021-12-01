@@ -12,7 +12,12 @@ struct AddCategoryView: View {
     @FocusState private var nameFieldIsFocused: Bool
     @State var categoryColor = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2) // Default color
     @ObservedObject var categoryViewModel: CategoryViewModel
+    @Binding var AddViewActive: Bool
     
+    var disableForm: Bool {
+        categoryName.count < 3
+    }
+
     var body: some View {
         Form {
             // TextField
@@ -39,22 +44,21 @@ struct AddCategoryView: View {
                         try! categoryViewModel.add(name: categoryName, color: floatColor) // handle error later
                     }
                     
- 
+                    AddViewActive.toggle()
                 } label: {
                     Text("Save")
                 }
                 .centerHorizontally()
-            }
+            }.disabled(disableForm)
             
         }
         .navigationTitle("New category")
         .navigationBarTitleDisplayMode(.inline)
     }
-    
 }
 
 struct AddCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCategoryView(categoryName: "", categoryViewModel: CategoryViewModel())
+        AddCategoryView(categoryName: "", categoryViewModel: CategoryViewModel(), AddViewActive: .constant(false))
     }
 }

@@ -28,13 +28,12 @@ struct AddExpenseView: View {
                 }
                 
                 Section{
-                    Button("Add Expense"){
-                        
-                    }
-                    .onSubmit {
+                    Button {
                         print("Submitted!")
-                    }
-                    .centerHorizontally()
+                        tabScreen = TabScreen.recentSpendings
+                    } label: {
+                        Text("Add Expense")
+                    }.centerHorizontally()
                 }
             }
             .navigationTitle("Add Expense")

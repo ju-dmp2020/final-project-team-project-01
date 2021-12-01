@@ -11,8 +11,7 @@ import SwiftUICharts
 struct RecentSpendingsView: View {
     @State var demoData: [Double] = [5,13,11,3,14,16]
     @ObservedObject var currencyVM: CurrencyViewModel
-    // Test
-    @ObservedObject var expensesArray: Expenses
+
     var body: some View {
         NavigationView {
             VStack {
@@ -53,6 +52,6 @@ struct RecentSpendingsView: View {
 
 struct RecentSpendingsView_Previews: PreviewProvider {
     static var previews: some View {
-        RecentSpendingsView(currencyVM: CurrencyViewModel(), expensesArray: Expenses())
+        RecentSpendingsView(currencyVM: CurrencyViewModel())
     }
 }

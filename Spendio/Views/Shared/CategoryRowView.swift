@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct CategoryRowView: View {
+    // CoreData manager
+    @Environment(\.managedObjectContext) var viewContext
+    let coreDataManager = CoreDataManager()
+    
     // View States
     @State private var showDeleteConfirmation: Bool = false
     @Binding var editViewActive: Bool
+    @Binding var editViewCategoryId: UUID
+    @Binding var categories: [CategoryModel]?
+    
     // Category Object
     let category: CategoryModel
     
@@ -34,6 +41,7 @@ struct CategoryRowView: View {
         .swipeActions(edge: .leading) {
             Button {
                 editViewActive.toggle()
+                editViewCategoryId = category.id
             } label: {
                 Image(systemName: "square.and.pencil")
             }
@@ -44,20 +52,19 @@ struct CategoryRowView: View {
             isPresented: $showDeleteConfirmation,
             titleVisibility: .visible) {
                 Button("Yes", role: .destructive) {
-                    // TODO: call a ViewModel function to delete
+                    // TODO: call a function to delete
+                    deleteCategory(categoryId: category.id)
                 }
                 Button("Cancel", role: .cancel) {}
             }
     }
-}
-/*
-struct CategoryRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        CategoryRowView(editViewActive: .constant(false),
-                        editViewCategoryId: .constant(1),
-                        categoryName: "Coffee",
-                        categoryColor: Color.brown
-        )
+    
+    func deleteCategory(categoryId: UUID) {
+        do {
+            try coreDataManager.deleteCategory(id: categoryId)
+            categories = try coreDataManager.fetchAllCategories() // Update View
+        } catch {
+            print("Failed to delete & reload categories, \(error)")
+        }
     }
 }
-*/

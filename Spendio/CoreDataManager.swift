@@ -10,7 +10,6 @@ import CoreData
 
 struct CoreDataManager {
     let controller = PersistenceController.shared
-    // Maybe put context variable outside functions
     
     func addCategory(name: String, color: [Float]) throws {
         let context = controller.container.viewContext
@@ -29,30 +28,39 @@ struct CoreDataManager {
         }
     }
     
-    
-     func fetchAllCategories() throws -> [Category]  {
+    func fetchCategoryById(id: UUID) throws -> CategoryModel? {
         let context = controller.container.viewContext
-        // Kolla på CategoriesViewModel
-        // Skapa extensions för fetchRequest parameter??
-         
-         let request: NSFetchRequest<Category> = Category.fetchRequest()
-        request.sortDescriptors = []
         
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-      
-        do {
-            try fetchedResultsController.performFetch()
-            guard let categories = fetchedResultsController.fetchedObjects else {
-                return []
-            }
-            return categories
-            
-        } catch {
-            throw error
-        }
+        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+        fetchRequest.fetchLimit = 1
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         
-        
+        let category = try context.fetch(fetchRequest).first
+        return category.map(CategoryModel.init)
     }
     
     
+     func fetchAllCategories() throws -> [CategoryModel]  {
+         let context = controller.container.viewContext
+         
+         let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+        
+         let categories = try context.fetch(fetchRequest)
+         return categories.map(CategoryModel.init)
+    }
+    
+    func deleteCategory(id: UUID) throws {
+        let context = controller.container.viewContext
+        
+        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        let category = try context.fetch(fetchRequest).first
+        
+        // Delete
+        if let category = category {
+            context.delete(category)
+            try context.save()
+        }
+    }
 }

@@ -6,18 +6,19 @@
 //
 
 import Foundation
+import CoreData.NSManagedObjectID
 
 
 struct CategoryModel: Identifiable {
-    let _category: Category
-    var id: UUID
-    var name: String
-    var colorRed: Float
-    var colorGreen: Float
-    var colorBlue: Float
+    let objectID: NSManagedObjectID
+    let id: UUID
+    let name: String
+    let colorRed: Float
+    let colorGreen: Float
+    let colorBlue: Float
     
     init(category: Category) {
-        self._category = category
+        self.objectID = category.objectID
         self.id = category.id ?? UUID()
         self.name = category.name ?? ""
         self.colorRed = category.colorRed

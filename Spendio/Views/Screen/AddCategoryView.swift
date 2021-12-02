@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct AddCategoryView: View {
+    // CoreData manager
+    @Environment(\.managedObjectContext) var viewContext
+    let coreDataManager = CoreDataManager()
+    
     @State var categoryName: String = ""
     @FocusState private var nameFieldIsFocused: Bool
     @State var categoryColor = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2) // Default color
-    @ObservedObject var categoryViewModel: CategoryViewModel
     @Binding var AddViewActive: Bool
     
     var disableForm: Bool {
@@ -41,7 +44,7 @@ struct AddCategoryView: View {
                     // TODO: Save data
                     if let CGColor = categoryColor.cgColor?.components {
                         let floatColor = CGColor.map{Float($0)}
-                        try! categoryViewModel.add(name: categoryName, color: floatColor) // handle error later
+                        try! coreDataManager.addCategory(name: categoryName, color: floatColor) // handle error later
                     }
                     
                     AddViewActive.toggle()
@@ -57,8 +60,10 @@ struct AddCategoryView: View {
     }
 }
 
+/*
 struct AddCategoryView_Previews: PreviewProvider {
     static var previews: some View {
         AddCategoryView(categoryName: "", categoryViewModel: CategoryViewModel(), AddViewActive: .constant(false))
     }
 }
+*/

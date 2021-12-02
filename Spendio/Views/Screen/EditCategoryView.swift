@@ -8,12 +8,21 @@
 import SwiftUI
 
 struct EditCategoryView: View {
-    @Binding var id: Int // Example value
-    @State var categoryName: String = "" // Will be changed to a fetch result from db
-    @State var categoryColor = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2) // Will be changed to a fetch result from db
+    // CoreData manager
+    @Environment(\.managedObjectContext) var viewContext
+    let coreDataManager = CoreDataManager()
     
-    var disableForm: Bool {
-        categoryName.count < 3
+    // Necessary variables for category
+    @Binding var id: UUID
+    var category: CategoryModel?
+    
+    // Prefil textfield & colorpicker
+    @State var categoryName: String = ""
+    @State var categoryColor: Color = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2)
+    
+    init(categoryId: Binding<UUID>) {
+        self._id = categoryId
+        self.category = try? coreDataManager.fetchCategoryById(id: self.id)
     }
     
     var body: some View {
@@ -21,14 +30,22 @@ struct EditCategoryView: View {
             Form {
                 Section(header: Text("Category name")) {
                     TextField("Name", text: $categoryName)
+                        .onAppear {
+                            categoryName = category?.name ?? ""
+                        }
                 }
                 Section {
                     ColorPicker("Select a color", selection: $categoryColor, supportsOpacity: false)
+                        .onAppear {
+                            categoryColor = Color(.sRGB, red: Double(category?.colorRed ?? 0.98),
+                                                  green: Double(category?.colorGreen ?? 0.9),
+                                                  blue: Double(category?.colorBlue ?? 0.2))
+                        }
                 }
                 Section {
                     Button {
                         // TODO: Update Query to database
-                        print(categoryColor)
+                        
                     } label: {
                         Text("Save")
                     }
@@ -39,10 +56,8 @@ struct EditCategoryView: View {
         .navigationBarTitle("Edit Category")
         .navigationBarTitleDisplayMode(.inline)
     }
-}
-
-struct EditCategoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditCategoryView(id: .constant(1))
+    
+    var disableForm: Bool {
+        categoryName.count < 3
     }
 }

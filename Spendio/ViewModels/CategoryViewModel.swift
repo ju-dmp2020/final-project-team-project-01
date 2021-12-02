@@ -4,12 +4,13 @@
 //
 //  Created by Hasan Khalaf on 2021-12-01.
 //
-
+/*
 import Foundation
 
 class CategoryViewModel: ObservableObject {
     
     @Published var categories: [CategoryModel]?
+    @Published var category: CategoryModel?
     
     let coreDataManager = CoreDataManager()
     
@@ -26,6 +27,15 @@ class CategoryViewModel: ObservableObject {
         }
     }
     
+    func fetchById(id: UUID) throws {
+        
+        let fetchedCategory = try coreDataManager.fetchCategoryById(id: id).map(CategoryModel.init)
+        DispatchQueue.main.async {
+            self.category = fetchedCategory
+        }
+        
+    }
+    
     func add(name: String, color: [Float]) throws {
         
         do {
@@ -36,3 +46,5 @@ class CategoryViewModel: ObservableObject {
     }
     
 }
+
+*/

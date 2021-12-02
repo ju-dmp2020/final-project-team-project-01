@@ -9,15 +9,14 @@ import SwiftUI
 
 struct AddExpenseView: View {
     @Binding var tabScreen: TabScreen
-    @StateObject var expense = Expense()
-    @ObservedObject var expensesArray: Expenses
     @State private var date = Date()
     @State private var cost = ""
+    
     var body: some View {
         NavigationView {
             Form{
                 Section(header: Text("Title")){
-                    TextField("Title", text: $expense.title)
+                    //TextField("Title", text: $expense.title)
                 }
                 Section(header: Text("Cost")){
                     TextField("Cost",text: $cost)
@@ -25,19 +24,16 @@ struct AddExpenseView: View {
                 }
                 
                 Section("Date"){
-                    DatePicker("Transaction Date", selection: $expense.transactionDate, displayedComponents: [.date])
+                    //DatePicker("Transaction Date", selection: $expense.transactionDate, displayedComponents: [.date])
                 }
                 
                 Section{
-                    Button("Add Expense"){
-                        expense.cost = Int(cost) ?? 0
-                        print("Added expense: title: \(expense.title) cost: \(expense.cost) date: \(expense.transactionDate)")
-                        expensesArray.addExpense(expense: expense)
-                    }
-                    .onSubmit {
+                    Button {
                         print("Submitted!")
-                    }
-                    .centerHorizontally()
+                        tabScreen = TabScreen.recentSpendings
+                    } label: {
+                        Text("Add Expense")
+                    }.centerHorizontally()
                 }
             }
             .navigationTitle("Add Expense")

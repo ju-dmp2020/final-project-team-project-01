@@ -10,9 +10,8 @@ import SwiftUICharts
 
 struct RecentSpendingsView: View {
     @State var demoData: [Double] = [5,13,11,3,14,16]
-    @ObservedObject var currencyVM: CurrencyViewModel
-    // Test
-    @ObservedObject var expensesArray: Expenses
+    @ObservedObject var currencyViewModel: CurrencyViewModel
+
     var body: some View {
         NavigationView {
             VStack {
@@ -34,7 +33,7 @@ struct RecentSpendingsView: View {
             }
             .navigationTitle("Recent")
             .listStyle(.grouped)
-            .alert(item: $currencyVM.currencyError) { err in
+            .alert(item: $currencyViewModel.currencyError) { err in
                 Alert(title: Text("Whoops, an error occurred"),
                       message: Text(err.error.localizedDescription)
                 )
@@ -44,7 +43,7 @@ struct RecentSpendingsView: View {
             }
         }
         .onAppear {
-            Task { await currencyVM.fetch(baseCurrency: "sek") }
+            Task { await currencyViewModel.fetch(baseCurrency: "sek") }
         }
     }
 }
@@ -53,6 +52,6 @@ struct RecentSpendingsView: View {
 
 struct RecentSpendingsView_Previews: PreviewProvider {
     static var previews: some View {
-        RecentSpendingsView(currencyVM: CurrencyViewModel(), expensesArray: Expenses())
+        RecentSpendingsView(currencyViewModel: CurrencyViewModel())
     }
 }

@@ -8,38 +8,38 @@
 import SwiftUI
 
 enum TabScreen {
-    case History, RecentSpendings, AddExpense, Categories
+    case history, recentSpendings, addExpense, categories
 }
 
 struct MainView: View {
-    @State var selectedTabScreen = TabScreen.RecentSpendings
-    @StateObject var expensesArray = Expenses()
+    @State var selectedTabScreen = TabScreen.recentSpendings
     @StateObject var currencyViewModel = CurrencyViewModel()
+    
     var body: some View {
         TabView(selection: $selectedTabScreen) {
-            HistoryView(currencyVM: currencyViewModel, expensesArray: expensesArray)
+            HistoryView(currencyViewModel: currencyViewModel)
                 .tabItem {
                     Label("History", systemImage: "clock.arrow.circlepath")
                 }
-                .tag(TabScreen.History)
+                .tag(TabScreen.history)
             
-            RecentSpendingsView(currencyVM: currencyViewModel, expensesArray: expensesArray)
+            RecentSpendingsView(currencyViewModel: currencyViewModel)
                 .tabItem {
                     Label("Recent Spendings", image: "Money")
                 }
-                .tag(TabScreen.RecentSpendings)
+                .tag(TabScreen.recentSpendings)
             
-            AddExpenseView(tabScreen: $selectedTabScreen, expensesArray: expensesArray)
+            AddExpenseView(tabScreen: $selectedTabScreen)
                 .tabItem {
                     Label("Add Expense", systemImage: "plus")
                 }
-                .tag(TabScreen.AddExpense)
+                .tag(TabScreen.addExpense)
             
             CategoriesView()
                 .tabItem {
                     Label("Categories", systemImage: "tag")
                 }
-                .tag(TabScreen.Categories)
+                .tag(TabScreen.categories)
         }
         .onAppear {
             // https://nemecek.be/blog/127/how-to-disable-automatic-transparent-tabbar-in-ios-15 - 19/11/2021

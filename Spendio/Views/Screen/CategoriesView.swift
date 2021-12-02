@@ -9,9 +9,11 @@ import SwiftUI
 
 struct CategoriesView: View {
     @State private var editViewActive: Bool = false
+    @State private var AddViewActive: Bool = false
     @State private var editViewCategoryId = 0 // Example value
-    // Example data
-    @State private var categories = ["Games", "Food", "Coffee"]
+    // ViewModel
+    @Environment(\.managedObjectContext) var viewContext
+    @StateObject var categoryViewModel =  CategoryViewModel()
     var body: some View {
         NavigationView {
             VStack {
@@ -21,27 +23,32 @@ struct CategoriesView: View {
                 }.hidden().frame(width: 0, height: 0)
                 
                 List {
-                    ForEach (categories, id: \.self) { category in
-                        CategoryRowView(editViewActive: $editViewActive,
-                                        editViewCategoryId: $editViewCategoryId,
-                                        categoryName: category,
-                                        categoryColor: Color.brown)
+                    if let categories = categoryViewModel.categories {
+                        ForEach (categories) { category in
+                            CategoryRowView(editViewActive: $editViewActive, category: category)
+                        } // send obj later
                     }
+                    
                 }
                 .listStyle(.grouped)
                 .navigationTitle("Categories")
                 .toolbar {
-                    NavigationLink(destination: AddCategoryView()) {
+                    NavigationLink(destination: AddCategoryView(categoryViewModel: categoryViewModel, AddViewActive: $AddViewActive),
+                                   isActive: $AddViewActive) {
                         Image(systemName: "plus.circle")
                     }
                 }
             }
+            .onAppear {
+                try! categoryViewModel.fetchAll() // handle errors later
+            }
         }
     }
+    
 }
 
 struct CategoriesView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoriesView()
+        CategoriesView(categoryViewModel: CategoryViewModel())
     }
 }

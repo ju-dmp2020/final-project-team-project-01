@@ -8,23 +8,21 @@
 import SwiftUI
 
 struct HistoryView: View {
-    @ObservedObject var currencyVM: CurrencyViewModel
-    @State var catchedError: String? = nil
-    // Test
-    @ObservedObject var expensesArray: Expenses
+    @ObservedObject var currencyViewModel: CurrencyViewModel
+
     var body: some View {
         NavigationView {
             List {
                 
                 // Example
-                if let currency = currencyVM.currency?.data {
+                if let currency = currencyViewModel.currency?.data {
                     Text("1 SEK == \(currency["GBP"]!) GBP")
                 }
                 
             }
             .navigationTitle("History")
             .listStyle(.grouped)
-            .alert(item: $currencyVM.currencyError) { err in
+            .alert(item: $currencyViewModel.currencyError) { err in
                 Alert(title: Text("Whoops, an error occurred"),
                       message: Text(err.error.localizedDescription)
                 )
@@ -34,13 +32,13 @@ struct HistoryView: View {
             }
         }
         .onAppear {
-            Task { await currencyVM.fetch(baseCurrency: "sek") }
+            Task { await currencyViewModel.fetch(baseCurrency: "sek") }
         }
     }
 }
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView(currencyVM: CurrencyViewModel(), expensesArray: Expenses())
+        HistoryView(currencyViewModel: CurrencyViewModel())
     }
 }

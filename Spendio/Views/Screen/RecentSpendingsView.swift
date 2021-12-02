@@ -9,21 +9,15 @@ import SwiftUI
 import SwiftUICharts
 
 struct RecentSpendingsView: View {
-    @State var demoData: [Double] = [5,13,11,3,14,16]
+    let graphModel = GraphModel()
+    @State var chartDemoData = ChartData(values: [("Food",90), ("Coffe",50),("Cars",450),("Candy",120),("Entertainment",200),("Home",300),("Fika",65)])
+    @State var demoData: [Double] = [5.0,13.0,11.0,3.0,14.0,16.0]
     @ObservedObject var currencyViewModel: CurrencyViewModel
 
     var body: some View {
         NavigationView {
             VStack {
-                HStack{
-                    Spacer()
-                    BarChart()// 1. Graph
-                        .data(demoData)
-                        .chartStyle(ChartStyle(backgroundColor: .white, foregroundColor: ColorGradient(.blue, .purple)))
-                    Spacer()
-                }
-                
-                Spacer()
+                BarChartView(data: chartDemoData, title: "Recent", style: graphModel.standardLightStyle , form: ChartForm.extraLarge, dropShadow: true)
                 List{
                     ForEach(demoData, id: \.self) {value in
                         Text("\(value)")
@@ -50,8 +44,8 @@ struct RecentSpendingsView: View {
 
 
 
-struct RecentSpendingsView_Previews: PreviewProvider {
+/*struct RecentSpendingsView_Previews: PreviewProvider {
     static var previews: some View {
         RecentSpendingsView(currencyViewModel: CurrencyViewModel())
     }
-}
+}*/

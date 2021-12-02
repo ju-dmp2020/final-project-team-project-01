@@ -11,12 +11,13 @@ struct AddExpenseView: View {
     @Binding var tabScreen: TabScreen
     @State private var date = Date()
     @State private var cost = ""
+    @State private var title = ""
     
     var body: some View {
         NavigationView {
             Form{
                 Section(header: Text("Title")){
-                    //TextField("Title", text: $expense.title)
+                    TextField("Title", text: $title)
                 }
                 Section(header: Text("Cost")){
                     TextField("Cost",text: $cost)

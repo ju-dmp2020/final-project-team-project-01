@@ -7,19 +7,14 @@
 
 import SwiftUI
 
-// https://stackoverflow.com/questions/28525962/how-to-update-existing-objects-in-core-data
-// Fixa det senare
-
 struct EditCategoryView: View {
-    // CoreData manager
-    @Environment(\.managedObjectContext) var viewContext
-    let coreDataManager = CoreDataManager()
-    
+    // Category ViewModel
+    @ObservedObject var categoryViewModel: CategoryViewModel
     
     @Binding var category: Category?
     @Binding var editViewActive: Bool
     
-    // Prefil textfield & colorpicker
+    // Prefill textfield & colorpicker
     @State var categoryName: String = ""
     @State var categoryColor: Color = .yellow
     
@@ -47,9 +42,10 @@ struct EditCategoryView: View {
                 Section {
                     Button {
                         // TODO: Update Query to database
-                        updateCategoty(category: category, categoryColor: categoryColor)
+                        updateCategory(category: category, name: categoryName, color: categoryColor)
+                        editViewActive.toggle()
                     } label: {
-                        Text("Save")
+                        Text("Update")
                     }
                     .centerHorizontally()
                 }.disabled(disableForm)
@@ -59,14 +55,12 @@ struct EditCategoryView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    func updateCategoty(category: Category?, categoryColor: Color) {
+    func updateCategory(category: Category?, name: String, color: Color) {
         if let category = category {
             if let CGColor = categoryColor.cgColor?.components {
                 let floatColor = CGColor.map{Float($0)}
-                try? coreDataManager.updateCategory(category: category, name: categoryName, color: floatColor) // handle error later
-                editViewActive.toggle()
+                categoryViewModel.update(category: category, name: name, color: floatColor)
             }
         }
     }
-    
 }

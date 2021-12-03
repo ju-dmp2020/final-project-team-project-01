@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct AddCategoryView: View {
-    // CoreData manager
-    @Environment(\.managedObjectContext) var viewContext
-    let coreDataManager = CoreDataManager()
+    // Category ViewModel
+    @ObservedObject var categoryViewModel: CategoryViewModel
     
     @State var categoryName: String = ""
     @FocusState private var nameFieldIsFocused: Bool
@@ -42,14 +41,10 @@ struct AddCategoryView: View {
             Section {
                 Button  {
                     // TODO: Save data
-                    if let CGColor = categoryColor.cgColor?.components {
-                        let floatColor = CGColor.map{Float($0)}
-                        try! coreDataManager.addCategory(name: categoryName, color: floatColor) // handle error later
-                    }
-                    
+                    addCategory(name: categoryName, color: categoryColor)
                     AddViewActive.toggle()
                 } label: {
-                    Text("Save")
+                    Text("Add")
                 }
                 .centerHorizontally()
             }.disabled(disableForm)
@@ -57,5 +52,12 @@ struct AddCategoryView: View {
         }
         .navigationTitle("New category")
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    func addCategory(name: String, color: Color) {
+        if let CGColor = categoryColor.cgColor?.components {
+            let floatColor = CGColor.map{Float($0)}
+            categoryViewModel.add(name: name, color: floatColor)
+        }
     }
 }

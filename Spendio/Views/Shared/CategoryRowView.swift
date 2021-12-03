@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct CategoryRowView: View {
-    // CoreData manager
-    @Environment(\.managedObjectContext) var viewContext
-    let coreDataManager = CoreDataManager()
+    // Category ViewModel
+    @ObservedObject var categoryViewModel: CategoryViewModel
     
     // View States
     @State private var showDeleteConfirmation: Bool = false
     @Binding var editViewActive: Bool
     @Binding var editViewCategory: Category?
-    @Binding var categories: [Category]? // Update View
     
     // Category Object
     let category: Category
@@ -52,18 +50,9 @@ struct CategoryRowView: View {
             titleVisibility: .visible) {
                 Button("Yes", role: .destructive) {
                     // TODO: call a function to delete
-                    deleteCategory(category: category)
+                    categoryViewModel.delete(category: category)
                 }
                 Button("Cancel", role: .cancel) {}
             }
-    }
-    
-    func deleteCategory(category: Category) {
-        do {
-            try coreDataManager.deleteCategory(category: category)
-            categories = try coreDataManager.fetchAllCategories() // Update View
-        } catch {
-            print("Failed to delete & reload categories, \(error)")
-        }
     }
 }

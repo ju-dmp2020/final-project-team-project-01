@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct CategoriesView: View {
-    // CoreData manager
-    @Environment(\.managedObjectContext) var viewContext
-    let coreDataManager = CoreDataManager()
-    @State var categories: [Category]?
+    // Category ViewModel
+    @StateObject var categoryViewModel = CategoryViewModel()
     
     // View states
     @State private var editViewActive: Bool = false
@@ -21,18 +19,18 @@ struct CategoriesView: View {
     var body: some View {
         NavigationView {
             VStack {
-                if let categories = categories {
+                if let categories = categoryViewModel.categories {
                     
                     // Always hidden & redirects to EditCategoryView on swipe action
                     NavigationLink("", isActive: $editViewActive) {
-                        EditCategoryView(category: $editViewCategory, editViewActive: $editViewActive)
+                        EditCategoryView(categoryViewModel: categoryViewModel, category: $editViewCategory, editViewActive: $editViewActive)
                     }.hidden().frame(width: 0, height: 0)
                     
                     List {
                         ForEach (categories) { category in
-                            CategoryRowView(editViewActive: $editViewActive,
+                            CategoryRowView(categoryViewModel: categoryViewModel,
+                                            editViewActive: $editViewActive,
                                             editViewCategory: $editViewCategory,
-                                            categories: $categories,
                                             category: category)
                         }
                     }
@@ -43,15 +41,13 @@ struct CategoriesView: View {
             .listStyle(.grouped)
             .navigationTitle("Categories")
             .toolbar {
-                NavigationLink(destination: AddCategoryView(AddViewActive: $AddViewActive), isActive: $AddViewActive){
+                NavigationLink(destination: AddCategoryView(categoryViewModel: categoryViewModel, AddViewActive: $AddViewActive), isActive: $AddViewActive){
                     Image(systemName: "plus.circle")
                     
                 }
             }
             .onAppear {
-                // Return nil if error and goes to else statement above.
-                categories = try? coreDataManager.fetchAllCategories()
-                print("testar")
+                categoryViewModel.fetchAll()
             }
         }
     }

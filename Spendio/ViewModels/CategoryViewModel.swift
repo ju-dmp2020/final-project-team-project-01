@@ -7,48 +7,55 @@
 
 import Foundation
 
-// 1. FetchRequest in views
-// 2. Use viewmodel class with objectwillchange.send() to "brute force" changes.
-
-/*
 class CategoryViewModel: ObservableObject {
-    
-    @Published var categories: [CategoryModel]?
-    @Published var category: CategoryModel?
     
     let coreDataManager = CoreDataManager()
     
-    func fetchAll() throws {
-        var result: [CategoryModel]
+    @Published var categories: [Category]?
+    @Published var category: Category?
+    @Published var categoryError: Error? = nil
+    
+    func fetchAll() {
         do {
-            result = try coreDataManager.fetchAllCategories().map(CategoryModel.init)
+            let result = try coreDataManager.fetchAllCategories()
+            DispatchQueue.main.async {
+                self.categories = result
+                self.objectWillChange.send() // Force change
+            }
         } catch {
-            throw error
-        }
-        
-        DispatchQueue.main.async {
-            self.categories = result
-            self.objectWillChange.send()
+            DispatchQueue.main.async {
+                self.categoryError = error
+            }
         }
     }
     
-    func fetchById(id: UUID) throws {
-        
-        let fetchedCategory = try coreDataManager.fetchCategoryById(id: id).map(CategoryModel.init)
-        DispatchQueue.main.async {
-            self.category = fetchedCategory
-        }
-        
-    }
-    
-    func add(name: String, color: [Float]) throws {
-        
+    func add(name: String, color: [Float]) {
         do {
             try coreDataManager.addCategory(name: name, color: color)
         } catch {
-            throw error
+            DispatchQueue.main.async {
+                self.categoryError = error
+            }
         }
     }
     
+    func update(category: Category, name: String, color: [Float]) {
+        do {
+            try coreDataManager.updateCategory(category: category, name: name, color: color)
+        } catch {
+            DispatchQueue.main.async {
+                self.categoryError = error
+            }
+        }
+    }
+    
+    func delete(category: Category) {
+        do {
+            try coreDataManager.deleteCategory(category: category)
+        } catch {
+            DispatchQueue.main.async {
+                self.categoryError = error
+            }
+        }
+    }
 }
-*/

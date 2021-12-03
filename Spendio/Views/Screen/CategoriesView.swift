@@ -11,12 +11,12 @@ struct CategoriesView: View {
     // CoreData manager
     @Environment(\.managedObjectContext) var viewContext
     let coreDataManager = CoreDataManager()
-    @State var categories: [CategoryModel]?
+    @State var categories: [Category]?
     
     // View states
     @State private var editViewActive: Bool = false
     @State private var AddViewActive: Bool = false
-    @State private var editViewCategoryId: UUID = UUID()
+    @State private var editViewCategory: Category?
     
     var body: some View {
         NavigationView {
@@ -25,13 +25,13 @@ struct CategoriesView: View {
                     
                     // Always hidden & redirects to EditCategoryView on swipe action
                     NavigationLink("", isActive: $editViewActive) {
-                        EditCategoryView(categoryId: $editViewCategoryId)
+                        EditCategoryView(category: $editViewCategory)
                     }.hidden().frame(width: 0, height: 0)
                     
                     List {
                         ForEach (categories) { category in
                             CategoryRowView(editViewActive: $editViewActive,
-                                            editViewCategoryId: $editViewCategoryId,
+                                            editViewCategory: $editViewCategory,
                                             categories: $categories,
                                             category: category)
                         }

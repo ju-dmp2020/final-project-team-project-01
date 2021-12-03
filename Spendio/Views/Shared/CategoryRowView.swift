@@ -15,19 +15,18 @@ struct CategoryRowView: View {
     // View States
     @State private var showDeleteConfirmation: Bool = false
     @Binding var editViewActive: Bool
-    @Binding var editViewCategoryId: UUID
-    @Binding var categories: [CategoryModel]?
+    @Binding var editViewCategory: Category?
+    @Binding var categories: [Category]? // Update View
     
     // Category Object
-    let category: CategoryModel
-    
+    let category: Category
     var body: some View {
         HStack {
             Circle()
                 .fill(Color(.sRGB, red: Double(category.colorRed), green: Double(category.colorGreen), blue: Double(category.colorBlue)))
                 .frame(width: 20, height: 20)
                 .padding(.trailing, 4)
-            Text(category.name)
+            Text(category.name ?? "")
         }
         .padding(.vertical, 10)
         .swipeActions(edge: .trailing) {
@@ -36,32 +35,31 @@ struct CategoryRowView: View {
             } label: {
                 Image(systemName: "trash")
             }
-            
         }
         .swipeActions(edge: .leading) {
             Button {
                 editViewActive.toggle()
-                editViewCategoryId = category.id
+                editViewCategory = category
             } label: {
                 Image(systemName: "square.and.pencil")
             }
             .tint(.blue)
         }
         .confirmationDialog(
-            "Are you sure you want to delete \(category.name)?",
+            "Are you sure you want to delete \(category.name ?? "")?",
             isPresented: $showDeleteConfirmation,
             titleVisibility: .visible) {
                 Button("Yes", role: .destructive) {
                     // TODO: call a function to delete
-                    deleteCategory(categoryId: category.id)
+                    deleteCategory(category: category)
                 }
                 Button("Cancel", role: .cancel) {}
             }
     }
     
-    func deleteCategory(categoryId: UUID) {
+    func deleteCategory(category: Category) {
         do {
-            try coreDataManager.deleteCategory(id: categoryId)
+            try coreDataManager.deleteCategory(category: category)
             categories = try coreDataManager.fetchAllCategories() // Update View
         } catch {
             print("Failed to delete & reload categories, \(error)")

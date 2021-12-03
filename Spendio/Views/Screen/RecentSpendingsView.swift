@@ -9,25 +9,32 @@ import SwiftUI
 import SwiftUICharts
 
 struct RecentSpendingsView: View {
-    @State var demoData: [Double] = [5,13,11,3,14,16]
     @ObservedObject var currencyViewModel: CurrencyViewModel
-
+    
+    // CoreData manager
+    @Environment(\.managedObjectContext) var viewContext
+    let coreDataManager = CoreDataManager()
+    @State var expenses: [Expense]?
+    
     var body: some View {
         NavigationView {
             VStack {
-                HStack{
-                    Spacer()
-                    BarChart()// 1. Graph
-                        .data(demoData)
-                        .chartStyle(ChartStyle(backgroundColor: .white, foregroundColor: ColorGradient(.blue, .purple)))
-                    Spacer()
-                }
+//                HStack{
+//                    Spacer()
+//                    BarChart()// 1. Graph
+//                        .data(demoData)
+//                        .chartStyle(ChartStyle(backgroundColor: .white, foregroundColor: ColorGradient(.blue, .purple)))
+//                    Spacer()
+//                }
                 
                 Spacer()
                 List{
-                    ForEach(demoData, id: \.self) {value in
-                        Text("\(value)")
+                    if let expenses = expenses{
+                        ForEach(expenses, id: \.self) {value in
+                            Text("\(value.price)")
+                        }
                     }
+                    
                 }
                 // 2. List
             }
@@ -44,6 +51,8 @@ struct RecentSpendingsView: View {
         }
         .onAppear {
             Task { await currencyViewModel.fetch(baseCurrency: "sek") }
+            // Return nil if error and goes to else statement above.
+            expenses = try? coreDataManager.fetchRecentExpenses(limit: 10)
         }
     }
 }

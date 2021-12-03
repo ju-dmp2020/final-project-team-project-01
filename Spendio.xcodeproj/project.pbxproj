@@ -30,7 +30,6 @@
 		F6447D472747FA60006C7CA7 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D462747FA60006C7CA7 /* AddExpenseView.swift */; };
 		F6447D492747FA7F006C7CA7 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D482747FA7F006C7CA7 /* CategoriesView.swift */; };
 		F679F8EA2757B8FF00207F56 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F679F8E92757B8FF00207F56 /* CategoryViewModel.swift */; };
-		F679F8EC2757BB2900207F56 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F679F8EB2757BB2900207F56 /* CategoryModel.swift */; };
 		F68E38C4274C083E0031C04C /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E38C3274C083E0031C04C /* CurrencyViewModel.swift */; };
 		F68E38CC274C48460031C04C /* CurrencyAPIErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E38CB274C48460031C04C /* CurrencyAPIErrorModel.swift */; };
 		F6C3C2812752CB2E009EB227 /* EditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C3C2802752CB2E009EB227 /* EditCategoryView.swift */; };
@@ -79,7 +78,6 @@
 		F6447D462747FA60006C7CA7 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
 		F6447D482747FA7F006C7CA7 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		F679F8E92757B8FF00207F56 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
-		F679F8EB2757BB2900207F56 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		F68E38C3274C083E0031C04C /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
 		F68E38CB274C48460031C04C /* CurrencyAPIErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAPIErrorModel.swift; sourceTree = "<group>"; };
 		F6C3C2802752CB2E009EB227 /* EditCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryView.swift; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 			children = (
 				F68E38CB274C48460031C04C /* CurrencyAPIErrorModel.swift */,
 				F608904927500227004E09D0 /* CurrencyConverterModel.swift */,
-				F679F8EB2757BB2900207F56 /* CategoryModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -382,7 +379,6 @@
 				955A9531275776E500163FCF /* ViewExtensions.swift in Sources */,
 				F68E38CC274C48460031C04C /* CurrencyAPIErrorModel.swift in Sources */,
 				F6447D1A2747D03F006C7CA7 /* Persistence.swift in Sources */,
-				F679F8EC2757BB2900207F56 /* CategoryModel.swift in Sources */,
 				F6447D432747FA16006C7CA7 /* HistoryView.swift in Sources */,
 				F608904A27500227004E09D0 /* CurrencyConverterModel.swift in Sources */,
 				F6447D472747FA60006C7CA7 /* AddExpenseView.swift in Sources */,
@@ -559,7 +555,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Spendio/Preview Content\"";
-				DEVELOPMENT_TEAM = X79UK4NVC3;
+				DEVELOPMENT_TEAM = 2SAFDD6WCC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -589,7 +585,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Spendio/Preview Content\"";
-				DEVELOPMENT_TEAM = X79UK4NVC3;
+				DEVELOPMENT_TEAM = 2SAFDD6WCC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

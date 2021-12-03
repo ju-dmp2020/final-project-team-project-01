@@ -52,6 +52,7 @@ class CategoryViewModel: ObservableObject {
     func delete(category: Category) {
         do {
             try coreDataManager.deleteCategory(category: category)
+            self.fetchAll() // update changes here
         } catch {
             DispatchQueue.main.async {
                 self.categoryError = error

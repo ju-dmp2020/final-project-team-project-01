@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct CategoryRowView: View {
+    // Category ViewModel
+    @ObservedObject var categoryViewModel: CategoryViewModel
+    
     // View States
     @State private var showDeleteConfirmation: Bool = false
     @Binding var editViewActive: Bool
+    @Binding var editViewCategory: Category?
+    
     // Category Object
-    let category: CategoryModel
+    let category: Category
     
     var body: some View {
         HStack {
@@ -20,7 +25,7 @@ struct CategoryRowView: View {
                 .fill(Color(.sRGB, red: Double(category.colorRed), green: Double(category.colorGreen), blue: Double(category.colorBlue)))
                 .frame(width: 20, height: 20)
                 .padding(.trailing, 4)
-            Text(category.name)
+            Text(category.name ?? "")
         }
         .padding(.vertical, 10)
         .swipeActions(edge: .trailing) {
@@ -29,35 +34,25 @@ struct CategoryRowView: View {
             } label: {
                 Image(systemName: "trash")
             }
-            
         }
         .swipeActions(edge: .leading) {
             Button {
                 editViewActive.toggle()
+                editViewCategory = category
             } label: {
                 Image(systemName: "square.and.pencil")
             }
             .tint(.blue)
         }
         .confirmationDialog(
-            "Are you sure you want to delete \(category.name)?",
+            "Are you sure you want to delete \(category.name ?? "")?",
             isPresented: $showDeleteConfirmation,
             titleVisibility: .visible) {
                 Button("Yes", role: .destructive) {
-                    // TODO: call a ViewModel function to delete
+                    // TODO: call a function to delete
+                    categoryViewModel.delete(category: category)
                 }
                 Button("Cancel", role: .cancel) {}
             }
     }
 }
-/*
-struct CategoryRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        CategoryRowView(editViewActive: .constant(false),
-                        editViewCategoryId: .constant(1),
-                        categoryName: "Coffee",
-                        categoryColor: Color.brown
-        )
-    }
-}
-*/

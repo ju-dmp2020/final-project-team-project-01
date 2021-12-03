@@ -8,47 +8,47 @@
 import SwiftUI
 
 struct CategoriesView: View {
+    // Category ViewModel
+    @StateObject var categoryViewModel = CategoryViewModel()
+    
+    // View states
     @State private var editViewActive: Bool = false
     @State private var AddViewActive: Bool = false
-    @State private var editViewCategoryId = 0 // Example value
-    // ViewModel
-    @Environment(\.managedObjectContext) var viewContext
-    @StateObject var categoryViewModel =  CategoryViewModel()
+    @State private var editViewCategory: Category?
+    
     var body: some View {
         NavigationView {
             VStack {
-                // Always hidden & redirects to EditCategoryView on swipe action
-                NavigationLink("", isActive: $editViewActive) {
-                    EditCategoryView(id: $editViewCategoryId)
-                }.hidden().frame(width: 0, height: 0)
-                
-                List {
-                    if let categories = categoryViewModel.categories {
-                        ForEach (categories) { category in
-                            CategoryRowView(editViewActive: $editViewActive, category: category)
-                        } // send obj later
-                    }
+                if let categories = categoryViewModel.categories {
                     
-                }
-                .listStyle(.grouped)
-                .navigationTitle("Categories")
-                .toolbar {
-                    NavigationLink(destination: AddCategoryView(categoryViewModel: categoryViewModel, AddViewActive: $AddViewActive),
-                                   isActive: $AddViewActive) {
-                        Image(systemName: "plus.circle")
+                    // Always hidden & redirects to EditCategoryView on swipe action
+                    NavigationLink("", isActive: $editViewActive) {
+                        EditCategoryView(categoryViewModel: categoryViewModel, category: $editViewCategory, editViewActive: $editViewActive)
+                    }.hidden().frame(width: 0, height: 0)
+                    
+                    List {
+                        ForEach (categories) { category in
+                            CategoryRowView(categoryViewModel: categoryViewModel,
+                                            editViewActive: $editViewActive,
+                                            editViewCategory: $editViewCategory,
+                                            category: category)
+                        }
                     }
+                } else {
+                    Text("Couldn't fetch data")
+                }
+            }
+            .listStyle(.grouped)
+            .navigationTitle("Categories")
+            .toolbar {
+                NavigationLink(destination: AddCategoryView(categoryViewModel: categoryViewModel, AddViewActive: $AddViewActive), isActive: $AddViewActive){
+                    Image(systemName: "plus.circle")
+                    
                 }
             }
             .onAppear {
-                try! categoryViewModel.fetchAll() // handle errors later
+                categoryViewModel.fetchAll()
             }
         }
-    }
-    
-}
-
-struct CategoriesView_Previews: PreviewProvider {
-    static var previews: some View {
-        CategoriesView(categoryViewModel: CategoryViewModel())
     }
 }

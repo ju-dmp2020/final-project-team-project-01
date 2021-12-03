@@ -10,7 +10,6 @@ import CoreData
 
 struct CoreDataManager {
     let controller = PersistenceController.shared
-    // Maybe put context variable outside functions
     
     func addCategory(name: String, color: [Float]) throws {
         let context = controller.container.viewContext
@@ -29,30 +28,68 @@ struct CoreDataManager {
         }
     }
     
-    
-     func fetchAllCategories() throws -> [Category]  {
+    func fetchCategoryById(id: UUID) throws -> Category? {
         let context = controller.container.viewContext
-        // Kolla på CategoriesViewModel
-        // Skapa extensions för fetchRequest parameter??
-         
-         let request: NSFetchRequest<Category> = Category.fetchRequest()
-        request.sortDescriptors = []
         
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-      
-        do {
-            try fetchedResultsController.performFetch()
-            guard let categories = fetchedResultsController.fetchedObjects else {
-                return []
-            }
-            return categories
-            
-        } catch {
-            throw error
-        }
+        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+        fetchRequest.fetchLimit = 1
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         
-        
+        let category = try context.fetch(fetchRequest).first
+        return category
     }
     
     
+     func fetchAllCategories() throws -> [Category]  {
+         let context = controller.container.viewContext
+         
+         let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+        
+         let categories = try context.fetch(fetchRequest)
+         return categories
+    }
+    
+    func updateCategory (category: Category, name: String, color: [Float]) throws {
+        let context = controller.container.viewContext
+        
+        category.name = name
+        category.colorRed = color[0]
+        category.colorGreen = color[1]
+        category.colorBlue = color[2]
+        
+        try context.save()
+    }
+    
+    func deleteCategory(category: Category) throws {
+        let context = controller.container.viewContext
+        // Delete
+        context.delete(category)
+        
+        try context.save()
+    }
+    
+    func addExpense(title: String, price: Double, date: Date, currency: String) throws {
+        let context = controller.container.viewContext
+        
+        let newExpense = Expense(context: context)
+        newExpense.id = UUID()
+        newExpense.title = title
+        newExpense.price = price
+        newExpense.date = date
+        newExpense.currency = currency
+        //newExpense.category = Category()
+        
+        try context.save()
+    }
+    
+    func fetchRecentExpenses(limit: Int) throws -> [Expense]  {
+        let context = controller.container.viewContext
+        
+        let fetchRequest: NSFetchRequest<Expense> = Expense.fetchRequest()
+        fetchRequest.fetchLimit = limit
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+       
+        let expenses = try context.fetch(fetchRequest)
+        return expenses
+   }
 }

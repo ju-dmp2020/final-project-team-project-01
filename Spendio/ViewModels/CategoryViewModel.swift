@@ -4,9 +4,13 @@
 //
 //  Created by Hasan Khalaf on 2021-12-01.
 //
-/*
+
 import Foundation
 
+// 1. FetchRequest in views
+// 2. Use viewmodel class with objectwillchange.send() to "brute force" changes.
+
+/*
 class CategoryViewModel: ObservableObject {
     
     @Published var categories: [CategoryModel]?
@@ -24,6 +28,7 @@ class CategoryViewModel: ObservableObject {
         
         DispatchQueue.main.async {
             self.categories = result
+            self.objectWillChange.send()
         }
     }
     
@@ -46,5 +51,4 @@ class CategoryViewModel: ObservableObject {
     }
     
 }
-
 */

@@ -25,7 +25,7 @@ struct CategoriesView: View {
                     
                     // Always hidden & redirects to EditCategoryView on swipe action
                     NavigationLink("", isActive: $editViewActive) {
-                        EditCategoryView(category: $editViewCategory)
+                        EditCategoryView(category: $editViewCategory, editViewActive: $editViewActive)
                     }.hidden().frame(width: 0, height: 0)
                     
                     List {
@@ -51,6 +51,7 @@ struct CategoriesView: View {
             .onAppear {
                 // Return nil if error and goes to else statement above.
                 categories = try? coreDataManager.fetchAllCategories()
+                print("testar")
             }
         }
     }

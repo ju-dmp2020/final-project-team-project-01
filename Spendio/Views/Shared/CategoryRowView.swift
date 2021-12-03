@@ -20,6 +20,7 @@ struct CategoryRowView: View {
     
     // Category Object
     let category: Category
+    
     var body: some View {
         HStack {
             Circle()

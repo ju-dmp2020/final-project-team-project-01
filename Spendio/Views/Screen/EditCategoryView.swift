@@ -15,11 +15,17 @@ struct EditCategoryView: View {
     @Environment(\.managedObjectContext) var viewContext
     let coreDataManager = CoreDataManager()
     
+    
     @Binding var category: Category?
+    @Binding var editViewActive: Bool
     
     // Prefil textfield & colorpicker
     @State var categoryName: String = ""
     @State var categoryColor: Color = .yellow
+    
+    var disableForm: Bool {
+        categoryName.count < 3
+    }
     
     var body: some View {
         VStack {
@@ -41,12 +47,7 @@ struct EditCategoryView: View {
                 Section {
                     Button {
                         // TODO: Update Query to database
-                        if let category = category {
-                            if let CGColor = categoryColor.cgColor?.components {
-                                let floatColor = CGColor.map{Float($0)}
-                                try! coreDataManager.updateCategory(category: category, name: categoryName, color: floatColor) // handle error later
-                            }
-                        }
+                        updateCategoty(category: category, categoryColor: categoryColor)
                     } label: {
                         Text("Save")
                     }
@@ -58,7 +59,14 @@ struct EditCategoryView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    var disableForm: Bool {
-        categoryName.count < 3
+    func updateCategoty(category: Category?, categoryColor: Color) {
+        if let category = category {
+            if let CGColor = categoryColor.cgColor?.components {
+                let floatColor = CGColor.map{Float($0)}
+                try? coreDataManager.updateCategory(category: category, name: categoryName, color: floatColor) // handle error later
+                editViewActive.toggle()
+            }
+        }
     }
+    
 }

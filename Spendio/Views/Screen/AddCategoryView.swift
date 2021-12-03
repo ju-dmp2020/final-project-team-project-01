@@ -59,11 +59,3 @@ struct AddCategoryView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
-
-/*
-struct AddCategoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddCategoryView(categoryName: "", categoryViewModel: CategoryViewModel(), AddViewActive: .constant(false))
-    }
-}
-*/

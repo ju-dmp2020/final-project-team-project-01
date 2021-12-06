@@ -82,6 +82,16 @@ struct CoreDataManager {
         try context.save()
     }
     
+    func fetchAllExpenses() throws -> [Expense]  {
+        let context = controller.container.viewContext
+        
+        let fetchRequest: NSFetchRequest<Expense> = Expense.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+       
+        let expenses = try context.fetch(fetchRequest)
+        return expenses
+   }
+    
     func fetchRecentExpenses(limit: Int) throws -> [Expense]  {
         let context = controller.container.viewContext
         

@@ -11,12 +11,14 @@ enum Currency: String , Equatable, CaseIterable {
     case sek = "SEK"
     case eur = "EUR"
     case usd = "USD"
+    case nok = "NOK"
     
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
 }
 
 
 struct AddExpenseView: View {
+    let currencies = ["SEK", "EUR", "USD", "NOK"]
     let categoryModel = CategoryViewModel()
     // CoreData manager
     @Environment(\.managedObjectContext) var viewContext
@@ -36,14 +38,17 @@ struct AddExpenseView: View {
                 Section(header: Text("Title")){
                     TextField("Title", text: $title)
                 }
-                Section(header: Text("Cost")){
-                    TextField("Cost",text: $price)
-                        .keyboardType(.decimalPad)
-                    Picker("Currency", selection: $currency) {
-                        ForEach(Currency.allCases, id: \.self) { value in
-                            Text(value.localizedName)
-                                .tag(value)
+                Section(header: Text("Price")){
+                    HStack{
+                        TextField("Price",text: $price)
+                            .keyboardType(.decimalPad)
+                        Picker("Currency", selection: $currency) {
+                            ForEach(currencies, id: \.self) { value in
+                                Text(value)
+                                    .tag(value)
+                            }
                         }
+                        .pickerStyle(.menu)
                     }
                 }
                 
@@ -63,7 +68,7 @@ struct AddExpenseView: View {
                 
                 Section{
                     Button {
-                        
+                        print("+++ currency selected: \(currency)")
                         try? coreDataManager.addExpense(title: title, price: Double(price)!, date: date, currency: currency)
                         tabScreen = TabScreen.recentSpendings
                     } label: {

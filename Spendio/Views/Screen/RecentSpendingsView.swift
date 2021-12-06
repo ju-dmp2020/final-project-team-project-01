@@ -27,7 +27,7 @@ struct RecentSpendingsView: View {
                 List{
                     if let expenses = expenses{
                         ForEach(expenses, id: \.self) {value in
-                            Text("\(value.price)")
+                           ExpenseRowView(expence: value)
                         }
                     }
                     
@@ -46,7 +46,7 @@ struct RecentSpendingsView: View {
             }
         }
         .onAppear {
-            Task { await currencyViewModel.fetch(baseCurrency: "sek") }
+            //Task { await currencyViewModel.fetch(baseCurrency: "sek") }
             // Return nil if error and goes to else statement above.
             expenses = try? coreDataManager.fetchRecentExpenses(limit: 10)
         }

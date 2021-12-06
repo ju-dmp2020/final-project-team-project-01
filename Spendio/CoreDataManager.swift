@@ -11,34 +11,29 @@ import CoreData
 struct CoreDataManager {
     let controller = PersistenceController.shared
     
+    func save() throws {
+        let context = controller.container.viewContext
+        
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch let error as NSError {
+                throw error
+            }
+        }
+    }
+    
     func addCategory(name: String, color: [Float]) throws {
         let context = controller.container.viewContext
         
         let newCategory = Category(context: context)
-        newCategory.id = UUID()
         newCategory.name = name
         newCategory.colorRed = color[0]
         newCategory.colorGreen = color[1]
         newCategory.colorBlue = color[2]
         
-        do {
-            try context.save()
-        } catch {
-            throw error
-        }
+        try self.save()
     }
-    
-    func fetchCategoryById(id: UUID) throws -> Category? {
-        let context = controller.container.viewContext
-        
-        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
-        fetchRequest.fetchLimit = 1
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-        
-        let category = try context.fetch(fetchRequest).first
-        return category
-    }
-    
     
      func fetchAllCategories() throws -> [Category]  {
          let context = controller.container.viewContext
@@ -50,22 +45,19 @@ struct CoreDataManager {
     }
     
     func updateCategory (category: Category, name: String, color: [Float]) throws {
-        let context = controller.container.viewContext
-        
         category.name = name
         category.colorRed = color[0]
         category.colorGreen = color[1]
         category.colorBlue = color[2]
         
-        try context.save()
+        try self.save()
     }
     
     func deleteCategory(category: Category) throws {
         let context = controller.container.viewContext
-        // Delete
         context.delete(category)
         
-        try context.save()
+        try self.save()
     }
     
     func addExpense(title: String, price: Double, date: Date, currency: String) throws {
@@ -79,7 +71,7 @@ struct CoreDataManager {
         newExpense.currency = currency
         //newExpense.category = Category()
         
-        try context.save()
+        try self.save()
     }
     
     func fetchRecentExpenses(limit: Int) throws -> [Expense]  {

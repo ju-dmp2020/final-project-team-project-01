@@ -10,13 +10,12 @@
     <entity name="Expense" representedClassName="Expense" syncable="YES" codeGenerationType="class">
         <attribute name="currency" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category"/>
     </entity>
     <elements>
         <element name="Category" positionX="-63" positionY="-18" width="128" height="104"/>
-        <element name="Expense" positionX="-63" positionY="18" width="128" height="119"/>
+        <element name="Expense" positionX="-63" positionY="18" width="128" height="104"/>
     </elements>
 </model>

@@ -64,7 +64,6 @@ struct CoreDataManager {
         let context = controller.container.viewContext
         
         let newExpense = Expense(context: context)
-        newExpense.id = UUID()
         newExpense.title = title
         newExpense.price = price
         newExpense.date = date

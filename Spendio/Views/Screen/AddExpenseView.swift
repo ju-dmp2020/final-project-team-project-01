@@ -17,14 +17,18 @@ enum Currency: String , Equatable, CaseIterable {
 
 
 struct AddExpenseView: View {
+    let categoryModel = CategoryViewModel()
     // CoreData manager
     @Environment(\.managedObjectContext) var viewContext
     let coreDataManager = CoreDataManager()
     
     @Binding var tabScreen: TabScreen
     @State private var date = Date()
-    @State private var cost = ""
+    @State private var price = ""
     @State private var title = ""
+    @State private var currency: String = "SEK"
+    @State private var categories: [Category] = []
+    
     
     var body: some View {
         NavigationView {
@@ -68,7 +72,12 @@ struct AddExpenseView: View {
                 }
             }
             .navigationTitle("Add Expense")
-            .onAppear(perform: {categories = try! coreDataManager.fetchAllCategories()})
+            .onAppear(perform: {
+                categoryModel.fetchAll()
+                if let fetchedCategories = categoryModel.categories{
+                    categories = fetchedCategories
+                }
+            })
         }
     }
 }

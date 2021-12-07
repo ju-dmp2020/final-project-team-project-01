@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoriesView: View {
-    // Category ViewModel
+    @EnvironmentObject var errorHandler: ErrorHandler
     @StateObject var categoryViewModel = CategoryViewModel()
     
     // View states
@@ -47,8 +47,16 @@ struct CategoriesView: View {
                 }
             }
             .onAppear {
-                categoryViewModel.fetchAll()
+                fetchAllCategories()
             }
+        }
+    }
+    
+    func fetchAllCategories() {
+        do {
+            try categoryViewModel.fetchAll()
+        } catch {
+            errorHandler.handle(error: error)
         }
     }
 }

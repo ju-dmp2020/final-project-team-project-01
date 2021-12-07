@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryRowView: View {
-    // Category ViewModel
+    @EnvironmentObject var errorHandler: ErrorHandler
     @ObservedObject var categoryViewModel: CategoryViewModel
     
     // View States
@@ -50,9 +50,17 @@ struct CategoryRowView: View {
             titleVisibility: .visible) {
                 Button("Yes", role: .destructive) {
                     // TODO: call a function to delete
-                    categoryViewModel.delete(category: category)
+                    deleteCategory(category: category)
                 }
                 Button("Cancel", role: .cancel) {}
             }
+    }
+    
+    func deleteCategory(category: Category) {
+        do {
+            try categoryViewModel.delete(category: category)
+        } catch {
+            errorHandler.handle(error: error)
+        }
     }
 }

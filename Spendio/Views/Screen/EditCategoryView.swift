@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EditCategoryView: View {
-    // Category ViewModel
+    @EnvironmentObject var errorHandler: ErrorHandler
     @ObservedObject var categoryViewModel: CategoryViewModel
     
     @Binding var category: Category?
@@ -59,7 +59,12 @@ struct EditCategoryView: View {
         if let category = category {
             if let CGColor = categoryColor.cgColor?.components {
                 let floatColor = CGColor.map{Float($0)}
-                categoryViewModel.update(category: category, name: name, color: floatColor)
+                do {
+                    try categoryViewModel.update(category: category, name: name, color: floatColor)
+                } catch {
+                    errorHandler.handle(error: error)
+                }
+                
             }
         }
     }

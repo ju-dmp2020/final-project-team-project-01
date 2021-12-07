@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddCategoryView: View {
-    // Category ViewModel
+    @EnvironmentObject var errorHandler: ErrorHandler
     @ObservedObject var categoryViewModel: CategoryViewModel
     
     @State var categoryName: String = ""
@@ -19,7 +19,7 @@ struct AddCategoryView: View {
     var disableForm: Bool {
         categoryName.count < 3
     }
-
+    
     var body: some View {
         Form {
             // TextField
@@ -57,7 +57,11 @@ struct AddCategoryView: View {
     func addCategory(name: String, color: Color) {
         if let CGColor = categoryColor.cgColor?.components {
             let floatColor = CGColor.map{Float($0)}
-            categoryViewModel.add(name: name, color: floatColor)
+            do {
+                try categoryViewModel.add(name: name, color: floatColor)
+            } catch {
+                errorHandler.handle(error: error)
+            }
         }
     }
 }

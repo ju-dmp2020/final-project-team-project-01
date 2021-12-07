@@ -18,8 +18,11 @@ enum Currency: String , Equatable, CaseIterable {
 
 
 struct AddExpenseView: View {
+    @EnvironmentObject var errorHandler: ErrorHandler
+    @StateObject var categoryViewModel = CategoryViewModel()
+    
     let currencies = ["SEK", "EUR", "USD", "NOK"]
-    let categoryModel = CategoryViewModel()
+    
     // CoreData manager
     @Environment(\.managedObjectContext) var viewContext
     let coreDataManager = CoreDataManager()
@@ -80,18 +83,17 @@ struct AddExpenseView: View {
             }
             .navigationTitle("Add Expense")
             .onAppear{
-                categoryModel.fetchAll()
-                if let fetchedCategories = categoryModel.categories{
-                    categories = fetchedCategories
-                }
+                fetchAllCategories()
                 test.toggle()
             }
         }
     }
+    
+    func fetchAllCategories() {
+        do {
+            try categoryViewModel.fetchAll()
+        } catch {
+            errorHandler.handle(error: error)
+        }
+    }
 }
-
-/*struct AddExpenseView_Previews: PreviewProvider {
- static var previews: some View {
- AddExpenseView(tabScreen: TabScreen.RecentSpendings, expense: Expense(), expensesArray: Expenses())
- }
- }*/

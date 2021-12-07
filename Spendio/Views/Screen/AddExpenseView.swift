@@ -11,12 +11,14 @@ enum Currency: String , Equatable, CaseIterable {
     case sek = "SEK"
     case eur = "EUR"
     case usd = "USD"
+    case nok = "NOK"
     
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
 }
 
 
 struct AddExpenseView: View {
+    let currencies = ["SEK", "EUR", "USD", "NOK"]
     let categoryModel = CategoryViewModel()
     // CoreData manager
     @Environment(\.managedObjectContext) var viewContext
@@ -27,7 +29,9 @@ struct AddExpenseView: View {
     @State private var price = ""
     @State private var title = ""
     @State private var currency: String = "SEK"
+    @State private var category = Category()
     @State private var categories: [Category] = []
+    @State private var test: Bool = false
     
     
     var body: some View {
@@ -36,14 +40,17 @@ struct AddExpenseView: View {
                 Section(header: Text("Title")){
                     TextField("Title", text: $title)
                 }
-                Section(header: Text("Cost")){
-                    TextField("Cost",text: $price)
-                        .keyboardType(.decimalPad)
-                    Picker("Currency", selection: $currency) {
-                        ForEach(Currency.allCases, id: \.self) { value in
-                            Text(value.localizedName)
-                                .tag(value)
+                Section(header: Text("Price")){
+                    HStack{
+                        TextField("Price",text: $price)
+                            .keyboardType(.decimalPad)
+                        Picker("Currency", selection: $currency) {
+                            ForEach(currencies, id: \.self) { value in
+                                Text(value)
+                                    .tag(value)
+                            }
                         }
+                        .pickerStyle(.menu)
                     }
                 }
                 
@@ -52,7 +59,7 @@ struct AddExpenseView: View {
                 }
                 
                 Section("Category"){
-                    Picker("Category", selection: $categories) {
+                    Picker("Category", selection: $category) {
                         ForEach(categories, id: \.self) { value in
                             Text(value.name ?? "null")
                                 .tag(value)
@@ -63,8 +70,8 @@ struct AddExpenseView: View {
                 
                 Section{
                     Button {
-                        
-                        try? coreDataManager.addExpense(title: title, price: Double(price)!, date: date, currency: currency)
+                        print("+++ currency selected: \(currency)")
+                        try? coreDataManager.addExpense(title: title, price: Double(price)!, date: date, currency: currency, category: category)
                         tabScreen = TabScreen.recentSpendings
                     } label: {
                         Text("Add Expense")
@@ -72,12 +79,13 @@ struct AddExpenseView: View {
                 }
             }
             .navigationTitle("Add Expense")
-            .onAppear(perform: {
+            .onAppear{
                 categoryModel.fetchAll()
                 if let fetchedCategories = categoryModel.categories{
                     categories = fetchedCategories
                 }
-            })
+                test.toggle()
+            }
         }
     }
 }

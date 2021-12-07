@@ -15,4 +15,6 @@ struct GraphModel {
     let standardDarkStyle = ChartStyle(backgroundColor: .black, accentColor: .blue, gradientColor: GradientColor(start: .blue, end: .purple), textColor: .white, legendTextColor: .white, dropShadowColor: .gray)
     
     
+    
+    
 }

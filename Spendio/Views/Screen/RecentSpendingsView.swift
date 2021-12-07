@@ -27,7 +27,7 @@ struct RecentSpendingsView: View {
                 List{
                     if let expenses = expenses{
                         ForEach(expenses, id: \.self) {value in
-                            Text("\(value.price)")
+                           ExpenseRowView(expence: value)
                         }
                     }
                     

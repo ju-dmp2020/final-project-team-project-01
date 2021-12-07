@@ -30,9 +30,12 @@
 		F6447D452747FA34006C7CA7 /* RecentSpendingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D442747FA34006C7CA7 /* RecentSpendingsView.swift */; };
 		F6447D472747FA60006C7CA7 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D462747FA60006C7CA7 /* AddExpenseView.swift */; };
 		F6447D492747FA7F006C7CA7 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D482747FA7F006C7CA7 /* CategoriesView.swift */; };
+		F6457F9B275E9FC900D1E550 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6457F9A275E9FC900D1E550 /* ErrorHandler.swift */; };
+		F6457F9D275EA84A00D1E550 /* ErrorAlertViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6457F9C275EA84A00D1E550 /* ErrorAlertViewModifier.swift */; };
+		F6457F9F275F6F5E00D1E550 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6457F9E275F6F5E00D1E550 /* CoreDataError.swift */; };
 		F679F8EA2757B8FF00207F56 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F679F8E92757B8FF00207F56 /* CategoryViewModel.swift */; };
 		F68E38C4274C083E0031C04C /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E38C3274C083E0031C04C /* CurrencyViewModel.swift */; };
-		F68E38CC274C48460031C04C /* CurrencyAPIErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E38CB274C48460031C04C /* CurrencyAPIErrorModel.swift */; };
+		F68E38CC274C48460031C04C /* CurrencyAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E38CB274C48460031C04C /* CurrencyAPIError.swift */; };
 		F6C3C2812752CB2E009EB227 /* EditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C3C2802752CB2E009EB227 /* EditCategoryView.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,9 +82,12 @@
 		F6447D442747FA34006C7CA7 /* RecentSpendingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSpendingsView.swift; sourceTree = "<group>"; };
 		F6447D462747FA60006C7CA7 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
 		F6447D482747FA7F006C7CA7 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		F6457F9A275E9FC900D1E550 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		F6457F9C275EA84A00D1E550 /* ErrorAlertViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertViewModifier.swift; sourceTree = "<group>"; };
+		F6457F9E275F6F5E00D1E550 /* CoreDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
 		F679F8E92757B8FF00207F56 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		F68E38C3274C083E0031C04C /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
-		F68E38CB274C48460031C04C /* CurrencyAPIErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAPIErrorModel.swift; sourceTree = "<group>"; };
+		F68E38CB274C48460031C04C /* CurrencyAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAPIError.swift; sourceTree = "<group>"; };
 		F6C3C2802752CB2E009EB227 /* EditCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,8 +121,9 @@
 			isa = PBXGroup;
 			children = (
 				954D604A27590FC000CA4380 /* GraphModel.swift */,
-				F68E38CB274C48460031C04C /* CurrencyAPIErrorModel.swift */,
+				F68E38CB274C48460031C04C /* CurrencyAPIError.swift */,
 				F608904927500227004E09D0 /* CurrencyConverterModel.swift */,
+				F6457F9E275F6F5E00D1E550 /* CoreDataError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -157,6 +164,7 @@
 				F616236C2749301C00B7DAAE /* ExpenseRowView.swift */,
 				F6089045274FFA27004E09D0 /* FilterButtonView.swift */,
 				F6089047274FFA67004E09D0 /* FilterSheetView.swift */,
+				F6457F9C275EA84A00D1E550 /* ErrorAlertViewModifier.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -238,6 +246,7 @@
 			children = (
 				F68E38C3274C083E0031C04C /* CurrencyViewModel.swift */,
 				F679F8E92757B8FF00207F56 /* CategoryViewModel.swift */,
+				F6457F9A275E9FC900D1E550 /* ErrorHandler.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -380,13 +389,16 @@
 			files = (
 				F6089046274FFA27004E09D0 /* FilterButtonView.swift in Sources */,
 				955A9531275776E500163FCF /* ViewExtensions.swift in Sources */,
-				F68E38CC274C48460031C04C /* CurrencyAPIErrorModel.swift in Sources */,
+				F6457F9B275E9FC900D1E550 /* ErrorHandler.swift in Sources */,
+				F68E38CC274C48460031C04C /* CurrencyAPIError.swift in Sources */,
 				F6447D1A2747D03F006C7CA7 /* Persistence.swift in Sources */,
+				F6457F9D275EA84A00D1E550 /* ErrorAlertViewModifier.swift in Sources */,
 				F6447D432747FA16006C7CA7 /* HistoryView.swift in Sources */,
 				F608904A27500227004E09D0 /* CurrencyConverterModel.swift in Sources */,
 				F6447D472747FA60006C7CA7 /* AddExpenseView.swift in Sources */,
 				955A953327577CDF00163FCF /* CoreDataManager.swift in Sources */,
 				F6447D452747FA34006C7CA7 /* RecentSpendingsView.swift in Sources */,
+				F6457F9F275F6F5E00D1E550 /* CoreDataError.swift in Sources */,
 				F6162374274983A400B7DAAE /* AddCategoryView.swift in Sources */,
 				F6089048274FFA67004E09D0 /* FilterSheetView.swift in Sources */,
 				954D604B27590FC000CA4380 /* GraphModel.swift in Sources */,

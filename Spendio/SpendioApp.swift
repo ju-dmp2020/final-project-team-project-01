@@ -13,6 +13,7 @@ struct SpendioApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .withErrorHandling()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

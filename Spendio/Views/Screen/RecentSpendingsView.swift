@@ -36,11 +36,6 @@ struct RecentSpendingsView: View {
             }
             .navigationTitle("Recent")
             .listStyle(.grouped)
-            .alert(item: $currencyViewModel.currencyError) { err in
-                Alert(title: Text("Whoops, an error occurred"),
-                      message: Text(err.error.localizedDescription)
-                )
-            }
             .toolbar {
                 FilterButtonView()
             }

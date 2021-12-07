@@ -15,6 +15,6 @@ struct CurrencyConverterModel: Decodable {
         let timestamp: Int
     }
     
-    let query: Query
+    let queryy: Query
     let data: [String: Double]?
 }

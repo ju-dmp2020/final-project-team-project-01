@@ -26,6 +26,7 @@ class CategoryViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.categoryError = error
             }
+            // ErrorHandler.handle(error)
         }
     }
     

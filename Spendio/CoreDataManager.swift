@@ -11,18 +11,6 @@ import CoreData
 struct CoreDataManager {
     let controller = PersistenceController.shared
     
-    func save() throws {
-        let context = controller.container.viewContext
-        
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch let error as NSError {
-                throw error
-            }
-        }
-    }
-    
     func addCategory(name: String, color: [Float]) throws {
         let context = controller.container.viewContext
         
@@ -32,7 +20,7 @@ struct CoreDataManager {
         newCategory.colorGreen = color[1]
         newCategory.colorBlue = color[2]
         
-        try self.save()
+        try controller.save()
     }
     
      func fetchAllCategories() throws -> [Category]  {
@@ -50,14 +38,14 @@ struct CoreDataManager {
         category.colorGreen = color[1]
         category.colorBlue = color[2]
         
-        try self.save()
+        try controller.save()
     }
     
     func deleteCategory(category: Category) throws {
         let context = controller.container.viewContext
         context.delete(category)
         
-        try self.save()
+        try controller.save()
     }
     
     func addExpense(title: String, price: Double, date: Date, currency: String) throws {
@@ -70,7 +58,7 @@ struct CoreDataManager {
         newExpense.currency = currency
         //newExpense.category = Category()
         
-        try self.save()
+        try controller.save()
     }
     
     func fetchRecentExpenses(limit: Int) throws -> [Expense]  {

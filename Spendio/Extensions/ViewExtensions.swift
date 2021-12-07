@@ -17,4 +17,8 @@ extension View {
             Spacer()
         }
     }
+    
+    func withErrorHandling() -> some View {
+        modifier(ErrorAlertViewModifier())
+    }
 }

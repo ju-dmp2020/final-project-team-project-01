@@ -8,14 +8,9 @@
 import Foundation
 
 // Got the idea from https://www.youtube.com/watch?v=dpmy-msRlCA - 22/11/2021
+
 enum CurrencyAPIError {
     case invalidURL, badRequest, decode
-    
-}
-
-struct CurrencyAPIErrorModel: Identifiable {
-    let id = UUID()
-    let error: CurrencyAPIError
 }
 
 extension CurrencyAPIError: Error, LocalizedError {

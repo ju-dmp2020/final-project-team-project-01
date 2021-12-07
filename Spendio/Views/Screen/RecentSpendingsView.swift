@@ -36,17 +36,12 @@ struct RecentSpendingsView: View {
             }
             .navigationTitle("Recent")
             .listStyle(.grouped)
-            .alert(item: $currencyViewModel.currencyError) { err in
-                Alert(title: Text("Whoops, an error occurred"),
-                      message: Text(err.error.localizedDescription)
-                )
-            }
             .toolbar {
                 FilterButtonView()
             }
         }
         .onAppear {
-            Task { await currencyViewModel.fetch(baseCurrency: "sek") }
+            //Task { await currencyViewModel.fetch(baseCurrency: "sek") }
             // Return nil if error and goes to else statement above.
             expenses = try? coreDataManager.fetchRecentExpenses(limit: 10)
         }

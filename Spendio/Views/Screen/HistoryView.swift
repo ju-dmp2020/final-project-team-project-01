@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HistoryView: View {
     @ObservedObject var currencyViewModel: CurrencyViewModel
+    @EnvironmentObject var errorHandler: ErrorHandler
 
     var body: some View {
         NavigationView {
@@ -22,17 +23,18 @@ struct HistoryView: View {
             }
             .navigationTitle("History")
             .listStyle(.grouped)
-            .alert(item: $currencyViewModel.currencyError) { err in
-                Alert(title: Text("Whoops, an error occurred"),
-                      message: Text(err.error.localizedDescription)
-                )
-            }
             .toolbar {
                 FilterButtonView()
             }
         }
         .onAppear {
-            Task { await currencyViewModel.fetch(baseCurrency: "sek") }
+            Task {
+                do {
+                    try await currencyViewModel.fetch(baseCurrency: "sek")
+                } catch {
+                    errorHandler.handle(error: error)
+                }
+            }
         }
     }
 }

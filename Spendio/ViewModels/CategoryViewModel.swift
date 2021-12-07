@@ -13,9 +13,8 @@ class CategoryViewModel: ObservableObject {
     
     @Published var categories: [Category]?
     @Published var category: Category?
-    @Published var categoryError: Error? = nil
     
-    func fetchAll() {
+    func fetchAll() throws {
         do {
             let result = try coreDataManager.fetchAllCategories()
             DispatchQueue.main.async {
@@ -23,41 +22,32 @@ class CategoryViewModel: ObservableObject {
                 self.objectWillChange.send() // Force change
             }
         } catch {
-            DispatchQueue.main.async {
-                self.categoryError = error
-            }
-            // ErrorHandler.handle(error)
+            throw error
         }
     }
     
-    func add(name: String, color: [Float]) {
+    func add(name: String, color: [Float]) throws {
         do {
             try coreDataManager.addCategory(name: name, color: color)
         } catch {
-            DispatchQueue.main.async {
-                self.categoryError = error
-            }
+            throw error
         }
     }
     
-    func update(category: Category, name: String, color: [Float]) {
+    func update(category: Category, name: String, color: [Float]) throws {
         do {
             try coreDataManager.updateCategory(category: category, name: name, color: color)
         } catch {
-            DispatchQueue.main.async {
-                self.categoryError = error
-            }
+            throw error
         }
     }
     
-    func delete(category: Category) {
+    func delete(category: Category) throws {
         do {
             try coreDataManager.deleteCategory(category: category)
-            self.fetchAll() // update changes here
+            try self.fetchAll() // update changes here
         } catch {
-            DispatchQueue.main.async {
-                self.categoryError = error
-            }
+            throw error
         }
     }
 }

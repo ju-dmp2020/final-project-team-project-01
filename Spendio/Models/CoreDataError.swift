@@ -8,7 +8,7 @@
 import Foundation
 
 enum CoreDataError {
-    case saveGeneral, savePermission
+    case saveGeneral, savePermission, fetch
 }
 
 extension CoreDataError: Error, LocalizedError {
@@ -18,6 +18,8 @@ extension CoreDataError: Error, LocalizedError {
             return NSLocalizedString("Couldn't save", comment: "")
         case .savePermission:
             return NSLocalizedString("Couldn't save due to permissions", comment: "")
+        case .fetch:
+            return NSLocalizedString("Couldn't fetch the requested data", comment: "")
         }
     }
 }

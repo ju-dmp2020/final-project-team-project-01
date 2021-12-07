@@ -28,8 +28,12 @@ struct CoreDataManager {
          
          let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
         
-         let categories = try context.fetch(fetchRequest)
-         return categories
+         do {
+             let categories = try context.fetch(fetchRequest)
+             return categories
+         } catch {
+             throw CoreDataError.fetch
+         }
     }
     
     func updateCategory (category: Category, name: String, color: [Float]) throws {
@@ -67,8 +71,12 @@ struct CoreDataManager {
         let fetchRequest: NSFetchRequest<Expense> = Expense.fetchRequest()
         fetchRequest.fetchLimit = limit
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-       
-        let expenses = try context.fetch(fetchRequest)
-        return expenses
+        
+        do {
+            let expenses = try context.fetch(fetchRequest)
+            return expenses
+        } catch {
+            throw CoreDataError.fetch
+        }
    }
 }

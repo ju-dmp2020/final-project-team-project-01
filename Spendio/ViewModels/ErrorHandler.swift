@@ -19,8 +19,8 @@ class ErrorHandler: ObservableObject {
     @Published var currentAlert: ErrorAlert? = nil
     
     func handle(error: Error) {
-        currentAlert = ErrorAlert(message: error.localizedDescription)
+        DispatchQueue.main.async {
+            self.currentAlert = ErrorAlert(message: error.localizedDescription)
+        }
     }
 }
-
-// This file is error free.

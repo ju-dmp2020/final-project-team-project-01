@@ -68,7 +68,7 @@ struct CoreDataManager {
         try context.save()
     }
     
-    func addExpense(title: String, price: Double, date: Date, currency: String) throws {
+    func addExpense(title: String, price: Double, date: Date, currency: String, category: Category) throws {
         let context = controller.container.viewContext
         
         let newExpense = Expense(context: context)
@@ -77,6 +77,7 @@ struct CoreDataManager {
         newExpense.price = price
         newExpense.date = date
         newExpense.currency = currency
+        newExpense.category = category
         //newExpense.category = Category()
         
         try context.save()

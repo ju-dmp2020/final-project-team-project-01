@@ -11,14 +11,26 @@ struct ExpenseRowView: View {
     let expence: Expense
     var body: some View {
         HStack{
-            Circle() 
+            /*Circle()
                 .fill(.green)
                 .frame(width: 20, height: 20)
-                .padding(.trailing, 4)
-            Text("\(expence.title ?? "None" )")
+                .padding(.trailing, 4)*/
+            VStack(alignment: .leading){
+                Spacer()
+                Text("\(expence.title ?? "None" )")
+                ZStack{
+                    if let category = expence.category{
+                        Capsule()
+                            .fill(Color(red: Double(category.colorRed), green: Double(category.colorGreen), blue: Double(category.colorBlue), opacity: 1.0))
+                            .frame(width: 70, height: 20)
+                        Text("\(category.name ?? "None")")
+                    }
+                }
+            }
             Spacer()
             Text("\(expence.price, specifier: "%.2f")")
                 .foregroundColor(.red)
+            Text("\(expence.currency ?? "None")")
         }
     }
 }

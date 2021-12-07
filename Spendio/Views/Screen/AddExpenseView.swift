@@ -29,7 +29,9 @@ struct AddExpenseView: View {
     @State private var price = ""
     @State private var title = ""
     @State private var currency: String = "SEK"
+    @State private var category = Category()
     @State private var categories: [Category] = []
+    @State private var test: Bool = false
     
     
     var body: some View {
@@ -57,7 +59,7 @@ struct AddExpenseView: View {
                 }
                 
                 Section("Category"){
-                    Picker("Category", selection: $categories) {
+                    Picker("Category", selection: $category) {
                         ForEach(categories, id: \.self) { value in
                             Text(value.name ?? "null")
                                 .tag(value)
@@ -69,7 +71,7 @@ struct AddExpenseView: View {
                 Section{
                     Button {
                         print("+++ currency selected: \(currency)")
-                        try? coreDataManager.addExpense(title: title, price: Double(price)!, date: date, currency: currency)
+                        try? coreDataManager.addExpense(title: title, price: Double(price)!, date: date, currency: currency, category: category)
                         tabScreen = TabScreen.recentSpendings
                     } label: {
                         Text("Add Expense")
@@ -77,12 +79,13 @@ struct AddExpenseView: View {
                 }
             }
             .navigationTitle("Add Expense")
-            .onAppear(perform: {
+            .onAppear{
                 categoryModel.fetchAll()
                 if let fetchedCategories = categoryModel.categories{
                     categories = fetchedCategories
                 }
-            })
+                test.toggle()
+            }
         }
     }
 }

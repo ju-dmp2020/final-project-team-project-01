@@ -17,6 +17,7 @@
 		F616236D2749301C00B7DAAE /* ExpenseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616236C2749301C00B7DAAE /* ExpenseRowView.swift */; };
 		F61623712749604300B7DAAE /* CategoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61623702749604300B7DAAE /* CategoryRowView.swift */; };
 		F6162374274983A400B7DAAE /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6162373274983A400B7DAAE /* AddCategoryView.swift */; };
+		F62CD5C3275FD85B00AF37AB /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62CD5C2275FD85B00AF37AB /* CategoryModel.swift */; };
 		F6447D112747D03E006C7CA7 /* SpendioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D102747D03E006C7CA7 /* SpendioApp.swift */; };
 		F6447D152747D03F006C7CA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6447D142747D03F006C7CA7 /* Assets.xcassets */; };
 		F6447D182747D03F006C7CA7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6447D172747D03F006C7CA7 /* Preview Assets.xcassets */; };
@@ -66,6 +67,7 @@
 		F616236C2749301C00B7DAAE /* ExpenseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRowView.swift; sourceTree = "<group>"; };
 		F61623702749604300B7DAAE /* CategoryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRowView.swift; sourceTree = "<group>"; };
 		F6162373274983A400B7DAAE /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
+		F62CD5C2275FD85B00AF37AB /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		F6447D0D2747D03E006C7CA7 /* Spendio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spendio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6447D102747D03E006C7CA7 /* SpendioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendioApp.swift; sourceTree = "<group>"; };
 		F6447D142747D03F006C7CA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				F68E38CB274C48460031C04C /* CurrencyAPIError.swift */,
 				F608904927500227004E09D0 /* CurrencyConverterModel.swift */,
 				F6457F9E275F6F5E00D1E550 /* CoreDataError.swift */,
+				F62CD5C2275FD85B00AF37AB /* CategoryModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				F6447D452747FA34006C7CA7 /* RecentSpendingsView.swift in Sources */,
 				F6457F9F275F6F5E00D1E550 /* CoreDataError.swift in Sources */,
 				F6162374274983A400B7DAAE /* AddCategoryView.swift in Sources */,
+				F62CD5C3275FD85B00AF37AB /* CategoryModel.swift in Sources */,
 				F6089048274FFA67004E09D0 /* FilterSheetView.swift in Sources */,
 				954D604B27590FC000CA4380 /* GraphModel.swift in Sources */,
 				F61623712749604300B7DAAE /* CategoryRowView.swift in Sources */,

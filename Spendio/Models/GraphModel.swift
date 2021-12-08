@@ -19,17 +19,17 @@ struct GraphModel {
     
     func populateChartData (expenses: [Expense], categories: [Category]) -> [(String, Float)] {
         var chartData:[(String, Float)] = []
-    
-        for category in categories{
-            for expense in expenses {
-                if expense.category?.name == category.name{
-                    let tup = ("\(category.name ?? "unknown")", Float(expense.price))
-                    chartData.append(tup)
+            for category in categories{
+                var categoryData: [String: Float] = [:]
+                categoryData["\(category.name ?? "Unknown")"] = 0
+                for expense in expenses {
+                    if expense.category?.name == category.name{
+                        categoryData["\(String(describing: category.name))"]! += Float(expense.price)
+                    }
                 }
+                let tup = ("\(category.name)", categoryData["\(category.name)"]!)
+                chartData.append(tup)
             }
-        }
-        return chartData
+            return chartData
     }
-    
-    
 }

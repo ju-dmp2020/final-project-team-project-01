@@ -34,20 +34,20 @@ class ExpenseViewModel: ObservableObject {
         }
     }
     
-    /*func update(category: Category, name: String, color: [Float]) throws {
+    func update(expense: Expense, title: String, price: Double, date: Date, currency: String, category: Category) throws {
         do {
-            try coreDataManager.updateCategory(category: category, name: name, color: color)
+            try coreDataManager.updateExpense(expense: expense, title: title, price: price, date: date, currency: currency, category: category)
         } catch {
             throw error
         }
-    }*/
+    }
     
-    /*func delete(category: Category) throws {
+    func delete(expense: Expense ) throws {
         do {
-            try coreDataManager.deleteCategory(category: category)
+            try coreDataManager.deleteExpense(expense: expense)
             try self.fetchAll() // update changes here
         } catch {
             throw error
         }
-    }*/
+    }
 }

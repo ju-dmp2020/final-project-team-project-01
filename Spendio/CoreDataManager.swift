@@ -89,5 +89,22 @@ struct CoreDataManager {
         } catch {
             throw CoreDataError.fetch
         }
-   }
+    }
+    
+    func updateExpense (expense: Expense, title: String, price: Double, date: Date, currency: String, category: Category) throws {
+        expense.title = title
+        expense.price = price
+        expense.date = date
+        expense.currency = currency
+        expense.category = category
+        
+        try controller.save()
+    }
+    
+    func deleteExpense(expense: Expense) throws {
+        let context = controller.container.viewContext
+        context.delete(expense)
+        
+        try controller.save()
+    }
 }

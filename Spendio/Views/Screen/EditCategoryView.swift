@@ -40,7 +40,7 @@ struct EditCategoryView: View {
                         Text("Update")
                     }
                     .centerHorizontally()
-                }.disabled(categoryModel.validation())
+                }.disabled(categoryModel.isValid())
             }
         }
         .navigationBarTitle("Edit Category")

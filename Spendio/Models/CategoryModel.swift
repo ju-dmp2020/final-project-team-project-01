@@ -21,7 +21,7 @@ class CategoryModel: ObservableObject {
     
     // Generic name / function in case more validation added
     // using not "!" because the function is used inside .disabled
-    func validation() -> Bool {
+    func isValid() -> Bool {
         !validateNameLength()
     }
 }

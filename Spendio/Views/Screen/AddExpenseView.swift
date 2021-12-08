@@ -20,12 +20,11 @@ enum Currency: String , Equatable, CaseIterable {
 struct AddExpenseView: View {
     @EnvironmentObject var errorHandler: ErrorHandler
     @StateObject var categoryViewModel = CategoryViewModel()
+    @StateObject var expenseViewModel = ExpenseViewModel()
     
     let currencies = ["SEK", "EUR", "USD", "NOK"]
     
-    // CoreData manager
     @Environment(\.managedObjectContext) var viewContext
-    let coreDataManager = CoreDataManager()
     
     @Binding var tabScreen: TabScreen
     @State private var date = Date()
@@ -33,8 +32,6 @@ struct AddExpenseView: View {
     @State private var title = ""
     @State private var currency: String = "SEK"
     @State private var category = Category()
-    @State private var categories: [Category] = []
-    @State private var test: Bool = false
     
     
     var body: some View {
@@ -63,9 +60,11 @@ struct AddExpenseView: View {
                 
                 Section("Category"){
                     Picker("Category", selection: $category) {
-                        ForEach(categories, id: \.self) { value in
-                            Text(value.name ?? "null")
-                                .tag(value)
+                        ForEach(categoryViewModel.categories ?? [], id: \.self) { value in
+                            HStack{
+                                Text(value.name ?? "null")
+                                    .tag(value)
+                            }
                         }
                     }
                 }
@@ -74,7 +73,7 @@ struct AddExpenseView: View {
                 Section{
                     Button {
                         print("+++ currency selected: \(currency)")
-                        try? coreDataManager.addExpense(title: title, price: Double(price)!, date: date, currency: currency, category: category)
+                        try? expenseViewModel.add(title: title, price: Double(price)!, date: date, currency: currency, category: category)
                         tabScreen = TabScreen.recentSpendings
                     } label: {
                         Text("Add Expense")
@@ -84,7 +83,6 @@ struct AddExpenseView: View {
             .navigationTitle("Add Expense")
             .onAppear{
                 fetchAllCategories()
-                test.toggle()
             }
         }
     }

@@ -26,6 +26,18 @@ class ExpenseViewModel: ObservableObject {
         }
     }
     
+    func fetchRecentExpenses(limit: Int) throws{
+        do{
+            let result = try coreDataManager.fetchRecentExpenses(limit: limit)
+            DispatchQueue.main.async {
+                self.expenses = result
+                self.objectWillChange.send() // Force change
+            }
+        } catch {
+            throw error
+        }
+    }
+    
     func add(title: String, price: Double, date: Date, currency: String, category: Category ) throws {
         do {
             try coreDataManager.addExpense(title: title, price: price, date: date, currency: currency, category: category)

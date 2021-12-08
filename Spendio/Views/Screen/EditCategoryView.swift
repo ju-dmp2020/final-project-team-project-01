@@ -10,45 +10,37 @@ import SwiftUI
 struct EditCategoryView: View {
     @EnvironmentObject var errorHandler: ErrorHandler
     @ObservedObject var categoryViewModel: CategoryViewModel
+    @ObservedObject var categoryModel = CategoryModel()
     
     @Binding var category: Category?
     @Binding var editViewActive: Bool
-    
-    // Prefill textfield & colorpicker
-    @State var categoryName: String = ""
-    @State var categoryColor: Color = .yellow
-    
-    var disableForm: Bool {
-        categoryName.count < 3
-    }
     
     var body: some View {
         VStack {
             Form {
                 Section(header: Text("Category name")) {
-                    TextField("Name", text: $categoryName)
-                        .onAppear {
-                            categoryName = category?.name ?? ""
-                        }
+                    TextField("Name must be between \(categoryModel.nameMinLength) and \(categoryModel.nameMaxLength)",
+                              text: $categoryModel.name)
+                        .onAppear {categoryModel.name = category?.name ?? ""}
                 }
                 Section {
-                    ColorPicker("Select a color", selection: $categoryColor, supportsOpacity: false)
+                    ColorPicker("Select a color", selection: $categoryModel.color, supportsOpacity: false)
                         .onAppear {
-                            categoryColor = Color(.sRGB, red: Double(category?.colorRed ?? 0.98),
-                                                  green: Double(category?.colorGreen ?? 0.9),
-                                                  blue: Double(category?.colorBlue ?? 0.2))
+                            categoryModel.color = Color(.sRGB, red: Double(category!.colorRed),
+                                                        green: Double(category!.colorGreen),
+                                                        blue: Double(category!.colorBlue))
                         }
                 }
                 Section {
                     Button {
                         // TODO: Update Query to database
-                        updateCategory(category: category, name: categoryName, color: categoryColor)
+                        updateCategory(category: category, name: categoryModel.name, color: categoryModel.color)
                         editViewActive.toggle()
                     } label: {
                         Text("Update")
                     }
                     .centerHorizontally()
-                }.disabled(disableForm)
+                }.disabled(categoryModel.isValid())
             }
         }
         .navigationBarTitle("Edit Category")
@@ -57,7 +49,7 @@ struct EditCategoryView: View {
     
     func updateCategory(category: Category?, name: String, color: Color) {
         if let category = category {
-            if let CGColor = categoryColor.cgColor?.components {
+            if let CGColor = categoryModel.color.cgColor?.components {
                 let floatColor = CGColor.map{Float($0)}
                 do {
                     try categoryViewModel.update(category: category, name: name, color: floatColor)

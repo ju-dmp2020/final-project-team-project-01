@@ -27,7 +27,6 @@ class ExpenseModel: ObservableObject {
     }
     
     // Generic name / function in case more validation added
-    // using not "!" because the function is used inside .disabled
     func isValid() -> Bool {
         self.validateTitleLength() && self.validatePriceValue()
     }

@@ -41,7 +41,7 @@ struct AddCategoryView: View {
                     Text("Add")
                 }
                 .centerHorizontally()
-            }.disabled(categoryModel.isValid())
+            }.disabled(!categoryModel.isValid())
             
         }
         .navigationTitle("New category")

@@ -23,19 +23,12 @@ class ExpenseModel: ObservableObject {
     }
     
     func validatePriceValue() -> Bool {
-        // Convert to Double
-        if let price = Double(price) {
-            if price >= priceMinValue {
-                return true
-            }
-            return false
-        }
-        return false
+        Double(price) ?? -1 >= priceMinValue
     }
     
     // Generic name / function in case more validation added
     // using not "!" because the function is used inside .disabled
     func isValid() -> Bool {
-        !validateTitleLength() && !validatePriceValue()
+        self.validateTitleLength() && self.validatePriceValue()
     }
 }

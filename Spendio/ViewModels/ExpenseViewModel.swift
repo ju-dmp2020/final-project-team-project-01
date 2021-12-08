@@ -38,7 +38,7 @@ class ExpenseViewModel: ObservableObject {
         }
     }
     
-    func add(title: String, price: Double, date: Date, currency: String, category: Category ) throws {
+    func add(title: String, price: Double, date: Date, currency: String, category: Category?) throws {
         do {
             try coreDataManager.addExpense(title: title, price: price, date: date, currency: currency, category: category)
         } catch {

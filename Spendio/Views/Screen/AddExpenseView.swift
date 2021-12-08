@@ -57,15 +57,12 @@ struct AddExpenseView: View {
                 
                 Section("Category"){
                     Picker("Category", selection: $expenseModel.category) {
-                        ForEach(categoryViewModel.categories ?? [], id: \.self) { value in
-                            HStack{
-                                Text(value.name ?? "null")
-                                    .tag(value)
-                            }
+                        Text("Uncategorized").tag(nil as Category?)
+                        ForEach(categoryViewModel.categories ?? [], id: \.self) { category in
+                                Text(category.name ?? "").tag(category as Category?)
                         }
                     }
                 }
-                
                 
                 Section{
                     Button {

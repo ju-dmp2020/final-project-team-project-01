@@ -12,7 +12,7 @@ class ExpenseModel: ObservableObject {
     @Published var price: String = ""
     @Published var date: Date = .now                // Default as today
     @Published var currency: String = "SEK"         // Default currency
-    @Published var category: Category = Category()
+    @Published var category: Category?
     
     let titleMinLength: Int = 2
     let titleMaxLength: Int = 10

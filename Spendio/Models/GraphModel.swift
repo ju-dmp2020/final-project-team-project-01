@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUICharts
+import SwiftUI
 
 struct GraphModel {
     
@@ -14,9 +15,21 @@ struct GraphModel {
     
     let standardDarkStyle = ChartStyle(backgroundColor: .black, accentColor: .blue, gradientColor: GradientColor(start: .blue, end: .purple), textColor: .white, legendTextColor: .white, dropShadowColor: .gray)
     
-    //var chartData: ChartData
     
     
+    func populateChartData (expenses: [Expense], categories: [Category]) -> [(String, Float)] {
+        var chartData:[(String, Float)] = []
+    
+        for category in categories{
+            for expense in expenses {
+                if expense.category?.name == category.name{
+                    let tup = ("\(category.name ?? "unknown")", Float(expense.price))
+                    chartData.append(tup)
+                }
+            }
+        }
+        return chartData
+    }
     
     
 }

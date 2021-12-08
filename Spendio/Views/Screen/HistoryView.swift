@@ -10,15 +10,13 @@ import SwiftUI
 struct HistoryView: View {
     @EnvironmentObject var errorHandler: ErrorHandler
     @ObservedObject var currencyViewModel: CurrencyViewModel
-    
-    let coreDataManager = CoreDataManager()
-    @State var expenses: [Expense]?
+    @StateObject var expenseViewModel = ExpenseViewModel()
     
     var body: some View {
         NavigationView {
             List {
                 
-                if let expenses = expenses{
+                if let expenses = expenseViewModel.expenses{
                     ForEach(expenses, id: \.self) {value in
                         ExpenseRowView(expence: value)                    }
                 }
@@ -31,6 +29,12 @@ struct HistoryView: View {
             }
         }
         .onAppear {
+            do {
+               try expenseViewModel.fetchAll()
+            } catch {
+                errorHandler.handle(error: error)
+            }
+            
             Task {
                 await fetchCurrencies(baseCurrency: "sek")
             }

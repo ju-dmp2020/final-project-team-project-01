@@ -27,7 +27,7 @@ struct GraphModel {
                         categoryData["\(String(describing: category.name))"]! += Float(expense.price)
                     }
                 }
-                let tup = ("\(category.name)", categoryData["\(category.name)"]!)
+                let tup = ("\(category.name)", categoryData["\(category.name)"]!)  // it crashes as the category name is nil at startup. FIX!
                 chartData.append(tup)
             }
             return chartData

@@ -70,7 +70,7 @@ struct MainView: View {
         // check whether biometric authentication is possible
         if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
             // it's possible, so go ahead and use it
-            let reason = "Please use face id to view information"
+            let reason = "Please authenticate yourself"
 
             context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, authenticationError in
                 // authentication has now completed

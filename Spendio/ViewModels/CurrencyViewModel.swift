@@ -11,13 +11,13 @@ import Foundation
 
 class CurrencyViewModel: ObservableObject {
     let errorHandler = ErrorHandler.shared
-    
-    private var apiKey = "c9ff9520-4e00-11ec-8ed5-856ceff69779" // Will be replaced somewhere else
+    let apiKeyFileName = "apiKey"
     
     @Published var currency: CurrencyConverterModel?
     
     func fetchCurrencies(baseCurrency: String) async {
-        let jsonURL = "https://freecurrencyapi.net/api/v2/latest?apikey=\(apiKey)&base_currency=\(baseCurrency)"
+        let apiKey = self.loadApiKey(fileName: self.apiKeyFileName)["key"]
+        let jsonURL = "https://freecurrencyapi.net/api/v2/latest?apikey=\(apiKey!)&base_currency=\(baseCurrency)"
         
         guard let url = URL(string: jsonURL) else {
             errorHandler.handle(error: CurrencyAPIError.invalidURL)
@@ -45,5 +45,20 @@ class CurrencyViewModel: ObservableObject {
         } catch {
             errorHandler.handle(error: CurrencyAPIError.decode)
         }
+    }
+    
+    private func loadApiKey(fileName: String) -> [String : String] {
+        do {
+            if let filePath = Bundle.main.path(forResource: fileName, ofType: "json") {
+                let fileUrl = URL(fileURLWithPath: filePath)
+                let data = try Data(contentsOf: fileUrl, options: .alwaysMapped)
+                let json = try! JSONSerialization.jsonObject(with: data) as! [String : String]
+                return json
+            }
+        } catch {
+            errorHandler.handle(error: CurrencyAPIError.key)
+        }
+        errorHandler.handle(error: CurrencyAPIError.key)
+        return [:]
     }
 }

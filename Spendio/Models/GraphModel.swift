@@ -19,22 +19,24 @@ class GraphModel {
     
     
     func populateChartData (expenses: [Expense]){
-        var tempChartData:[(String, Float)] = []
-        var categoryData: [String: Float] = [:]
+        var tempChartData:[(String, Float)] = [] // the graph only takes an array of tuples so this is a temporary tuple array that will overwrite chartData in the end.
+        var data: [String: Float] = [:]// this is a dictionary that stores the data and will be added to chart data as a tuple.
         var names:[String] = []
         for expense in expenses {
             if let category = expense.category{
-                if categoryData[category.name ?? "no name"] == nil{
-                    categoryData[category.name ?? "no name"] = Float(expense.price)
+                if data[category.name ?? "no name"] == nil{
+                    data[category.name ?? "no name"] = Float(expense.price)
                     names.append(category.name ?? "Unknown")
                 }
                 else{
-                    categoryData[category.name ?? "Unknown"]! += Float(expense.price)
+                    data[category.name ?? "Unknown"]! += Float(expense.price)
                 }
+            } else {
+                
             }
         }
         for name in names{
-            let tup = ("\(name)", categoryData["\(name)"] ?? Float(0.0))  // it crashes as the category name is nil at startup. FIX!
+            let tup = ("\(name)", data["\(name)"] ?? Float(0.0))  // it crashes as the category name is nil at startup. FIX!
             tempChartData.append(tup)
         }
         

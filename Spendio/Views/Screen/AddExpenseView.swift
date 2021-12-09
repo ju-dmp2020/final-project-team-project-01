@@ -21,6 +21,7 @@ struct AddExpenseView: View {
     @EnvironmentObject var errorHandler: ErrorHandler
     @StateObject var categoryViewModel = CategoryViewModel()
     @StateObject var expenseViewModel = ExpenseViewModel()
+    var graphModel: GraphModel
     
     let currencies = ["SEK", "EUR", "USD", "NOK"]
     
@@ -75,6 +76,7 @@ struct AddExpenseView: View {
                         print("+++ currency selected: \(currency)")
                         try? expenseViewModel.add(title: title, price: Double(price)!, date: date, currency: currency, category: category)
                         tabScreen = TabScreen.recentSpendings
+                        graphModel.populateChartData(expenses: expenseViewModel.expenses ?? [])
                     } label: {
                         Text("Add Expense")
                     }.centerHorizontally()

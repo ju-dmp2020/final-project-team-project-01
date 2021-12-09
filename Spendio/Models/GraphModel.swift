@@ -9,7 +9,8 @@ import Foundation
 import SwiftUICharts
 import SwiftUI
 
-struct GraphModel {
+class GraphModel {
+    @Published var chartData: [(String, Float)] = []
     
     let standardLightStyle = ChartStyle(backgroundColor: .white, accentColor: .blue, gradientColor: GradientColor(start: .blue, end: .purple), textColor: .black, legendTextColor: .black, dropShadowColor: .gray)
     
@@ -17,19 +18,26 @@ struct GraphModel {
     
     
     
-    func populateChartData (expenses: [Expense], categories: [Category]) -> [(String, Float)] {
-        var chartData:[(String, Float)] = []
-            for category in categories{
-                var categoryData: [String: Float] = [:]
-                categoryData["\(category.name ?? "Unknown")"] = 0
-                for expense in expenses {
-                    if expense.category?.name == category.name{
-                        categoryData["\(String(describing: category.name))"]! += Float(expense.price)
-                    }
+    func populateChartData (expenses: [Expense]){
+        var tempChartData:[(String, Float)] = []
+        var categoryData: [String: Float] = [:]
+        var names:[String] = []
+        for expense in expenses {
+            if let category = expense.category{
+                if categoryData[category.name ?? "no name"] == nil{
+                    categoryData[category.name ?? "no name"] = Float(expense.price)
+                    names.append(category.name ?? "Unknown")
                 }
-                let tup = ("\(category.name)", categoryData["\(category.name)"]!)  // it crashes as the category name is nil at startup. FIX!
-                chartData.append(tup)
+                else{
+                    categoryData[category.name ?? "Unknown"]! += Float(expense.price)
+                }
             }
-            return chartData
+        }
+        for name in names{
+            let tup = ("\(name)", categoryData["\(name)"] ?? Float(0.0))  // it crashes as the category name is nil at startup. FIX!
+            tempChartData.append(tup)
+        }
+        
+        self.chartData = tempChartData
     }
 }

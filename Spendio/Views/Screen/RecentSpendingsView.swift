@@ -10,10 +10,9 @@ import SwiftUICharts
 
 struct RecentSpendingsView: View {
     @EnvironmentObject var errorHandler: ErrorHandler
-    let graphModel = GraphModel()
-    @State var chartDemoData = ChartData(values: [("Food",90), ("Coffe",50),("Cars",450),("Candy",120),("Entertainment",200),("Home",300),("Fika",65)])
-    @State var demoData: [Double] = [5.0,13.0,11.0,3.0,14.0,16.0]
+    @State var graphModel:GraphModel
     @ObservedObject var currencyViewModel: CurrencyViewModel
+    
     
     // CoreData manager
     @Environment(\.managedObjectContext) var viewContext
@@ -22,7 +21,7 @@ struct RecentSpendingsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                BarChartView(data: ChartData(values: graphModel.populateChartData(expenses: expenseViewModel.expenses ?? [], categories: categoryViewModel.categories ?? [])), title: "Recent", style: graphModel.standardLightStyle , form: ChartForm.extraLarge, dropShadow: true)
+                BarChartView(data: ChartData(values: graphModel.chartData), title: "Recent", style: graphModel.standardLightStyle , form: ChartForm.extraLarge, dropShadow: true)
                 List{
                     if let expenses = expenseViewModel.expenses{
                         ForEach(expenses, id: \.self) {value in
@@ -53,6 +52,8 @@ struct RecentSpendingsView: View {
             } catch {
                 errorHandler.handle(error: error)
             }
+            
+            graphModel.populateChartData(expenses: expenseViewModel.expenses ?? [])
         }
     }
 }

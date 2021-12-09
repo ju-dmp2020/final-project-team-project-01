@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ExpenseRowView: View {
-    let expence: Expense
+    let expense: Expense
+    @ObservedObject var expenseViewModel: ExpenseViewModel
+    @State private var showDeleteConfirmation: Bool = false 
     var body: some View {
         HStack{
             /*Circle()
@@ -17,9 +19,9 @@ struct ExpenseRowView: View {
                 .padding(.trailing, 4)*/
             VStack(alignment: .leading){
                 Spacer()
-                Text("\(expence.title ?? "None" )")
+                Text("\(expense.title ?? "None" )")
                 ZStack{
-                    if let category = expence.category{
+                    if let category = expense.category{
                         Capsule()
                             .fill(Color(red: Double(category.colorRed), green: Double(category.colorGreen), blue: Double(category.colorBlue), opacity: 1.0))
                             .frame(width: 70, height: 20)
@@ -28,10 +30,27 @@ struct ExpenseRowView: View {
                 }
             }
             Spacer()
-            Text("\(expence.price, specifier: "%.2f")")
+            Text("\(expense.price, specifier: "%.2f")")
                 .foregroundColor(.red)
-            Text("\(expence.currency ?? "None")")
+            Text("\(expense.currency ?? "None")")
         }
+        .swipeActions(edge: .trailing) {
+            Button(role: .destructive) {
+                showDeleteConfirmation = true
+            } label: {
+                Image(systemName: "trash")
+            }
+        }
+        .confirmationDialog(
+            "Are you sure you want to delete \(expense.title ?? "")?",
+            isPresented: $showDeleteConfirmation,
+            titleVisibility: .visible) {
+                Button("Yes", role: .destructive) {
+                    // TODO: call a function to delete
+                    expenseViewModel.delete(expense: expense)
+                }
+                Button("Cancel", role: .cancel) {}
+            }
     }
 }
 

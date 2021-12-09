@@ -20,7 +20,8 @@ struct HistoryView: View {
                 
                 if let expenses = expenses{
                     ForEach(expenses, id: \.self) {value in
-                        ExpenseRowView(expence: value)                    }
+                        //ExpenseRowView(expence: value) // on conglict, override this.
+                    }
                 }
                 
             }

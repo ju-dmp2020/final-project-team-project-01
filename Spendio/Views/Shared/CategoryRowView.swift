@@ -50,17 +50,9 @@ struct CategoryRowView: View {
             titleVisibility: .visible) {
                 Button("Yes", role: .destructive) {
                     // TODO: call a function to delete
-                    deleteCategory(category: category)
+                   categoryViewModel.delete(category: category)
                 }
                 Button("Cancel", role: .cancel) {}
             }
-    }
-    
-    func deleteCategory(category: Category) {
-        do {
-            try categoryViewModel.delete(category: category)
-        } catch {
-            errorHandler.handle(error: error)
-        }
     }
 }

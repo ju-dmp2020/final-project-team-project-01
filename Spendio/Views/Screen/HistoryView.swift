@@ -11,19 +11,17 @@ struct HistoryView: View {
     @EnvironmentObject var errorHandler: ErrorHandler
     @ObservedObject var currencyViewModel: CurrencyViewModel
     
-    let coreDataManager = CoreDataManager()
+    @StateObject var expenseViewModel = ExpenseViewModel()
     @State var expenses: [Expense]?
     
     var body: some View {
         NavigationView {
             List {
-                
-                if let expenses = expenses{
-                    ForEach(expenses, id: \.self) {value in
-                        //ExpenseRowView(expence: value) // on conglict, override this.
+                if let expenses = expenseViewModel.expenses{
+                    ForEach(expenses) {value in
+                       ExpenseRowView(expense: value, expenseViewModel: expenseViewModel) // on conflict, override.
                     }
                 }
-                
             }
             .navigationTitle("History")
             .listStyle(.grouped)
@@ -35,6 +33,7 @@ struct HistoryView: View {
             Task {
                 await currencyViewModel.fetchCurrencies(baseCurrency: "sek")
             }
+            expenseViewModel.fetchAll()
         }
     }
 }

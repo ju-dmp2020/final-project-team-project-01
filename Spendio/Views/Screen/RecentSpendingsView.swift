@@ -24,7 +24,7 @@ struct RecentSpendingsView: View {
                 BarChartView(data: chartDemoData, title: "Recent", style: graphModel.standardLightStyle , form: ChartForm.extraLarge, dropShadow: true)
                 List{
                     if let expenses = expenseViewModel.expenses{
-                        ForEach(expenses, id: \.self) {value in
+                        ForEach(expenses) {value in
                            ExpenseRowView(expense: value, expenseViewModel: expenseViewModel)
                         }
                     }

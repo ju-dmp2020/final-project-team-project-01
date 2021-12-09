@@ -10,7 +10,7 @@ import SwiftUICharts
 
 struct RecentSpendingsView: View {
     @EnvironmentObject var errorHandler: ErrorHandler
-    @State var graphModel:GraphModel
+    @State var graphModel = GraphModel()
     @ObservedObject var currencyViewModel: CurrencyViewModel
     
     

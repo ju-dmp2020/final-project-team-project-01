@@ -32,6 +32,13 @@ class GraphModel {
                     data[category.name ?? "Unknown"]! += Float(expense.price)
                 }
             } else {
+                if data["Uncategorised"] == nil{
+                    data["Uncategorised"] = Float(expense.price)
+                    names.append("Uncategorised")
+                }
+                else {
+                    data["Uncategorised"]! += Float(expense.price)
+                }
                 
             }
         }

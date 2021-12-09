@@ -13,7 +13,6 @@ enum TabScreen {
 
 struct MainView: View {
     @State var selectedTabScreen = TabScreen.recentSpendings
-    @State var graphModel = GraphModel()
     @StateObject var currencyViewModel = CurrencyViewModel()
     
     var body: some View {
@@ -24,13 +23,13 @@ struct MainView: View {
                 }
                 .tag(TabScreen.history)
             
-            RecentSpendingsView(graphModel: graphModel,currencyViewModel: currencyViewModel)
+            RecentSpendingsView(currencyViewModel: currencyViewModel)
                 .tabItem {
                     Label("Recent Spendings", image: "Money")
                 }
                 .tag(TabScreen.recentSpendings)
             
-            AddExpenseView(graphModel: graphModel,tabScreen: $selectedTabScreen)
+            AddExpenseView(tabScreen: $selectedTabScreen)
                 .tabItem {
                     Label("Add Expense", systemImage: "plus")
                 }

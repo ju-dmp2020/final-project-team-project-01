@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 enum TabScreen {
     case history, recentSpendings, addExpense, categories
@@ -14,9 +15,11 @@ enum TabScreen {
 struct MainView: View {
     @State var selectedTabScreen = TabScreen.recentSpendings
     @StateObject var currencyViewModel = CurrencyViewModel()
+    @State private var isUnlocked = false
     
     var body: some View {
         TabView(selection: $selectedTabScreen) {
+            if isUnlocked{
             HistoryView(currencyViewModel: currencyViewModel)
                 .tabItem {
                     Label("History", systemImage: "clock.arrow.circlepath")
@@ -40,6 +43,7 @@ struct MainView: View {
                     Label("Categories", systemImage: "tag")
                 }
                 .tag(TabScreen.categories)
+            }
         }
         .onAppear {
             // https://nemecek.be/blog/127/how-to-disable-automatic-transparent-tabbar-in-ios-15 - 19/11/2021
@@ -51,6 +55,29 @@ struct MainView: View {
                 
                 if #available(iOS 15.0, *) {
                     UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+                }
+            }
+            authenticate()
+        }
+    }
+
+    
+    // https://www.hackingwithswift.com/books/ios-swiftui/using-touch-id-and-face-id-with-swiftui - 09/12/2021
+    func authenticate() {
+        let context = LAContext()
+        var error: NSError?
+
+        // check whether biometric authentication is possible
+        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+            // it's possible, so go ahead and use it
+            let reason = "Please use face id to view information"
+
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, authenticationError in
+                // authentication has now completed
+                if success {
+                    isUnlocked = true
+                } else {
+                    // there was a problem
                 }
             }
         }

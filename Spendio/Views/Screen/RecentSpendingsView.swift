@@ -39,21 +39,7 @@ struct RecentSpendingsView: View {
             }
         }
         .onAppear {
-            //Task { await currencyViewModel.fetch(baseCurrency: "sek") }
-            // Return nil if error and goes to else statement above.
-            do{
-                try expenseViewModel.fetchRecentExpenses(limit: 10)
-            } catch {
-                errorHandler.handle(error: error)
-            }
+            expenseViewModel.fetchRecentExpenses(limit: 10)
         }
     }
 }
-
-
-
-/*struct RecentSpendingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        RecentSpendingsView(currencyViewModel: CurrencyViewModel())
-    }
-}*/

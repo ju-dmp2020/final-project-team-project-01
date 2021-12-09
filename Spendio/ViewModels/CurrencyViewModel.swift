@@ -10,14 +10,13 @@ import Foundation
 // Fetching currency rates from https://freecurrencyapi.net/
 
 class CurrencyViewModel: ObservableObject {
-    
-    @Published var currency: CurrencyConverterModel?
-    
     let errorHandler = ErrorHandler.shared
     
     private var apiKey = "c9ff9520-4e00-11ec-8ed5-856ceff69779" // Will be replaced somewhere else
     
-    func fetch(baseCurrency: String) async {
+    @Published var currency: CurrencyConverterModel?
+    
+    func fetchCurrencies(baseCurrency: String) async {
         let jsonURL = "https://freecurrencyapi.net/api/v2/latest?apikey=\(apiKey)&base_currency=\(baseCurrency)"
         
         guard let url = URL(string: jsonURL) else {

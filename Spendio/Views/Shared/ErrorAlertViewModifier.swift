@@ -11,7 +11,7 @@ import SwiftUI
 // https://www.ralfebert.com/swiftui/generic-error-handling/ - 16/12/2021
 
 struct ErrorAlertViewModifier: ViewModifier {
-    @StateObject var errorHandler = ErrorHandler()
+    @StateObject var errorHandler = ErrorHandler.shared
     
     func body(content: Content) -> some View {
         content

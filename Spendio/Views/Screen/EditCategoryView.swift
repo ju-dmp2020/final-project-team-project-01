@@ -51,12 +51,7 @@ struct EditCategoryView: View {
         if let category = category {
             if let CGColor = categoryModel.color.cgColor?.components {
                 let floatColor = CGColor.map{Float($0)}
-                do {
-                    try categoryViewModel.update(category: category, name: name, color: floatColor)
-                } catch {
-                    errorHandler.handle(error: error)
-                }
-                
+                categoryViewModel.update(category: category, name: name, color: floatColor)
             }
         }
     }

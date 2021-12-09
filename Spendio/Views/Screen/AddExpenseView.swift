@@ -66,11 +66,11 @@ struct AddExpenseView: View {
                 
                 Section{
                     Button {
-                        try? expenseViewModel.add(title: expenseModel.title,
-                                                  price: Double(expenseModel.price)!,
-                                                  date: expenseModel.date,
-                                                  currency: expenseModel.currency,
-                                                  category: expenseModel.category)
+                        expenseViewModel.add(title: expenseModel.title,
+                                             price: Double(expenseModel.price)!,
+                                             date: expenseModel.date,
+                                             currency: expenseModel.currency,
+                                             category: expenseModel.category)
                         tabScreen = TabScreen.recentSpendings
                     } label: {
                         Text("Add Expense")
@@ -79,16 +79,8 @@ struct AddExpenseView: View {
             }
             .navigationTitle("Add Expense")
             .onAppear{
-                fetchAllCategories()
+                categoryViewModel.fetchAll()
             }
-        }
-    }
-    
-    func fetchAllCategories() {
-        do {
-            try categoryViewModel.fetchAll()
-        } catch {
-            errorHandler.handle(error: error)
         }
     }
 }

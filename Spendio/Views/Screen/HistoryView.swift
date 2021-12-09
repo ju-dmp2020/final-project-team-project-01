@@ -32,16 +32,8 @@ struct HistoryView: View {
         }
         .onAppear {
             Task {
-                await fetchCurrencies(baseCurrency: "sek")
+                await currencyViewModel.fetchCurrencies(baseCurrency: "sek")
             }
-        }
-    }
-    
-    func fetchCurrencies(baseCurrency: String) async {
-        do {
-            try await currencyViewModel.fetch(baseCurrency: "sek")
-        } catch {
-            errorHandler.handle(error: error)
         }
     }
 }

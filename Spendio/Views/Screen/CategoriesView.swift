@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CategoriesView: View {
-    @EnvironmentObject var errorHandler: ErrorHandler
     @StateObject var categoryViewModel = CategoryViewModel()
     
     // View states

@@ -9,14 +9,10 @@ import SwiftUI
 import SwiftUICharts
 
 struct RecentSpendingsView: View {
-    @EnvironmentObject var errorHandler: ErrorHandler
-    @ObservedObject var currencyViewModel: CurrencyViewModel
-    
-    
-    // CoreData manager
-    @Environment(\.managedObjectContext) var viewContext
     @StateObject var expenseViewModel = ExpenseViewModel()
     @StateObject var categoryViewModel = CategoryViewModel()
+    @ObservedObject var currencyViewModel: CurrencyViewModel
+    
     var body: some View {
         NavigationView {
             VStack {

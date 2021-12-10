@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FilterButtonView: View {
+struct SettingsButtonView: View {
     @State private var isShowingSheet: Bool = false
     var body: some View {
         Button {
@@ -16,13 +16,7 @@ struct FilterButtonView: View {
             Image(systemName: "line.3.horizontal.decrease.circle")
         }
         .sheet(isPresented: $isShowingSheet) {
-            FilterSheetView(isShowingSheet: $isShowingSheet)
+            SettingsSheetView(isShowingSheet: $isShowingSheet)
         }
-    }
-}
-
-struct FilterButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        FilterButtonView()
     }
 }

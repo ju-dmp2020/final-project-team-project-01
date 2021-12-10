@@ -32,7 +32,7 @@ struct RecentSpendingsView: View {
             .navigationTitle("Recent")
             .listStyle(.grouped)
             .toolbar {
-                FilterButtonView()
+                SettingsButtonView()
             }
         }
         .onAppear {

@@ -24,7 +24,7 @@ struct HistoryView: View {
             .navigationTitle("History")
             .listStyle(.grouped)
             .toolbar {
-                FilterButtonView()
+                SettingsButtonView()
             }
         }
         .onAppear {

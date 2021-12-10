@@ -11,6 +11,7 @@
 		954D604B27590FC000CA4380 /* GraphModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D604A27590FC000CA4380 /* GraphModel.swift */; };
 		955A9531275776E500163FCF /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A9530275776E500163FCF /* ViewExtensions.swift */; };
 		955A953327577CDF00163FCF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A953227577CDF00163FCF /* CoreDataManager.swift */; };
+		95AF20F92763540B00F146C2 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AF20F82763540B00F146C2 /* AuthenticationViewModel.swift */; };
 		95AFF8872760988A00FE3A00 /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AFF8862760988A00FE3A00 /* ExpenseViewModel.swift */; };
 		F6089046274FFA27004E09D0 /* FilterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6089045274FFA27004E09D0 /* FilterButtonView.swift */; };
 		F6089048274FFA67004E09D0 /* FilterSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6089047274FFA67004E09D0 /* FilterSheetView.swift */; };
@@ -66,6 +67,7 @@
 		954D604A27590FC000CA4380 /* GraphModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphModel.swift; sourceTree = "<group>"; };
 		955A9530275776E500163FCF /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		955A953227577CDF00163FCF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		95AF20F82763540B00F146C2 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		95AFF8862760988A00FE3A00 /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
 		F6089045274FFA27004E09D0 /* FilterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonView.swift; sourceTree = "<group>"; };
 		F6089047274FFA67004E09D0 /* FilterSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSheetView.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				F679F8E92757B8FF00207F56 /* CategoryViewModel.swift */,
 				95AFF8862760988A00FE3A00 /* ExpenseViewModel.swift */,
 				F6457F9A275E9FC900D1E550 /* ErrorHandler.swift */,
+				95AF20F82763540B00F146C2 /* AuthenticationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				F608904A27500227004E09D0 /* CurrencyConverterModel.swift in Sources */,
 				F6447D472747FA60006C7CA7 /* AddExpenseView.swift in Sources */,
 				955A953327577CDF00163FCF /* CoreDataManager.swift in Sources */,
+				95AF20F92763540B00F146C2 /* AuthenticationViewModel.swift in Sources */,
 				F6447D452747FA34006C7CA7 /* RecentSpendingsView.swift in Sources */,
 				F68B13E32761F4B10004BBE3 /* ErrorAlertModel.swift in Sources */,
 				F6457F9F275F6F5E00D1E550 /* CoreDataError.swift in Sources */,
@@ -609,7 +613,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "spma20pm-ju.se";
+				PRODUCT_BUNDLE_IDENTIFIER = khha20.Spendio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -641,7 +645,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "spma20pm-ju.se";
+				PRODUCT_BUNDLE_IDENTIFIER = khha20.Spendio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

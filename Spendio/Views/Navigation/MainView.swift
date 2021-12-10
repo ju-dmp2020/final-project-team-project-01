@@ -15,11 +15,12 @@ enum TabScreen {
 struct MainView: View {
     @State var selectedTabScreen = TabScreen.recentSpendings
     @StateObject var currencyViewModel = CurrencyViewModel()
-    @State private var isUnlocked = false
+    
+    @StateObject var authenticationViewModel = AuthenticationViewModel()
     
     var body: some View {
         TabView(selection: $selectedTabScreen) {
-            if isUnlocked{
+            if authenticationViewModel.isUnlocked{
             HistoryView(currencyViewModel: currencyViewModel)
                 .tabItem {
                     Label("History", systemImage: "clock.arrow.circlepath")
@@ -57,28 +58,7 @@ struct MainView: View {
                     UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
                 }
             }
-            authenticate()
-        }
-    }
-
-    
-    // https://www.hackingwithswift.com/books/ios-swiftui/using-touch-id-and-face-id-with-swiftui - 09/12/2021
-    func authenticate() {
-        let context = LAContext()
-        var error: NSError?
-
-        // check whether biometric authentication is possible
-        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
-            let reason = "Please authenticate yourself"
-
-            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, authenticationError in
-                // authentication has now completed
-                if success {
-                    isUnlocked = true
-                } else {
-                    // there was a problem
-                }
-            }
+            authenticationViewModel.authenticate()
         }
     }
 }

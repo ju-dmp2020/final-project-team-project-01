@@ -13,12 +13,8 @@ struct ExpenseRowView: View {
     @State private var showDeleteConfirmation: Bool = false 
     var body: some View {
         HStack{
-            /*Circle()
-                .fill(.green)
-                .frame(width: 20, height: 20)
-                .padding(.trailing, 4)*/
             VStack(alignment: .leading){
-                Spacer()
+                //Spacer()
                 Text("\(expense.title ?? "None" )")
                 ZStack{
                     if let category = expense.category{
@@ -30,9 +26,9 @@ struct ExpenseRowView: View {
                 }
             }
             Spacer()
-            Text("\(expense.price, specifier: "%.2f")")
-                .foregroundColor(.red)
-            Text("\(expense.currency ?? "None")")
+                Text("\(expense.price, specifier: "%.2f")")
+                    .foregroundColor(.red)
+                Text("\(expense.currency ?? "None")")
         }
         .swipeActions(edge: .trailing) {
             Button(role: .destructive) {

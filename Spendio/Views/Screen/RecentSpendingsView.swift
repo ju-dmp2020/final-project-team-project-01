@@ -10,7 +10,6 @@ import SwiftUICharts
 
 struct RecentSpendingsView: View {
     @EnvironmentObject var errorHandler: ErrorHandler
-    @State var graphModel = GraphModel()
     @ObservedObject var currencyViewModel: CurrencyViewModel
     
     
@@ -21,14 +20,12 @@ struct RecentSpendingsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                BarChartView(data: ChartData(values: graphModel.chartData), title: "Recent", style: graphModel.standardLightStyle , form: ChartForm.extraLarge, dropShadow: true)
                 List{
                     if let expenses = expenseViewModel.expenses{
                         ForEach(expenses) {value in
                            ExpenseRowView(expense: value, expenseViewModel: expenseViewModel)
                         }
                     }
-                    
                 }
                 // 2. List
             }

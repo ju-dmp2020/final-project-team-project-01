@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		954D604927590AB300CA4380 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 954D604827590AB300CA4380 /* SwiftUICharts */; };
-		954D604B27590FC000CA4380 /* GraphModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D604A27590FC000CA4380 /* GraphModel.swift */; };
 		955A9531275776E500163FCF /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A9530275776E500163FCF /* ViewExtensions.swift */; };
 		955A953327577CDF00163FCF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A953227577CDF00163FCF /* CoreDataManager.swift */; };
 		95AF20F92763540B00F146C2 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AF20F82763540B00F146C2 /* AuthenticationViewModel.swift */; };
@@ -65,7 +64,6 @@
 
 /* Begin PBXFileReference section */
 		9505BA99276256230061A6C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		954D604A27590FC000CA4380 /* GraphModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphModel.swift; sourceTree = "<group>"; };
 		955A9530275776E500163FCF /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		955A953227577CDF00163FCF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		95AF20F82763540B00F146C2 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 		953084B8274B8F210078BC87 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				954D604A27590FC000CA4380 /* GraphModel.swift */,
 				F68E38CB274C48460031C04C /* CurrencyAPIError.swift */,
 				F608904927500227004E09D0 /* CurrencyConverterModel.swift */,
 				F6457F9E275F6F5E00D1E550 /* CoreDataError.swift */,
@@ -429,7 +426,6 @@
 				F62CD5C3275FD85B00AF37AB /* CategoryModel.swift in Sources */,
 				95AFF8872760988A00FE3A00 /* ExpenseViewModel.swift in Sources */,
 				F6089048274FFA67004E09D0 /* FilterSheetView.swift in Sources */,
-				954D604B27590FC000CA4380 /* GraphModel.swift in Sources */,
 				F61623712749604300B7DAAE /* CategoryRowView.swift in Sources */,
 				F679F8EA2757B8FF00207F56 /* CategoryViewModel.swift in Sources */,
 				F68E38C4274C083E0031C04C /* CurrencyViewModel.swift in Sources */,

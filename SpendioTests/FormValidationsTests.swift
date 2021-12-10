@@ -27,19 +27,19 @@ class FormValidationsTests: XCTestCase {
     func testExpenseValidation() {
         let expense = ExpenseModel()
         
-        // Test 1: Not Valid
-        expense.title = "A long string that should not be valid"
-        expense.price = "10"
-        expense.currency = "SEK"
-        
-        XCTAssertFalse(expense.isValid())
-        
-        // Test 2: Valid
+        // Test 1: Valid
         expense.title = "Valid"
         expense.price = "\(expense.priceMinValue)"
         expense.currency = "EUR"
         
         XCTAssertTrue(expense.isValid())
+        
+        // Test 2: Not Valid
+        expense.title = "A long string that should not be valid"
+        expense.price = "\(expense.priceMinValue + 30)"
+        expense.currency = "SEK"
+        
+        XCTAssertFalse(expense.isValid())
         
         // Test 3: Not Valid
         expense.title = "Valid"
@@ -50,15 +50,22 @@ class FormValidationsTests: XCTestCase {
         
         // Test 4: Not Valid
         expense.title = "Valid"
-        expense.price = "10"
+        expense.price = "\(expense.priceMinValue + 20)"
         expense.currency = "ABCD"
         
         XCTAssertFalse(expense.isValid())
         
         // Test 5: Not Valid
         expense.title = "Valid"
-        expense.price = "\(expense.priceMinValue-1)"
+        expense.price = "\(expense.priceMinValue - 1)"
         expense.currency = "SEK"
+        
+        XCTAssertFalse(expense.isValid())
+        
+        // Test 5: Not Valid
+        expense.title = "Valid"
+        expense.price = "\(expense.priceMinValue)"
+        expense.currency = "SE"
         
         XCTAssertFalse(expense.isValid())
     }

@@ -24,10 +24,9 @@ class AuthenticationViewModel: ObservableObject {
             context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, authenticationError in
                 // authentication has now completed
                 if success {
-                    self.isUnlocked = true
-                } else {
-                    // there was a problem
-                    print("123")
+                    DispatchQueue.main.async {
+                        self.isUnlocked = true
+                    }
                 }
             }
         }

@@ -44,6 +44,7 @@
 		F68E38CC274C48460031C04C /* CurrencyAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E38CB274C48460031C04C /* CurrencyAPIError.swift */; };
 		F6C3C2812752CB2E009EB227 /* EditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C3C2802752CB2E009EB227 /* EditCategoryView.swift */; };
 		F6FD24FC2762811700976E25 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FD24FB2762811700976E25 /* FilterViewModel.swift */; };
+		F6FD25002762A54000976E25 /* FormValidationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FD24FF2762A54000976E25 /* FormValidationsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		F68E38CB274C48460031C04C /* CurrencyAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAPIError.swift; sourceTree = "<group>"; };
 		F6C3C2802752CB2E009EB227 /* EditCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryView.swift; sourceTree = "<group>"; };
 		F6FD24FB2762811700976E25 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
+		F6FD24FF2762A54000976E25 /* FormValidationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValidationsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				F6447D262747D03F006C7CA7 /* SpendioTests.swift */,
+				F6FD24FF2762A54000976E25 /* FormValidationsTests.swift */,
 			);
 			path = SpendioTests;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6FD25002762A54000976E25 /* FormValidationsTests.swift in Sources */,
 				F6447D272747D03F006C7CA7 /* SpendioTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -601,7 +605,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Spendio/Preview Content\"";
-				DEVELOPMENT_TEAM = 2SAFDD6WCC;
+				DEVELOPMENT_TEAM = X79UK4NVC3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Spendio/Info.plist;
@@ -633,7 +637,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Spendio/Preview Content\"";
-				DEVELOPMENT_TEAM = 2SAFDD6WCC;
+				DEVELOPMENT_TEAM = X79UK4NVC3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Spendio/Info.plist;

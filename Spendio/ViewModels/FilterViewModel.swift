@@ -7,42 +7,43 @@
 
 import Foundation
 
-class FilterViewModel: ObservableObject {
-    let listCurrencyKey: String = "listCurrency"
-    let graphCurrencyKey: String = "graphCurrency"
+class SettingsViewModel: ObservableObject {
+    let baseCurrencyKey: String = "baseCurrency"
+    let authenticationKey: String = "authentication"
     
-    @Published var listCurrency: String? {
+    @Published var useAuthentication: Bool = false {
         didSet {
-            self.saveListCurrency()
-        }
-    }
-    @Published var graphCurrency: String? {
-        didSet {
-            self.saveGraphCurrency()
+            self.saveAuthentication()
         }
     }
     
-    private func saveListCurrency() {
-        UserDefaults.standard.set(self.listCurrency, forKey: self.listCurrencyKey)
+    @Published var baseCurrency: String? {
+        didSet {
+            self.saveBaseCurrency()
+        }
     }
     
-    private func saveGraphCurrency() {
-        UserDefaults.standard.set(self.graphCurrency, forKey: self.graphCurrencyKey)
+    private func saveBaseCurrency() {
+        UserDefaults.standard.set(self.baseCurrency, forKey: self.baseCurrencyKey)
     }
     
-    func getListCurrency() {
-        self.listCurrency = UserDefaults.standard.string(forKey: self.listCurrencyKey)
+    private func saveAuthentication() {
+        UserDefaults.standard.set(self.useAuthentication, forKey: self.authenticationKey)
     }
     
-    func getGraphCurrency() {
-        self.graphCurrency = UserDefaults.standard.string(forKey: self.graphCurrencyKey)
+    func getBaseCurrency() {
+        self.baseCurrency = UserDefaults.standard.string(forKey: self.baseCurrencyKey)
     }
     
-    func setListCurrency(selectedCurrency: String) {
-        self.listCurrency = selectedCurrency
+    func isAuthenticationEnabled() {
+        self.useAuthentication = UserDefaults.standard.bool(forKey: self.authenticationKey)
     }
     
-    func setGraphCurrency(selectedCurrency: String) {
-        self.graphCurrency = selectedCurrency
+    func setBaseCurrency(selectedCurrency: String) {
+        self.baseCurrency = selectedCurrency
+    }
+    
+    func toggleAuthentication() {
+        self.useAuthentication.toggle()
     }
 }

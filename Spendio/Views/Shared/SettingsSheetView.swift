@@ -9,14 +9,20 @@ import SwiftUI
 
 struct SettingsSheetView: View {
     @Binding var isShowingSheet: Bool
+    @ObservedObject var settingsViewModel = SettingsViewModel.shared
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        
-        Button {
-            isShowingSheet.toggle()
-        } label: {
-            Text("Dismis")
+        VStack {
+            HStack {
+                Toggle("Require auth on startup", isOn: $settingsViewModel.useAuthentication)
+                
+            }
+            Spacer()
+            Button {
+                isShowingSheet.toggle()
+            } label: {
+                Text("Dismis")
+            }
         }
-
+        .padding()
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 // Got the idea from https://www.youtube.com/watch?v=dpmy-msRlCA - 22/11/2021
 
 enum CurrencyAPIError {
-    case invalidURL, badRequest, decode
+    case invalidURL, badRequest, decode, key
 }
 
 extension CurrencyAPIError: Error, LocalizedError {
@@ -22,6 +22,8 @@ extension CurrencyAPIError: Error, LocalizedError {
             return NSLocalizedString("Currency data couldn't be recieved", comment: "")
         case .decode:
             return NSLocalizedString("Currency data couldn't be decoded", comment: "")
+        case .key:
+            return NSLocalizedString("Couldn't read api key", comment: "")
         }
     }
 }

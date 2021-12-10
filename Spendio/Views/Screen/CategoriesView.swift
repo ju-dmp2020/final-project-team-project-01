@@ -47,16 +47,8 @@ struct CategoriesView: View {
                 }
             }
             .onAppear {
-                fetchAllCategories()
+                categoryViewModel.fetchAll()
             }
-        }
-    }
-    
-    func fetchAllCategories() {
-        do {
-            try categoryViewModel.fetchAll()
-        } catch {
-            errorHandler.handle(error: error)
         }
     }
 }

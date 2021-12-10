@@ -52,16 +52,19 @@ struct CoreDataManager {
         try controller.save()
     }
     
-    func addExpense(title: String, price: Double, date: Date, currency: String, category: Category) throws {
+    func addExpense(title: String, price: Double, date: Date, currency: String, category: Category?) throws {
         let context = controller.container.viewContext
         
         let newExpense = Expense(context: context)
+        
         newExpense.title = title
         newExpense.price = price
         newExpense.date = date
         newExpense.currency = currency
-        newExpense.category = category
-        //newExpense.category = Category()
+        
+        if let category = category {
+            newExpense.category = category
+        }
         
         try controller.save()
     }

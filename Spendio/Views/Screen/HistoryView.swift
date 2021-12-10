@@ -15,12 +15,11 @@ struct HistoryView: View {
     var body: some View {
         NavigationView {
             List {
-                
                 if let expenses = expenseViewModel.expenses{
-                    ForEach(expenses, id: \.self) {value in
-                        ExpenseRowView(expence: value)                    }
+                    ForEach(expenses) {value in
+                       ExpenseRowView(expense: value, expenseViewModel: expenseViewModel) // on conflict, override.
+                    }
                 }
-                
             }
             .navigationTitle("History")
             .listStyle(.grouped)
@@ -36,16 +35,9 @@ struct HistoryView: View {
             }
             
             Task {
-                await fetchCurrencies(baseCurrency: "sek")
+                await currencyViewModel.fetchCurrencies(baseCurrency: "sek")
             }
-        }
-    }
-    
-    func fetchCurrencies(baseCurrency: String) async {
-        do {
-            try await currencyViewModel.fetch(baseCurrency: "sek")
-        } catch {
-            errorHandler.handle(error: error)
+            expenseViewModel.fetchAll()
         }
     }
 }

@@ -26,28 +26,25 @@ struct AddExpenseView: View {
     
     @Environment(\.managedObjectContext) var viewContext
     
+    @ObservedObject var expenseModel = ExpenseModel()
     @Binding var tabScreen: TabScreen
-    @State private var date = Date()
-    @State private var price = ""
-    @State private var title = ""
-    @State private var currency: String = "SEK"
-    @State private var category = Category()
-    
     
     var body: some View {
         NavigationView {
-            Form{
+            Form {
                 Section(header: Text("Title")){
-                    TextField("Title", text: $title)
+                    TextField("Title must be between \(expenseModel.titleMinLength) and \(expenseModel.titleMaxLength)",
+                              text: $expenseModel.title)
                 }
                 Section(header: Text("Price")){
                     HStack{
-                        TextField("Price",text: $price)
+                        TextField("Price", text: $expenseModel.price)
                             .keyboardType(.decimalPad)
-                        Picker("Currency", selection: $currency) {
-                            ForEach(currencies, id: \.self) { value in
-                                Text(value)
-                                    .tag(value)
+                        
+                        Picker("Currency", selection: $expenseModel.currency) {
+                            ForEach(currencies, id: \.self) { currency in
+                                Text(currency)
+                                    .tag(currency)
                             }
                         }
                         .pickerStyle(.menu)
@@ -55,43 +52,35 @@ struct AddExpenseView: View {
                 }
                 
                 Section("Date"){
-                    DatePicker("Transaction Date", selection: $date, displayedComponents: [.date])
+                    DatePicker("Transaction Date", selection: $expenseModel.date, displayedComponents: [.date])
                 }
                 
                 Section("Category"){
-                    Picker("Category", selection: $category) {
-                        ForEach(categoryViewModel.categories ?? [], id: \.self) { value in
-                            HStack{
-                                Text(value.name ?? "null")
-                                    .tag(value)
-                            }
+                    Picker("Category", selection: $expenseModel.category) {
+                        Text("Uncategorized").tag(nil as Category?)
+                        ForEach(categoryViewModel.categories ?? [], id: \.self) { category in
+                                Text(category.name ?? "").tag(category as Category?)
                         }
                     }
                 }
                 
-                
                 Section{
                     Button {
-                        print("+++ currency selected: \(currency)")
-                        try? expenseViewModel.add(title: title, price: Double(price)!, date: date, currency: currency, category: category)
+                        expenseViewModel.add(title: expenseModel.title,
+                                             price: Double(expenseModel.price)!,
+                                             date: expenseModel.date,
+                                             currency: expenseModel.currency,
+                                             category: expenseModel.category)
                         tabScreen = TabScreen.recentSpendings
                     } label: {
                         Text("Add Expense")
                     }.centerHorizontally()
-                }
+                }.disabled(!expenseModel.isValid())
             }
             .navigationTitle("Add Expense")
             .onAppear{
-                fetchAllCategories()
+                categoryViewModel.fetchAll()
             }
-        }
-    }
-    
-    func fetchAllCategories() {
-        do {
-            try categoryViewModel.fetchAll()
-        } catch {
-            errorHandler.handle(error: error)
         }
     }
 }

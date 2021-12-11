@@ -21,18 +21,4 @@ struct PersistenceController {
             }
         })
     }
-    
-    func save() throws {
-        let context = container.viewContext
-        
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch let error as NSError where error.code == NSPersistentStoreSaveError {
-                throw CoreDataError.savePermission
-            } catch {
-                throw CoreDataError.saveGeneral
-            }
-        }
-    }
 }

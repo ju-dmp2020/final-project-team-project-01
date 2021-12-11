@@ -19,7 +19,7 @@ class CoreDataTests: XCTestCase {
     }
 
     override func tearDown() {
-        context?.undo()
+        context.undo()
     }
     
     func getContainerForTesting() -> NSManagedObjectContext {
@@ -38,7 +38,24 @@ class CoreDataTests: XCTestCase {
     }
     
     func testCreateCategory() throws {
-        try coreDataManager.addCategory(name: "Hassan", color: [0.5, 0.3, 0.2])
+        let categoryName = "category"
+        try coreDataManager.addCategory(name: categoryName, color: [0.5, 0.3, 0.2])
+        let fetchedCategory = try? coreDataManager.fetchCategoryByName(name: categoryName)
+        
+        XCTAssertEqual(categoryName, try? XCTUnwrap(fetchedCategory?.name))
     }
-
+    
+    func testDeleteCategory() throws {
+        let categoryName = "category"
+        // Insert
+        try coreDataManager.addCategory(name: categoryName, color: [0.5, 0.3, 0.23])
+        // Fetch
+        var fetchedCategory = try coreDataManager.fetchCategoryByName(name: categoryName)
+        // Delete
+        try coreDataManager.deleteCategory(category: try XCTUnwrap(fetchedCategory))
+        
+        // nil if deleted
+        fetchedCategory = try coreDataManager.fetchCategoryByName(name: categoryName)
+        XCTAssertNil(fetchedCategory)
+    }
 }

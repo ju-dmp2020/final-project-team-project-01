@@ -38,8 +38,19 @@ struct CoreDataManager {
         try save()
     }
     
+    func fetchCategoryByName(name: String) throws -> Category? {
+        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do  {
+            let category = try context.fetch(fetchRequest).first
+            return category
+        } catch {
+            throw CoreDataError.fetch
+        }
+    }
+    
      func fetchAllCategories() throws -> [Category]  {
-         
          let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
         
          do {

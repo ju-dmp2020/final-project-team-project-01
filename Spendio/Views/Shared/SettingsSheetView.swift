@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FilterSheetView: View {
+struct SettingsSheetView: View {
     @Binding var isShowingSheet: Bool
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
@@ -18,11 +18,5 @@ struct FilterSheetView: View {
             Text("Dismis")
         }
 
-    }
-}
-
-struct FilterSheetView_Previews: PreviewProvider {
-    static var previews: some View {
-        FilterSheetView(isShowingSheet: .constant(false))
     }
 }

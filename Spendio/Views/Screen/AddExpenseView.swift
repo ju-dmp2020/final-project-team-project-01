@@ -18,13 +18,10 @@ enum Currency: String , Equatable, CaseIterable {
 
 
 struct AddExpenseView: View {
-    @EnvironmentObject var errorHandler: ErrorHandler
     @StateObject var categoryViewModel = CategoryViewModel()
     @StateObject var expenseViewModel = ExpenseViewModel()
     
-    let currencies = ["SEK", "EUR", "USD", "NOK"]
-    
-    @Environment(\.managedObjectContext) var viewContext
+    let currencies = ["SEK", "EUR", "USD", "NOK"] // Remove it later
     
     @ObservedObject var expenseModel = ExpenseModel()
     @Binding var tabScreen: TabScreen

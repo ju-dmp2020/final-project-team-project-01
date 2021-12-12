@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct HistoryView: View {
-    @EnvironmentObject var errorHandler: ErrorHandler
-    @ObservedObject var currencyViewModel: CurrencyViewModel
     @StateObject var expenseViewModel = ExpenseViewModel()
+    @ObservedObject var currencyViewModel: CurrencyViewModel
     
     var body: some View {
         NavigationView {
@@ -24,19 +23,11 @@ struct HistoryView: View {
             .navigationTitle("History")
             .listStyle(.grouped)
             .toolbar {
-                FilterButtonView()
+                SettingsButtonView()
             }
         }
         .onAppear {
-            do {
-               try expenseViewModel.fetchAll()
-            } catch {
-                errorHandler.handle(error: error)
-            }
-            
-            Task {
-                await currencyViewModel.fetchCurrencies(baseCurrency: "sek")
-            }
+            Task {await currencyViewModel.fetchCurrencies(baseCurrency: "sek")}
             expenseViewModel.fetchAll()
         }
     }

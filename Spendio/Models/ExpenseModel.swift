@@ -26,8 +26,12 @@ class ExpenseModel: ObservableObject {
         Double(price) ?? -1 >= priceMinValue
     }
     
+    func validateCurrencyLength() -> Bool{
+        currency.count == 3     // Currencies shortcut
+    }
+    
     // Generic name / function in case more validation added
     func isValid() -> Bool {
-        self.validateTitleLength() && self.validatePriceValue()
+        self.validateTitleLength() && self.validatePriceValue() && self.validateCurrencyLength()
     }
 }

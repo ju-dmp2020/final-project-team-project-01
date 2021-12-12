@@ -9,10 +9,25 @@ import Foundation
 import CoreData
 
 struct CoreDataManager {
-    let controller = PersistenceController.shared
+    let context: NSManagedObjectContext
+    
+    init(context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
+        self.context = context
+    }
+    
+    func save() throws {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch let error as NSError where error.code == NSPersistentStoreSaveError {
+                throw CoreDataError.savePermission
+            } catch {
+                throw CoreDataError.saveGeneral
+            }
+        }
+    }
     
     func addCategory(name: String, color: [Float]) throws {
-        let context = controller.container.viewContext
         
         let newCategory = Category(context: context)
         newCategory.name = name
@@ -20,12 +35,22 @@ struct CoreDataManager {
         newCategory.colorGreen = color[1]
         newCategory.colorBlue = color[2]
         
-        try controller.save()
+        try save()
+    }
+    
+    func fetchCategoryByName(name: String) throws -> Category? {
+        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do  {
+            let category = try context.fetch(fetchRequest).first
+            return category
+        } catch {
+            throw CoreDataError.fetch
+        }
     }
     
      func fetchAllCategories() throws -> [Category]  {
-         let context = controller.container.viewContext
-         
          let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
         
          do {
@@ -42,18 +67,16 @@ struct CoreDataManager {
         category.colorGreen = color[1]
         category.colorBlue = color[2]
         
-        try controller.save()
+        try save()
     }
     
     func deleteCategory(category: Category) throws {
-        let context = controller.container.viewContext
         context.delete(category)
         
-        try controller.save()
+        try save()
     }
     
     func addExpense(title: String, price: Double, date: Date, currency: String, category: Category?) throws {
-        let context = controller.container.viewContext
         
         let newExpense = Expense(context: context)
         
@@ -66,12 +89,10 @@ struct CoreDataManager {
             newExpense.category = category
         }
         
-        try controller.save()
+        try save()
     }
     
     func fetchAllExpenses() throws -> [Expense]  {
-        let context = controller.container.viewContext
-        
         let fetchRequest: NSFetchRequest<Expense> = Expense.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
        
@@ -80,8 +101,6 @@ struct CoreDataManager {
    }
     
     func fetchRecentExpenses(limit: Int) throws -> [Expense]  {
-        let context = controller.container.viewContext
-        
         let fetchRequest: NSFetchRequest<Expense> = Expense.fetchRequest()
         fetchRequest.fetchLimit = limit
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
@@ -101,13 +120,12 @@ struct CoreDataManager {
         expense.currency = currency
         expense.category = category
         
-        try controller.save()
+        try save()
     }
     
     func deleteExpense(expense: Expense) throws {
-        let context = controller.container.viewContext
         context.delete(expense)
         
-        try controller.save()
+        try save()
     }
 }

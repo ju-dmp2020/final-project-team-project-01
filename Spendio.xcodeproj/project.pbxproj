@@ -42,6 +42,7 @@
 		F68B13E32761F4B10004BBE3 /* ErrorAlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68B13E22761F4B10004BBE3 /* ErrorAlertModel.swift */; };
 		F68E38C4274C083E0031C04C /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E38C3274C083E0031C04C /* CurrencyViewModel.swift */; };
 		F68E38CC274C48460031C04C /* CurrencyAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E38CB274C48460031C04C /* CurrencyAPIError.swift */; };
+		F6BF25E127660091001C7DB3 /* PriceConverterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BF25E027660091001C7DB3 /* PriceConverterModel.swift */; };
 		F6C3C2812752CB2E009EB227 /* EditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C3C2802752CB2E009EB227 /* EditCategoryView.swift */; };
 		F6FD24FC2762811700976E25 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FD24FB2762811700976E25 /* SettingsViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,7 @@
 		F68B13E22761F4B10004BBE3 /* ErrorAlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertModel.swift; sourceTree = "<group>"; };
 		F68E38C3274C083E0031C04C /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
 		F68E38CB274C48460031C04C /* CurrencyAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAPIError.swift; sourceTree = "<group>"; };
+		F6BF25E027660091001C7DB3 /* PriceConverterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceConverterModel.swift; sourceTree = "<group>"; };
 		F6C3C2802752CB2E009EB227 /* EditCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryView.swift; sourceTree = "<group>"; };
 		F6FD24FB2762811700976E25 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +144,7 @@
 				F60F56372761057A007A2F22 /* ExpenseModel.swift */,
 				F68B13E22761F4B10004BBE3 /* ErrorAlertModel.swift */,
 				959BE25E2765F44200C3C3E7 /* Currency.swift */,
+				F6BF25E027660091001C7DB3 /* PriceConverterModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				F62CD5C3275FD85B00AF37AB /* CategoryModel.swift in Sources */,
 				95AFF8872760988A00FE3A00 /* ExpenseViewModel.swift in Sources */,
 				F6089048274FFA67004E09D0 /* SettingsSheetView.swift in Sources */,
+				F6BF25E127660091001C7DB3 /* PriceConverterModel.swift in Sources */,
 				F61623712749604300B7DAAE /* CategoryRowView.swift in Sources */,
 				F679F8EA2757B8FF00207F56 /* CategoryViewModel.swift in Sources */,
 				F68E38C4274C083E0031C04C /* CurrencyViewModel.swift in Sources */,
@@ -601,7 +605,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Spendio/Preview Content\"";
-				DEVELOPMENT_TEAM = 2SAFDD6WCC;
+				DEVELOPMENT_TEAM = X79UK4NVC3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Spendio/Info.plist;
@@ -633,7 +637,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Spendio/Preview Content\"";
-				DEVELOPMENT_TEAM = 2SAFDD6WCC;
+				DEVELOPMENT_TEAM = X79UK4NVC3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Spendio/Info.plist;

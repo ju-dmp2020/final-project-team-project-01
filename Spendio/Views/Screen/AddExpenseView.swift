@@ -57,6 +57,7 @@ struct AddExpenseView: View {
                                              date: expenseModel.date,
                                              currency: expenseModel.currency,
                                              category: expenseModel.category)
+                        expenseModel.resetValues()
                         tabScreen = TabScreen.recentSpendings
                     } label: {
                         Text("Add Expense")

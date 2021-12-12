@@ -7,21 +7,10 @@
 
 import SwiftUI
 
-enum Currency: String , Equatable, CaseIterable {
-    case sek = "SEK"
-    case eur = "EUR"
-    case usd = "USD"
-    case nok = "NOK"
-    
-    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
-}
-
 
 struct AddExpenseView: View {
     @StateObject var categoryViewModel = CategoryViewModel()
     @StateObject var expenseViewModel = ExpenseViewModel()
-    
-    let currencies = ["SEK", "EUR", "USD", "NOK"] // Remove it later
     
     @ObservedObject var expenseModel = ExpenseModel()
     @Binding var tabScreen: TabScreen
@@ -39,9 +28,9 @@ struct AddExpenseView: View {
                             .keyboardType(.decimalPad)
                         
                         Picker("Currency", selection: $expenseModel.currency) {
-                            ForEach(currencies, id: \.self) { currency in
-                                Text(currency)
-                                    .tag(currency)
+                            ForEach(Currency.allCases, id: \.self) { currency in
+                                Text(currency.rawValue)
+                                    .tag(currency.rawValue)
                             }
                         }
                         .pickerStyle(.menu)

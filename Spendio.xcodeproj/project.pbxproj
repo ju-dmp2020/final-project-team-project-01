@@ -10,6 +10,7 @@
 		954D604927590AB300CA4380 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 954D604827590AB300CA4380 /* SwiftUICharts */; };
 		955A9531275776E500163FCF /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A9530275776E500163FCF /* ViewExtensions.swift */; };
 		955A953327577CDF00163FCF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A953227577CDF00163FCF /* CoreDataManager.swift */; };
+		959BE25F2765F44200C3C3E7 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959BE25E2765F44200C3C3E7 /* Currency.swift */; };
 		95AF20F92763540B00F146C2 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AF20F82763540B00F146C2 /* AuthenticationViewModel.swift */; };
 		95AFF8872760988A00FE3A00 /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AFF8862760988A00FE3A00 /* ExpenseViewModel.swift */; };
 		F6089046274FFA27004E09D0 /* SettingsButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6089045274FFA27004E09D0 /* SettingsButtonView.swift */; };
@@ -66,6 +67,7 @@
 		9505BA99276256230061A6C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		955A9530275776E500163FCF /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		955A953227577CDF00163FCF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		959BE25E2765F44200C3C3E7 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		95AF20F82763540B00F146C2 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		95AFF8862760988A00FE3A00 /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
 		F6089045274FFA27004E09D0 /* SettingsButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButtonView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				F62CD5C2275FD85B00AF37AB /* CategoryModel.swift */,
 				F60F56372761057A007A2F22 /* ExpenseModel.swift */,
 				F68B13E22761F4B10004BBE3 /* ErrorAlertModel.swift */,
+				959BE25E2765F44200C3C3E7 /* Currency.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				F68E38CC274C48460031C04C /* CurrencyAPIError.swift in Sources */,
 				F6447D1A2747D03F006C7CA7 /* Persistence.swift in Sources */,
 				F6457F9D275EA84A00D1E550 /* ErrorAlertViewModifier.swift in Sources */,
+				959BE25F2765F44200C3C3E7 /* Currency.swift in Sources */,
 				F6447D432747FA16006C7CA7 /* HistoryView.swift in Sources */,
 				F608904A27500227004E09D0 /* CurrencyConverterModel.swift in Sources */,
 				F6447D472747FA60006C7CA7 /* AddExpenseView.swift in Sources */,

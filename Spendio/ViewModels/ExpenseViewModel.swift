@@ -24,6 +24,39 @@ class ExpenseViewModel: ObservableObject {
         }
     }
     
+    func fetchRecentExpenses(limit: Int) {
+        if let _ = settings.baseCurrency {
+            fetchRecentExpensesAsync(limit: limit)
+        } else {
+            fetchRecentExpensesNonAsync(limit: limit)
+        }
+    }
+    
+    func add(title: String, price: Double, date: Date, currency: String, category: Category?) {
+        do {
+            try coreDataManager.addExpense(title: title, price: price, date: date, currency: currency, category: category)
+        } catch {
+            errorHandler.handle(error: error)
+        }
+    }
+    
+    func delete(expense: Expense) {
+        do {
+            try coreDataManager.deleteExpense(expense: expense)
+            self.fetchAll()
+        } catch {
+            errorHandler.handle(error: error)
+        }
+    }
+    
+    func convertPrice(expense: Expense) -> Double {
+        return priceConverter.convert(expense: expense)
+    }
+    
+    func modifyCurrencyLabel(expense: Expense) -> String? {
+        return priceConverter.modifyCurrencyLabel(expense: expense)
+    }
+    
     private func fetchAllAsync() {
         Task {
             do {
@@ -51,40 +84,30 @@ class ExpenseViewModel: ObservableObject {
         }
     }
     
-    func fetchRecentExpenses(limit: Int) {
+    private func fetchRecentExpensesAsync(limit: Int) {
+        Task {
+            do{
+                try await priceConverter.fetchCurrencies()
+                let recentExpenses = try coreDataManager.fetchRecentExpenses(limit: limit)
+                DispatchQueue.main.async {
+                    self.expenses = recentExpenses
+                    self.objectWillChange.send() // Force change
+                }
+            } catch {
+                errorHandler.handle(error: error)
+            }
+        }
+    }
+    
+    private func fetchRecentExpensesNonAsync(limit: Int) {
         do{
-            let result = try coreDataManager.fetchRecentExpenses(limit: limit)
+            let recentExpenses = try coreDataManager.fetchRecentExpenses(limit: limit)
             DispatchQueue.main.async {
-                self.expenses = result
+                self.expenses = recentExpenses
                 self.objectWillChange.send() // Force change
             }
         } catch {
             errorHandler.handle(error: error)
         }
-    }
-    
-    func add(title: String, price: Double, date: Date, currency: String, category: Category?) {
-        do {
-            try coreDataManager.addExpense(title: title, price: price, date: date, currency: currency, category: category)
-        } catch {
-            errorHandler.handle(error: error)
-        }
-    }
-    
-    func delete(expense: Expense) {
-        do {
-            try coreDataManager.deleteExpense(expense: expense)
-            self.fetchAll()
-        } catch {
-            errorHandler.handle(error: error)
-        }
-    }
-    
-    func convertPrice(expense: Expense) -> Double {
-        return priceConverter.convert(expense: expense)
-    }
-    
-    func modifyCurrencyLabel(expense: Expense) -> String? {
-        return priceConverter.modifyCurrencyLabel(expense: expense)
     }
 }

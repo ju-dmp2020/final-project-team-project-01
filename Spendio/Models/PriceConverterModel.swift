@@ -21,8 +21,7 @@ class PriceConverterModel {
         if let currencies = currencyAPI.currency {
             if expense.currency != currencies.query.baseCurrency {
                 if let data = currencies.data {
-                    print(data["\(expense.currency!)"]!)
-                    return expense.price * data["\(expense.currency!)"]!
+                    return expense.price / data["\(expense.currency!)"]!
                 }
                 
             }

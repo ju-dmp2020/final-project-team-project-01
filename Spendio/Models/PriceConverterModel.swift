@@ -8,8 +8,8 @@
 import Foundation
 
 class PriceConverterModel {
-    let settings = SettingsViewModel.shared
-    let currencyAPI = CurrencyAPI()
+    private let settings = SettingsViewModel.shared
+    private let currencyAPI = CurrencyAPI()
     
     func fetchCurrencies() async throws {
         if let baseCurrency = settings.baseCurrency {

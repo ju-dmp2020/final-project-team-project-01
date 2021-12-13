@@ -14,19 +14,16 @@ enum TabScreen {
 
 struct MainView: View {
     @State var selectedTabScreen = TabScreen.recentSpendings
-    @StateObject var currencyViewModel = CurrencyViewModel()
-    
-    //@StateObject var authenticationViewModel = AuthenticationViewModel()
     
     var body: some View {
         TabView(selection: $selectedTabScreen) {
-            HistoryView(currencyViewModel: currencyViewModel)
+            HistoryView()
                 .tabItem {
                     Label("History", systemImage: "clock.arrow.circlepath")
                 }
                 .tag(TabScreen.history)
             
-            RecentSpendingsView(currencyViewModel: currencyViewModel)
+            RecentSpendingsView()
                 .tabItem {
                     Label("Recent Spendings", image: "Money")
                 }

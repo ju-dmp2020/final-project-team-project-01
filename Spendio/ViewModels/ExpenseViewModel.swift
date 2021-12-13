@@ -8,13 +8,38 @@
 import Foundation
 
 class ExpenseViewModel: ObservableObject {
-    let coreDataManager = CoreDataManager()
-    let errorHandler = ErrorHandler.shared
+    private let errorHandler = ErrorHandler.shared
+    private let settings = SettingsViewModel.shared
+    private let coreDataManager = CoreDataManager()
+    private let priceConverter = PriceConverterModel()
     
     @Published var expenses: [Expense]?
     @Published var expense: Expense?
     
     func fetchAll() {
+        if let _ = settings.baseCurrency {
+            fetchAllAsync()
+        } else {
+            fetchAllNonAsync()
+        }
+    }
+    
+    private func fetchAllAsync() {
+        Task {
+            do {
+                try await priceConverter.fetchCurrencies()
+                let expenses = try coreDataManager.fetchAllExpenses()
+                DispatchQueue.main.async {
+                    self.expenses = expenses
+                    self.objectWillChange.send() // Force change
+                }
+            } catch {
+                errorHandler.handle(error: error)
+            }
+        }
+    }
+    
+    private func fetchAllNonAsync() {
         do {
             let result = try coreDataManager.fetchAllExpenses()
             DispatchQueue.main.async {
@@ -22,7 +47,7 @@ class ExpenseViewModel: ObservableObject {
                 self.objectWillChange.send() // Force change
             }
         } catch {
-            errorHandler.handle(error: error)
+            self.errorHandler.handle(error: error)
         }
     }
     
@@ -46,20 +71,20 @@ class ExpenseViewModel: ObservableObject {
         }
     }
     
-    func update(expense: Expense, title: String, price: Double, date: Date, currency: String, category: Category) {
+    func delete(expense: Expense) {
         do {
-            try coreDataManager.updateExpense(expense: expense, title: title, price: price, date: date, currency: currency, category: category)
+            try coreDataManager.deleteExpense(expense: expense)
+            self.fetchAll()
         } catch {
             errorHandler.handle(error: error)
         }
     }
     
-    func delete(expense: Expense) {
-        do {
-            try coreDataManager.deleteExpense(expense: expense)
-            self.fetchAll() // update changes here
-        } catch {
-            errorHandler.handle(error: error)
-        }
+    func convertPrice(expense: Expense) -> Double {
+        return priceConverter.convert(expense: expense)
+    }
+    
+    func modifyCurrencyLabel(expense: Expense) -> String? {
+        return priceConverter.modifyCurrencyLabel(expense: expense)
     }
 }

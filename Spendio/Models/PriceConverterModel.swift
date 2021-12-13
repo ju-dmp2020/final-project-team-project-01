@@ -9,19 +9,35 @@ import Foundation
 
 class PriceConverterModel {
     let settings = SettingsViewModel.shared
-    let currencies = CurrencyViewModel()
+    let currencyAPI = CurrencyAPI()
     
-    func fetchCurrencies() async {
+    func fetchCurrencies() async throws {
         if let baseCurrency = settings.baseCurrency {
-            await currencies.fetchCurrencies(baseCurrency: baseCurrency)
+            try await currencyAPI.fetchCurrencies(baseCurrency: baseCurrency)
         }
     }
     
-    func convert(expenses: inout [Expense]) {
-        if let currencies = currencies.currency {
-            for expense in expenses {
-                expense.price *= currencies.data!["\(String(describing: expense.currency))"]!
+    func convert(expense: Expense) -> Double {
+        if let currencies = currencyAPI.currency {
+            if expense.currency != currencies.query.baseCurrency {
+                if let data = currencies.data {
+                    print(data["\(expense.currency!)"]!)
+                    return expense.price * data["\(expense.currency!)"]!
+                }
+                
             }
+            return expense.price
         }
+        return expense.price
+    }
+    
+    func modifyCurrencyLabel(expense: Expense) -> String? {
+        if let baseCurrency = currencyAPI.currency?.query.baseCurrency {
+            if expense.currency != baseCurrency {
+                return baseCurrency
+            }
+            return expense.currency
+        }
+        return expense.currency
     }
 }

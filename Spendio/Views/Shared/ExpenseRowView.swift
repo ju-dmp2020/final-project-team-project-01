@@ -26,9 +26,9 @@ struct ExpenseRowView: View {
                 }
             }
             Spacer()
-                Text("\(expense.price, specifier: "%.2f")")
+            Text("\(expenseViewModel.convertPrice(expense: expense), specifier: "%.2f")")
                     .foregroundColor(.red)
-                Text("\(expense.currency ?? "None")")
+            Text("\(expenseViewModel.modifyCurrencyLabel(expense: expense) ?? "None")")
         }
         .swipeActions(edge: .trailing) {
             Button(role: .destructive) {

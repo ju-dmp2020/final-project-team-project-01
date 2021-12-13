@@ -13,7 +13,7 @@ struct SettingsButtonView: View {
         Button {
             isShowingSheet.toggle()
         } label: {
-            Image(systemName: "line.3.horizontal.decrease.circle")
+            Image(systemName: "gearshape")
         }
         .sheet(isPresented: $isShowingSheet) {
             SettingsSheetView(isShowingSheet: $isShowingSheet)

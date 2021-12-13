@@ -20,10 +20,10 @@ class PriceConverterModel {
     func convert(expense: Expense) -> Double {
         if let currencies = currencyAPI.currency {
             if expense.currency != currencies.query.baseCurrency {
-                if let data = currencies.data {
-                    return expense.price / data["\(expense.currency!)"]!
+                if let data = currencies.data?["\(expense.currency ?? "no crash")"] {
+                    return expense.price / data
                 }
-                
+                return expense.price
             }
             return expense.price
         }

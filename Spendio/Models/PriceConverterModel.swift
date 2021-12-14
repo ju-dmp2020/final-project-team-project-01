@@ -18,10 +18,13 @@ class PriceConverterModel {
     }
     
     func convert(expense: Expense) -> Double {
-        if let currencies = currencyAPI.currency {
-            if expense.currency != currencies.query.baseCurrency {
-                if let data = currencies.data?["\(expense.currency ?? "no crash")"] {
-                    return expense.price / data
+        if settings.baseCurrency != nil {
+            if let currencies = currencyAPI.currency {
+                if expense.currency != currencies.query.baseCurrency {
+                    if let data = currencies.data?["\(expense.currency ?? "no crash")"] {
+                        return expense.price / data
+                    }
+                    return expense.price
                 }
                 return expense.price
             }
@@ -31,9 +34,12 @@ class PriceConverterModel {
     }
     
     func modifyCurrencyLabel(expense: Expense) -> String? {
-        if let baseCurrency = currencyAPI.currency?.query.baseCurrency {
-            if expense.currency != baseCurrency {
-                return baseCurrency
+        if settings.baseCurrency != nil {
+            if let baseCurrency = currencyAPI.currency?.query.baseCurrency {
+                if expense.currency != baseCurrency {
+                    return baseCurrency
+                }
+                return expense.currency
             }
             return expense.currency
         }

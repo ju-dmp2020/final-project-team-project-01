@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 enum TabScreen {
-    case History, RecentSpendings, AddExpense, Categories
+    case history, recentSpendings, addExpense, categories
 }
 
 struct MainView: View {
-    @State var selectedTabScreen = TabScreen.RecentSpendings
+    @State var selectedTabScreen = TabScreen.recentSpendings
     
     var body: some View {
         TabView(selection: $selectedTabScreen) {
@@ -20,25 +21,25 @@ struct MainView: View {
                 .tabItem {
                     Label("History", systemImage: "clock.arrow.circlepath")
                 }
-                .tag(TabScreen.History)
+                .tag(TabScreen.history)
             
             RecentSpendingsView()
                 .tabItem {
-                    Label("Recent Spendings", systemImage: "eurosign.circle")
+                    Label("Recent Spendings", image: "Money")
                 }
-                .tag(TabScreen.RecentSpendings)
+                .tag(TabScreen.recentSpendings)
             
-            AddExpenseView()
+            AddExpenseView(tabScreen: $selectedTabScreen)
                 .tabItem {
                     Label("Add Expense", systemImage: "plus")
                 }
-                .tag(TabScreen.AddExpense)
+                .tag(TabScreen.addExpense)
             
             CategoriesView()
                 .tabItem {
                     Label("Categories", systemImage: "tag")
                 }
-                .tag(TabScreen.Categories)
+                .tag(TabScreen.categories)
         }
         .onAppear {
             // https://nemecek.be/blog/127/how-to-disable-automatic-transparent-tabbar-in-ios-15 - 19/11/2021

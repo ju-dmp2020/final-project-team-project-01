@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftUICharts
 
 struct RecentSpendingsView: View {
     @StateObject var expenseViewModel = ExpenseViewModel()

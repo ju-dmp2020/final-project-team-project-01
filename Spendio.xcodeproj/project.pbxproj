@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		954D604927590AB300CA4380 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 954D604827590AB300CA4380 /* SwiftUICharts */; };
 		955A9531275776E500163FCF /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A9530275776E500163FCF /* ViewExtensions.swift */; };
 		955A953327577CDF00163FCF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A953227577CDF00163FCF /* CoreDataManager.swift */; };
 		959BE25F2765F44200C3C3E7 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959BE25E2765F44200C3C3E7 /* Currency.swift */; };
@@ -45,8 +44,8 @@
 		F68E38CC274C48460031C04C /* CurrencyAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E38CB274C48460031C04C /* CurrencyAPIError.swift */; };
 		F6BF25E127660091001C7DB3 /* PriceConverterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BF25E027660091001C7DB3 /* PriceConverterModel.swift */; };
 		F6C3C2812752CB2E009EB227 /* EditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C3C2802752CB2E009EB227 /* EditCategoryView.swift */; };
-		F6FD25002762A54000976E25 /* FormValidationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FD24FF2762A54000976E25 /* FormValidationsTests.swift */; };
 		F6FD24FC2762811700976E25 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FD24FB2762811700976E25 /* SettingsViewModel.swift */; };
+		F6FD25002762A54000976E25 /* FormValidationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FD24FF2762A54000976E25 /* FormValidationsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,8 +107,8 @@
 		F68E38CB274C48460031C04C /* CurrencyAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAPIError.swift; sourceTree = "<group>"; };
 		F6BF25E027660091001C7DB3 /* PriceConverterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceConverterModel.swift; sourceTree = "<group>"; };
 		F6C3C2802752CB2E009EB227 /* EditCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryView.swift; sourceTree = "<group>"; };
-		F6FD24FF2762A54000976E25 /* FormValidationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValidationsTests.swift; sourceTree = "<group>"; };
 		F6FD24FB2762811700976E25 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		F6FD24FF2762A54000976E25 /* FormValidationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValidationsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +116,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				954D604927590AB300CA4380 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,7 +298,6 @@
 			);
 			name = Spendio;
 			packageProductDependencies = (
-				954D604827590AB300CA4380 /* SwiftUICharts */,
 			);
 			productName = Spendio;
 			productReference = F6447D0D2747D03E006C7CA7 /* Spendio.app */;
@@ -375,7 +372,6 @@
 			);
 			mainGroup = F6447D042747D03E006C7CA7;
 			packageReferences = (
-				954D604727590AB300CA4380 /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = F6447D0E2747D03E006C7CA7 /* Products */;
 			projectDirPath = "";
@@ -805,25 +801,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		954D604727590AB300CA4380 /* XCRemoteSwiftPackageReference "ChartView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView";
-			requirement = {
-				kind = exactVersion;
-				version = 1.5.3;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		954D604827590AB300CA4380 /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 954D604727590AB300CA4380 /* XCRemoteSwiftPackageReference "ChartView" */;
-			productName = SwiftUICharts;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		F6447D1B2747D03F006C7CA7 /* Spendio.xcdatamodeld */ = {

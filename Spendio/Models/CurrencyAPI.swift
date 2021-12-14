@@ -9,19 +9,17 @@ import Foundation
 
 // Fetching currency rates from https://freecurrencyapi.net/
 
-class CurrencyViewModel: ObservableObject {
-    let errorHandler = ErrorHandler.shared
+class CurrencyAPI: ObservableObject {
     let apiKeyFileName = "apiKey"
     
     @Published var currency: CurrencyConverterModel?
     
-    func fetchCurrencies(baseCurrency: String) async {
-        let apiKey = self.loadApiKey(fileName: self.apiKeyFileName)["key"]
-        let jsonURL = "https://freecurrencyapi.net/api/v2/latest?apikey=\(apiKey!)&base_currency=\(baseCurrency)"
+    func fetchCurrencies(baseCurrency: String) async throws {
+        let key = try self.loadAPIKey(fileName: self.apiKeyFileName)["key"]
+        let jsonURL = "https://freecurrencyapi.net/api/v2/latest?apikey=\(key!)&base_currency=\(baseCurrency)"
         
         guard let url = URL(string: jsonURL) else {
-            errorHandler.handle(error: CurrencyAPIError.invalidURL)
-            return
+            throw CurrencyAPIError.invalidURL
         }
         
         let request = URLRequest(url: url)
@@ -29,8 +27,7 @@ class CurrencyViewModel: ObservableObject {
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                errorHandler.handle(error: CurrencyAPIError.badRequest)
-                return
+                throw CurrencyAPIError.badRequest
             }
             
             // Decoder
@@ -40,14 +37,13 @@ class CurrencyViewModel: ObservableObject {
             let decodedData = try jsonDecoder.decode(CurrencyConverterModel.self, from: data)
             DispatchQueue.main.async {
                 self.currency = decodedData
-                print(decodedData)
             }
         } catch {
-            errorHandler.handle(error: CurrencyAPIError.decode)
+            throw CurrencyAPIError.decode
         }
     }
     
-    private func loadApiKey(fileName: String) -> [String : String] {
+    private func loadAPIKey(fileName: String) throws -> [String : String] {
         do {
             if let filePath = Bundle.main.path(forResource: fileName, ofType: "json") {
                 let fileUrl = URL(fileURLWithPath: filePath)
@@ -55,10 +51,9 @@ class CurrencyViewModel: ObservableObject {
                 let json = try! JSONSerialization.jsonObject(with: data) as! [String : String]
                 return json
             }
+            throw CurrencyAPIError.key
         } catch {
-            errorHandler.handle(error: CurrencyAPIError.key)
+            throw CurrencyAPIError.key
         }
-        errorHandler.handle(error: CurrencyAPIError.key)
-        return [:]
     }
 }

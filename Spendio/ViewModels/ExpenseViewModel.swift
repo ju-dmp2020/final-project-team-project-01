@@ -8,33 +8,27 @@
 import Foundation
 
 class ExpenseViewModel: ObservableObject {
-    let coreDataManager = CoreDataManager()
-    let errorHandler = ErrorHandler.shared
+    private let errorHandler = ErrorHandler.shared
+    private let settings = SettingsViewModel.shared
+    private let coreDataManager = CoreDataManager()
+    private let priceConverter = PriceConverterModel()
     
     @Published var expenses: [Expense]?
     @Published var expense: Expense?
     
     func fetchAll() {
-        do {
-            let result = try coreDataManager.fetchAllExpenses()
-            DispatchQueue.main.async {
-                self.expenses = result
-                self.objectWillChange.send() // Force change
-            }
-        } catch {
-            errorHandler.handle(error: error)
+        if let _ = settings.baseCurrency {
+            fetchAllAsync()
+        } else {
+            fetchAllNonAsync()
         }
     }
     
     func fetchRecentExpenses(limit: Int) {
-        do{
-            let result = try coreDataManager.fetchRecentExpenses(limit: limit)
-            DispatchQueue.main.async {
-                self.expenses = result
-                self.objectWillChange.send() // Force change
-            }
-        } catch {
-            errorHandler.handle(error: error)
+        if let _ = settings.baseCurrency {
+            fetchRecentExpensesAsync(limit: limit)
+        } else {
+            fetchRecentExpensesNonAsync(limit: limit)
         }
     }
     
@@ -46,18 +40,72 @@ class ExpenseViewModel: ObservableObject {
         }
     }
     
-    func update(expense: Expense, title: String, price: Double, date: Date, currency: String, category: Category) {
+    func delete(expense: Expense) {
         do {
-            try coreDataManager.updateExpense(expense: expense, title: title, price: price, date: date, currency: currency, category: category)
+            try coreDataManager.deleteExpense(expense: expense)
+            self.fetchAll()
         } catch {
             errorHandler.handle(error: error)
         }
     }
     
-    func delete(expense: Expense) {
+    func convertPrice(expense: Expense) -> Double {
+        return priceConverter.convert(expense: expense)
+    }
+    
+    func modifyCurrencyLabel(expense: Expense) -> String? {
+        return priceConverter.modifyCurrencyLabel(expense: expense)
+    }
+    
+    private func fetchAllAsync() {
+        Task {
+            do {
+                try await priceConverter.fetchCurrencies()
+                let expenses = try coreDataManager.fetchAllExpenses()
+                DispatchQueue.main.async {
+                    self.expenses = expenses
+                    self.objectWillChange.send() // Force change
+                }
+            } catch {
+                errorHandler.handle(error: error)
+            }
+        }
+    }
+    
+    private func fetchAllNonAsync() {
         do {
-            try coreDataManager.deleteExpense(expense: expense)
-            self.fetchAll() // update changes here
+            let result = try coreDataManager.fetchAllExpenses()
+            DispatchQueue.main.async {
+                self.expenses = result
+                self.objectWillChange.send() // Force change
+            }
+        } catch {
+            self.errorHandler.handle(error: error)
+        }
+    }
+    
+    private func fetchRecentExpensesAsync(limit: Int) {
+        Task {
+            do{
+                try await priceConverter.fetchCurrencies()
+                let recentExpenses = try coreDataManager.fetchRecentExpenses(limit: limit)
+                DispatchQueue.main.async {
+                    self.expenses = recentExpenses
+                    self.objectWillChange.send() // Force change
+                }
+            } catch {
+                errorHandler.handle(error: error)
+            }
+        }
+    }
+    
+    private func fetchRecentExpensesNonAsync(limit: Int) {
+        do{
+            let recentExpenses = try coreDataManager.fetchRecentExpenses(limit: limit)
+            DispatchQueue.main.async {
+                self.expenses = recentExpenses
+                self.objectWillChange.send() // Force change
+            }
         } catch {
             errorHandler.handle(error: error)
         }

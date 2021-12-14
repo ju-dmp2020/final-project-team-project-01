@@ -6,21 +6,30 @@
 //
 
 import Foundation
+import UIKit
 
 class SettingsViewModel: ObservableObject {
     let baseCurrencyKey: String = "baseCurrency"
     let authenticationKey: String = "authentication"
+    
+    // Will be used inside views and AuthenticationViewModel
+    static var shared = SettingsViewModel()
     
     @Published var useAuthentication: Bool = false {
         didSet {
             self.saveAuthentication()
         }
     }
-    
     @Published var baseCurrency: String? {
         didSet {
             self.saveBaseCurrency()
         }
+    }
+    
+    private init() {
+        self.getBaseCurrency()
+        self.isAuthenticationEnabled()
+        print(self.isAuthenticationEnabled())
     }
     
     private func saveBaseCurrency() {

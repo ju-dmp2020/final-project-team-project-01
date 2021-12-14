@@ -11,7 +11,6 @@ import SwiftUICharts
 struct RecentSpendingsView: View {
     @StateObject var expenseViewModel = ExpenseViewModel()
     @StateObject var categoryViewModel = CategoryViewModel()
-    @ObservedObject var currencyViewModel: CurrencyViewModel
     
     var body: some View {
         NavigationView {

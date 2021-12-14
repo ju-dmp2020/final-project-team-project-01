@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HistoryView: View {
     @StateObject var expenseViewModel = ExpenseViewModel()
-    @ObservedObject var currencyViewModel: CurrencyViewModel
     
     var body: some View {
         NavigationView {
@@ -27,7 +26,6 @@ struct HistoryView: View {
             }
         }
         .onAppear {
-            Task {await currencyViewModel.fetchCurrencies(baseCurrency: "sek")}
             expenseViewModel.fetchAll()
         }
     }

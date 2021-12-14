@@ -8,8 +8,8 @@
 import Foundation
 
 class CategoryViewModel: ObservableObject {
-    let coreDataManager = CoreDataManager()
-    let errorHandler = ErrorHandler.shared
+    private let coreDataManager = CoreDataManager()
+    private let errorHandler = ErrorHandler.shared
     
     @Published var categories: [Category]?
     @Published var category: Category?

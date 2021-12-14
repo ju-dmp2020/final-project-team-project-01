@@ -18,6 +18,14 @@ class ExpenseModel: ObservableObject {
     let titleMaxLength: Int = 10
     let priceMinValue: Double = 0
     
+    func resetValues() {
+        title = ""
+        price = ""
+        date = .now
+        currency = "SEK"
+        category = nil
+    }
+    
     func validateTitleLength() -> Bool {
         title.count >= titleMinLength && title.count <= titleMaxLength
     }

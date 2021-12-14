@@ -14,20 +14,16 @@ enum TabScreen {
 
 struct MainView: View {
     @State var selectedTabScreen = TabScreen.recentSpendings
-    @StateObject var currencyViewModel = CurrencyViewModel()
-    
-    @StateObject var authenticationViewModel = AuthenticationViewModel()
     
     var body: some View {
         TabView(selection: $selectedTabScreen) {
-            if authenticationViewModel.isUnlocked{
-            HistoryView(currencyViewModel: currencyViewModel)
+            HistoryView()
                 .tabItem {
                     Label("History", systemImage: "clock.arrow.circlepath")
                 }
                 .tag(TabScreen.history)
             
-            RecentSpendingsView(currencyViewModel: currencyViewModel)
+            RecentSpendingsView()
                 .tabItem {
                     Label("Recent Spendings", image: "Money")
                 }
@@ -44,7 +40,6 @@ struct MainView: View {
                     Label("Categories", systemImage: "tag")
                 }
                 .tag(TabScreen.categories)
-            }
         }
         .onAppear {
             // https://nemecek.be/blog/127/how-to-disable-automatic-transparent-tabbar-in-ios-15 - 19/11/2021
@@ -58,7 +53,6 @@ struct MainView: View {
                     UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
                 }
             }
-            authenticationViewModel.authenticate()
         }
     }
 }

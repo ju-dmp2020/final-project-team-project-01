@@ -29,7 +29,7 @@ class AuthenticationViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.isUnlocked = true
                     }
-                } // add else
+                }
             }
         }
     }

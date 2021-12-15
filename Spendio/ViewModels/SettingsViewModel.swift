@@ -12,7 +12,7 @@ class SettingsViewModel: ObservableObject {
     let baseCurrencyKey: String = "baseCurrency"
     let authenticationKey: String = "authentication"
     
-    // Will be used inside views and AuthenticationViewModel
+    // Is used inside ExpenseViewModel and PriceConverterModel
     static var shared = SettingsViewModel()
     
     @Published var useAuthentication: Bool = false {

@@ -21,7 +21,6 @@ struct RecentSpendingsView: View {
                         }
                     }
                 }
-                // 2. List
             }
             .navigationTitle("Recent")
             .listStyle(.grouped)

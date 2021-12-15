@@ -25,11 +25,8 @@
 		F6447D112747D03E006C7CA7 /* SpendioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D102747D03E006C7CA7 /* SpendioApp.swift */; };
 		F6447D152747D03F006C7CA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6447D142747D03F006C7CA7 /* Assets.xcassets */; };
 		F6447D182747D03F006C7CA7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6447D172747D03F006C7CA7 /* Preview Assets.xcassets */; };
-		F6447D1A2747D03F006C7CA7 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D192747D03F006C7CA7 /* Persistence.swift */; };
+		F6447D1A2747D03F006C7CA7 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D192747D03F006C7CA7 /* PersistenceController.swift */; };
 		F6447D1D2747D03F006C7CA7 /* Spendio.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6447D1B2747D03F006C7CA7 /* Spendio.xcdatamodeld */; };
-		F6447D272747D03F006C7CA7 /* SpendioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D262747D03F006C7CA7 /* SpendioTests.swift */; };
-		F6447D312747D03F006C7CA7 /* SpendioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D302747D03F006C7CA7 /* SpendioUITests.swift */; };
-		F6447D332747D03F006C7CA7 /* SpendioUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D322747D03F006C7CA7 /* SpendioUITestsLaunchTests.swift */; };
 		F6447D412747EDE2006C7CA7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D402747EDE2006C7CA7 /* MainView.swift */; };
 		F6447D432747FA16006C7CA7 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D422747FA16006C7CA7 /* HistoryView.swift */; };
 		F6447D452747FA34006C7CA7 /* RecentSpendingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D442747FA34006C7CA7 /* RecentSpendingsView.swift */; };
@@ -86,13 +83,10 @@
 		F6447D102747D03E006C7CA7 /* SpendioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendioApp.swift; sourceTree = "<group>"; };
 		F6447D142747D03F006C7CA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6447D172747D03F006C7CA7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F6447D192747D03F006C7CA7 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		F6447D192747D03F006C7CA7 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		F6447D1C2747D03F006C7CA7 /* Spendio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Spendio.xcdatamodel; sourceTree = "<group>"; };
 		F6447D222747D03F006C7CA7 /* SpendioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpendioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6447D262747D03F006C7CA7 /* SpendioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendioTests.swift; sourceTree = "<group>"; };
 		F6447D2C2747D03F006C7CA7 /* SpendioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpendioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6447D302747D03F006C7CA7 /* SpendioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendioUITests.swift; sourceTree = "<group>"; };
-		F6447D322747D03F006C7CA7 /* SpendioUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendioUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F6447D402747EDE2006C7CA7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F6447D422747FA16006C7CA7 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		F6447D442747FA34006C7CA7 /* RecentSpendingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSpendingsView.swift; sourceTree = "<group>"; };
@@ -136,6 +130,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9520D7B5276A52D400411EEF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				955A953227577CDF00163FCF /* CoreDataManager.swift */,
+				F6447D192747D03F006C7CA7 /* PersistenceController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		953084B8274B8F210078BC87 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,7 +201,6 @@
 			children = (
 				F6447D0F2747D03E006C7CA7 /* Spendio */,
 				F6447D252747D03F006C7CA7 /* SpendioTests */,
-				F6447D2F2747D03F006C7CA7 /* SpendioUITests */,
 				F6447D0E2747D03E006C7CA7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -216,6 +218,7 @@
 		F6447D0F2747D03E006C7CA7 /* Spendio */ = {
 			isa = PBXGroup;
 			children = (
+				9520D7B5276A52D400411EEF /* Controllers */,
 				9505BA99276256230061A6C2 /* Info.plist */,
 				955A952F275776B500163FCF /* Extensions */,
 				953084B8274B8F210078BC87 /* Models */,
@@ -223,10 +226,8 @@
 				F68E38C2274C07FD0031C04C /* ViewModels */,
 				F6447D102747D03E006C7CA7 /* SpendioApp.swift */,
 				F6447D142747D03F006C7CA7 /* Assets.xcassets */,
-				F6447D192747D03F006C7CA7 /* Persistence.swift */,
 				F6447D1B2747D03F006C7CA7 /* Spendio.xcdatamodeld */,
 				F6447D162747D03F006C7CA7 /* Preview Content */,
-				955A953227577CDF00163FCF /* CoreDataManager.swift */,
 				F60C359C2762249000D0EA77 /* apiKey.json */,
 			);
 			path = Spendio;
@@ -243,20 +244,10 @@
 		F6447D252747D03F006C7CA7 /* SpendioTests */ = {
 			isa = PBXGroup;
 			children = (
-				F6447D262747D03F006C7CA7 /* SpendioTests.swift */,
 				F6FD24FF2762A54000976E25 /* FormValidationsTests.swift */,
 				F60DA4722764D508005F13E1 /* CoreDataTests.swift */,
 			);
 			path = SpendioTests;
-			sourceTree = "<group>";
-		};
-		F6447D2F2747D03F006C7CA7 /* SpendioUITests */ = {
-			isa = PBXGroup;
-			children = (
-				F6447D302747D03F006C7CA7 /* SpendioUITests.swift */,
-				F6447D322747D03F006C7CA7 /* SpendioUITestsLaunchTests.swift */,
-			);
-			path = SpendioUITests;
 			sourceTree = "<group>";
 		};
 		F6447D3F2747EDC9006C7CA7 /* Views */ = {
@@ -420,7 +411,7 @@
 				955A9531275776E500163FCF /* ViewExtensions.swift in Sources */,
 				F6457F9B275E9FC900D1E550 /* ErrorHandler.swift in Sources */,
 				F68E38CC274C48460031C04C /* CurrencyAPIError.swift in Sources */,
-				F6447D1A2747D03F006C7CA7 /* Persistence.swift in Sources */,
+				F6447D1A2747D03F006C7CA7 /* PersistenceController.swift in Sources */,
 				F6457F9D275EA84A00D1E550 /* ErrorAlertViewModifier.swift in Sources */,
 				959BE25F2765F44200C3C3E7 /* Currency.swift in Sources */,
 				F6447D432747FA16006C7CA7 /* HistoryView.swift in Sources */,
@@ -455,7 +446,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6FD25002762A54000976E25 /* FormValidationsTests.swift in Sources */,
-				F6447D272747D03F006C7CA7 /* SpendioTests.swift in Sources */,
 				F60DA4732764D508005F13E1 /* CoreDataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,8 +454,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6447D312747D03F006C7CA7 /* SpendioUITests.swift in Sources */,
-				F6447D332747D03F006C7CA7 /* SpendioUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,7 +15,7 @@ class ExpenseModel: ObservableObject {
     @Published var category: Category?
     
     let titleMinLength: Int = 2
-    let titleMaxLength: Int = 10
+    let titleMaxLength: Int = 20
     let priceMinValue: Double = 0
     
     func resetValues() {
@@ -37,8 +37,7 @@ class ExpenseModel: ObservableObject {
     func validateCurrencyLength() -> Bool{
         currency.count == 3     // Currencies shortcut
     }
-    
-    // Generic name / function in case more validation added
+
     func isValid() -> Bool {
         self.validateTitleLength() && self.validatePriceValue() && self.validateCurrencyLength()
     }

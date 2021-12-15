@@ -14,7 +14,6 @@ struct ExpenseRowView: View {
     var body: some View {
         HStack{
             VStack(alignment: .leading){
-                //Spacer()
                 Text("\(expense.title ?? "None" )")
                 ZStack{
                     if let category = expense.category{
@@ -50,8 +49,3 @@ struct ExpenseRowView: View {
     }
 }
 
-/*struct ExpenseRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExpenseRowView()
-    }
-}*/

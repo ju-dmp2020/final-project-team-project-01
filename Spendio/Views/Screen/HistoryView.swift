@@ -15,7 +15,7 @@ struct HistoryView: View {
             List {
                 if let expenses = expenseViewModel.expenses{
                     ForEach(expenses) {value in
-                       ExpenseRowView(expense: value, expenseViewModel: expenseViewModel) // on conflict, override.
+                       ExpenseRowView(expense: value, expenseViewModel: expenseViewModel)
                     }
                 }
             }

@@ -16,7 +16,7 @@ struct SettingsSheetView: View {
                 .font(.title)
                 .padding(8)
             
-            Toggle("Require auth on startup", isOn: $settingsViewModel.useAuthentication)
+            Toggle("Require authentication on startup", isOn: $settingsViewModel.useAuthentication)
                 .padding(4)
  
             HStack{

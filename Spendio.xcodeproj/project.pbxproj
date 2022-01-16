@@ -1,0 +1,807 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		955A9531275776E500163FCF /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A9530275776E500163FCF /* ViewExtensions.swift */; };
+		955A953327577CDF00163FCF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A953227577CDF00163FCF /* CoreDataManager.swift */; };
+		959BE25F2765F44200C3C3E7 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959BE25E2765F44200C3C3E7 /* Currency.swift */; };
+		95AF20F92763540B00F146C2 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AF20F82763540B00F146C2 /* AuthenticationViewModel.swift */; };
+		95AFF8872760988A00FE3A00 /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AFF8862760988A00FE3A00 /* ExpenseViewModel.swift */; };
+		F6089046274FFA27004E09D0 /* SettingsButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6089045274FFA27004E09D0 /* SettingsButtonView.swift */; };
+		F6089048274FFA67004E09D0 /* SettingsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6089047274FFA67004E09D0 /* SettingsSheetView.swift */; };
+		F608904A27500227004E09D0 /* CurrencyConverterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F608904927500227004E09D0 /* CurrencyConverterModel.swift */; };
+		F60C359D2762249000D0EA77 /* apiKey.json in Resources */ = {isa = PBXBuildFile; fileRef = F60C359C2762249000D0EA77 /* apiKey.json */; };
+		F60DA4732764D508005F13E1 /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60DA4722764D508005F13E1 /* CoreDataTests.swift */; };
+		F60F56382761057A007A2F22 /* ExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60F56372761057A007A2F22 /* ExpenseModel.swift */; };
+		F616236D2749301C00B7DAAE /* ExpenseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616236C2749301C00B7DAAE /* ExpenseRowView.swift */; };
+		F61623712749604300B7DAAE /* CategoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61623702749604300B7DAAE /* CategoryRowView.swift */; };
+		F6162374274983A400B7DAAE /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6162373274983A400B7DAAE /* AddCategoryView.swift */; };
+		F62CD5C3275FD85B00AF37AB /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62CD5C2275FD85B00AF37AB /* CategoryModel.swift */; };
+		F6447D112747D03E006C7CA7 /* SpendioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D102747D03E006C7CA7 /* SpendioApp.swift */; };
+		F6447D152747D03F006C7CA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6447D142747D03F006C7CA7 /* Assets.xcassets */; };
+		F6447D182747D03F006C7CA7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6447D172747D03F006C7CA7 /* Preview Assets.xcassets */; };
+		F6447D1A2747D03F006C7CA7 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D192747D03F006C7CA7 /* PersistenceController.swift */; };
+		F6447D1D2747D03F006C7CA7 /* Spendio.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6447D1B2747D03F006C7CA7 /* Spendio.xcdatamodeld */; };
+		F6447D412747EDE2006C7CA7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D402747EDE2006C7CA7 /* MainView.swift */; };
+		F6447D432747FA16006C7CA7 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D422747FA16006C7CA7 /* HistoryView.swift */; };
+		F6447D452747FA34006C7CA7 /* RecentSpendingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D442747FA34006C7CA7 /* RecentSpendingsView.swift */; };
+		F6447D472747FA60006C7CA7 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D462747FA60006C7CA7 /* AddExpenseView.swift */; };
+		F6447D492747FA7F006C7CA7 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6447D482747FA7F006C7CA7 /* CategoriesView.swift */; };
+		F6457F9B275E9FC900D1E550 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6457F9A275E9FC900D1E550 /* ErrorHandler.swift */; };
+		F6457F9D275EA84A00D1E550 /* ErrorAlertViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6457F9C275EA84A00D1E550 /* ErrorAlertViewModifier.swift */; };
+		F6457F9F275F6F5E00D1E550 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6457F9E275F6F5E00D1E550 /* CoreDataError.swift */; };
+		F679F8EA2757B8FF00207F56 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F679F8E92757B8FF00207F56 /* CategoryViewModel.swift */; };
+		F68B13E32761F4B10004BBE3 /* ErrorAlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68B13E22761F4B10004BBE3 /* ErrorAlertModel.swift */; };
+		F68E38C4274C083E0031C04C /* CurrencyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E38C3274C083E0031C04C /* CurrencyAPI.swift */; };
+		F68E38CC274C48460031C04C /* CurrencyAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E38CB274C48460031C04C /* CurrencyAPIError.swift */; };
+		F6BF25E127660091001C7DB3 /* PriceConverterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BF25E027660091001C7DB3 /* PriceConverterModel.swift */; };
+		F6C3C2812752CB2E009EB227 /* EditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C3C2802752CB2E009EB227 /* EditCategoryView.swift */; };
+		F6FD24FC2762811700976E25 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FD24FB2762811700976E25 /* SettingsViewModel.swift */; };
+		F6FD25002762A54000976E25 /* FormValidationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FD24FF2762A54000976E25 /* FormValidationsTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F6447D232747D03F006C7CA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F6447D052747D03E006C7CA7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F6447D0C2747D03E006C7CA7;
+			remoteInfo = Spendio;
+		};
+		F6447D2D2747D03F006C7CA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F6447D052747D03E006C7CA7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F6447D0C2747D03E006C7CA7;
+			remoteInfo = Spendio;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9505BA99276256230061A6C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		955A9530275776E500163FCF /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		955A953227577CDF00163FCF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		959BE25E2765F44200C3C3E7 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		95AF20F82763540B00F146C2 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		95AFF8862760988A00FE3A00 /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
+		F6089045274FFA27004E09D0 /* SettingsButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButtonView.swift; sourceTree = "<group>"; };
+		F6089047274FFA67004E09D0 /* SettingsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSheetView.swift; sourceTree = "<group>"; };
+		F608904927500227004E09D0 /* CurrencyConverterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterModel.swift; sourceTree = "<group>"; };
+		F60C359C2762249000D0EA77 /* apiKey.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = apiKey.json; sourceTree = "<group>"; };
+		F60DA4722764D508005F13E1 /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
+		F60F56372761057A007A2F22 /* ExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseModel.swift; sourceTree = "<group>"; };
+		F616236C2749301C00B7DAAE /* ExpenseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRowView.swift; sourceTree = "<group>"; };
+		F61623702749604300B7DAAE /* CategoryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRowView.swift; sourceTree = "<group>"; };
+		F6162373274983A400B7DAAE /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
+		F62CD5C2275FD85B00AF37AB /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		F6447D0D2747D03E006C7CA7 /* Spendio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spendio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6447D102747D03E006C7CA7 /* SpendioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendioApp.swift; sourceTree = "<group>"; };
+		F6447D142747D03F006C7CA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F6447D172747D03F006C7CA7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F6447D192747D03F006C7CA7 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		F6447D1C2747D03F006C7CA7 /* Spendio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Spendio.xcdatamodel; sourceTree = "<group>"; };
+		F6447D222747D03F006C7CA7 /* SpendioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpendioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6447D2C2747D03F006C7CA7 /* SpendioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpendioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6447D402747EDE2006C7CA7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		F6447D422747FA16006C7CA7 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		F6447D442747FA34006C7CA7 /* RecentSpendingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSpendingsView.swift; sourceTree = "<group>"; };
+		F6447D462747FA60006C7CA7 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
+		F6447D482747FA7F006C7CA7 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		F6457F9A275E9FC900D1E550 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		F6457F9C275EA84A00D1E550 /* ErrorAlertViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertViewModifier.swift; sourceTree = "<group>"; };
+		F6457F9E275F6F5E00D1E550 /* CoreDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
+		F679F8E92757B8FF00207F56 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		F68B13E22761F4B10004BBE3 /* ErrorAlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertModel.swift; sourceTree = "<group>"; };
+		F68E38C3274C083E0031C04C /* CurrencyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAPI.swift; sourceTree = "<group>"; };
+		F68E38CB274C48460031C04C /* CurrencyAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAPIError.swift; sourceTree = "<group>"; };
+		F6BF25E027660091001C7DB3 /* PriceConverterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceConverterModel.swift; sourceTree = "<group>"; };
+		F6C3C2802752CB2E009EB227 /* EditCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryView.swift; sourceTree = "<group>"; };
+		F6FD24FB2762811700976E25 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		F6FD24FF2762A54000976E25 /* FormValidationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValidationsTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F6447D0A2747D03E006C7CA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6447D1F2747D03F006C7CA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6447D292747D03F006C7CA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9520D7B5276A52D400411EEF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				955A953227577CDF00163FCF /* CoreDataManager.swift */,
+				F6447D192747D03F006C7CA7 /* PersistenceController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		953084B8274B8F210078BC87 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F68E38C3274C083E0031C04C /* CurrencyAPI.swift */,
+				F68E38CB274C48460031C04C /* CurrencyAPIError.swift */,
+				F608904927500227004E09D0 /* CurrencyConverterModel.swift */,
+				F6457F9E275F6F5E00D1E550 /* CoreDataError.swift */,
+				F62CD5C2275FD85B00AF37AB /* CategoryModel.swift */,
+				F60F56372761057A007A2F22 /* ExpenseModel.swift */,
+				F68B13E22761F4B10004BBE3 /* ErrorAlertModel.swift */,
+				959BE25E2765F44200C3C3E7 /* Currency.swift */,
+				F6BF25E027660091001C7DB3 /* PriceConverterModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		955A952F275776B500163FCF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				955A9530275776E500163FCF /* ViewExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F616236927492EBF00B7DAAE /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				F6447D402747EDE2006C7CA7 /* MainView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		F616236A27492F4900B7DAAE /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F6447D482747FA7F006C7CA7 /* CategoriesView.swift */,
+				F6162373274983A400B7DAAE /* AddCategoryView.swift */,
+				F6C3C2802752CB2E009EB227 /* EditCategoryView.swift */,
+				F6447D462747FA60006C7CA7 /* AddExpenseView.swift */,
+				F6447D442747FA34006C7CA7 /* RecentSpendingsView.swift */,
+				F6447D422747FA16006C7CA7 /* HistoryView.swift */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		F616236B27492F6A00B7DAAE /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				F61623702749604300B7DAAE /* CategoryRowView.swift */,
+				F616236C2749301C00B7DAAE /* ExpenseRowView.swift */,
+				F6089045274FFA27004E09D0 /* SettingsButtonView.swift */,
+				F6089047274FFA67004E09D0 /* SettingsSheetView.swift */,
+				F6457F9C275EA84A00D1E550 /* ErrorAlertViewModifier.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		F6447D042747D03E006C7CA7 = {
+			isa = PBXGroup;
+			children = (
+				F6447D0F2747D03E006C7CA7 /* Spendio */,
+				F6447D252747D03F006C7CA7 /* SpendioTests */,
+				F6447D0E2747D03E006C7CA7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F6447D0E2747D03E006C7CA7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F6447D0D2747D03E006C7CA7 /* Spendio.app */,
+				F6447D222747D03F006C7CA7 /* SpendioTests.xctest */,
+				F6447D2C2747D03F006C7CA7 /* SpendioUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F6447D0F2747D03E006C7CA7 /* Spendio */ = {
+			isa = PBXGroup;
+			children = (
+				9520D7B5276A52D400411EEF /* Controllers */,
+				9505BA99276256230061A6C2 /* Info.plist */,
+				955A952F275776B500163FCF /* Extensions */,
+				953084B8274B8F210078BC87 /* Models */,
+				F6447D3F2747EDC9006C7CA7 /* Views */,
+				F68E38C2274C07FD0031C04C /* ViewModels */,
+				F6447D102747D03E006C7CA7 /* SpendioApp.swift */,
+				F6447D142747D03F006C7CA7 /* Assets.xcassets */,
+				F6447D1B2747D03F006C7CA7 /* Spendio.xcdatamodeld */,
+				F6447D162747D03F006C7CA7 /* Preview Content */,
+				F60C359C2762249000D0EA77 /* apiKey.json */,
+			);
+			path = Spendio;
+			sourceTree = "<group>";
+		};
+		F6447D162747D03F006C7CA7 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F6447D172747D03F006C7CA7 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F6447D252747D03F006C7CA7 /* SpendioTests */ = {
+			isa = PBXGroup;
+			children = (
+				F6FD24FF2762A54000976E25 /* FormValidationsTests.swift */,
+				F60DA4722764D508005F13E1 /* CoreDataTests.swift */,
+			);
+			path = SpendioTests;
+			sourceTree = "<group>";
+		};
+		F6447D3F2747EDC9006C7CA7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F616236927492EBF00B7DAAE /* Navigation */,
+				F616236A27492F4900B7DAAE /* Screen */,
+				F616236B27492F6A00B7DAAE /* Shared */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F68E38C2274C07FD0031C04C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F679F8E92757B8FF00207F56 /* CategoryViewModel.swift */,
+				95AFF8862760988A00FE3A00 /* ExpenseViewModel.swift */,
+				F6FD24FB2762811700976E25 /* SettingsViewModel.swift */,
+				F6457F9A275E9FC900D1E550 /* ErrorHandler.swift */,
+				95AF20F82763540B00F146C2 /* AuthenticationViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F6447D0C2747D03E006C7CA7 /* Spendio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6447D362747D03F006C7CA7 /* Build configuration list for PBXNativeTarget "Spendio" */;
+			buildPhases = (
+				F6447D092747D03E006C7CA7 /* Sources */,
+				F6447D0A2747D03E006C7CA7 /* Frameworks */,
+				F6447D0B2747D03E006C7CA7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Spendio;
+			packageProductDependencies = (
+			);
+			productName = Spendio;
+			productReference = F6447D0D2747D03E006C7CA7 /* Spendio.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F6447D212747D03F006C7CA7 /* SpendioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6447D392747D03F006C7CA7 /* Build configuration list for PBXNativeTarget "SpendioTests" */;
+			buildPhases = (
+				F6447D1E2747D03F006C7CA7 /* Sources */,
+				F6447D1F2747D03F006C7CA7 /* Frameworks */,
+				F6447D202747D03F006C7CA7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F6447D242747D03F006C7CA7 /* PBXTargetDependency */,
+			);
+			name = SpendioTests;
+			productName = SpendioTests;
+			productReference = F6447D222747D03F006C7CA7 /* SpendioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F6447D2B2747D03F006C7CA7 /* SpendioUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6447D3C2747D03F006C7CA7 /* Build configuration list for PBXNativeTarget "SpendioUITests" */;
+			buildPhases = (
+				F6447D282747D03F006C7CA7 /* Sources */,
+				F6447D292747D03F006C7CA7 /* Frameworks */,
+				F6447D2A2747D03F006C7CA7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F6447D2E2747D03F006C7CA7 /* PBXTargetDependency */,
+			);
+			name = SpendioUITests;
+			productName = SpendioUITests;
+			productReference = F6447D2C2747D03F006C7CA7 /* SpendioUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F6447D052747D03E006C7CA7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					F6447D0C2747D03E006C7CA7 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					F6447D212747D03F006C7CA7 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = F6447D0C2747D03E006C7CA7;
+					};
+					F6447D2B2747D03F006C7CA7 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = F6447D0C2747D03E006C7CA7;
+					};
+				};
+			};
+			buildConfigurationList = F6447D082747D03E006C7CA7 /* Build configuration list for PBXProject "Spendio" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F6447D042747D03E006C7CA7;
+			packageReferences = (
+			);
+			productRefGroup = F6447D0E2747D03E006C7CA7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F6447D0C2747D03E006C7CA7 /* Spendio */,
+				F6447D212747D03F006C7CA7 /* SpendioTests */,
+				F6447D2B2747D03F006C7CA7 /* SpendioUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F6447D0B2747D03E006C7CA7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6447D182747D03F006C7CA7 /* Preview Assets.xcassets in Resources */,
+				F60C359D2762249000D0EA77 /* apiKey.json in Resources */,
+				F6447D152747D03F006C7CA7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6447D202747D03F006C7CA7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6447D2A2747D03F006C7CA7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F6447D092747D03E006C7CA7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6089046274FFA27004E09D0 /* SettingsButtonView.swift in Sources */,
+				955A9531275776E500163FCF /* ViewExtensions.swift in Sources */,
+				F6457F9B275E9FC900D1E550 /* ErrorHandler.swift in Sources */,
+				F68E38CC274C48460031C04C /* CurrencyAPIError.swift in Sources */,
+				F6447D1A2747D03F006C7CA7 /* PersistenceController.swift in Sources */,
+				F6457F9D275EA84A00D1E550 /* ErrorAlertViewModifier.swift in Sources */,
+				959BE25F2765F44200C3C3E7 /* Currency.swift in Sources */,
+				F6447D432747FA16006C7CA7 /* HistoryView.swift in Sources */,
+				F608904A27500227004E09D0 /* CurrencyConverterModel.swift in Sources */,
+				F6447D472747FA60006C7CA7 /* AddExpenseView.swift in Sources */,
+				955A953327577CDF00163FCF /* CoreDataManager.swift in Sources */,
+				95AF20F92763540B00F146C2 /* AuthenticationViewModel.swift in Sources */,
+				F6447D452747FA34006C7CA7 /* RecentSpendingsView.swift in Sources */,
+				F68B13E32761F4B10004BBE3 /* ErrorAlertModel.swift in Sources */,
+				F6457F9F275F6F5E00D1E550 /* CoreDataError.swift in Sources */,
+				F6162374274983A400B7DAAE /* AddCategoryView.swift in Sources */,
+				F62CD5C3275FD85B00AF37AB /* CategoryModel.swift in Sources */,
+				95AFF8872760988A00FE3A00 /* ExpenseViewModel.swift in Sources */,
+				F6089048274FFA67004E09D0 /* SettingsSheetView.swift in Sources */,
+				F6BF25E127660091001C7DB3 /* PriceConverterModel.swift in Sources */,
+				F61623712749604300B7DAAE /* CategoryRowView.swift in Sources */,
+				F679F8EA2757B8FF00207F56 /* CategoryViewModel.swift in Sources */,
+				F68E38C4274C083E0031C04C /* CurrencyAPI.swift in Sources */,
+				F6447D492747FA7F006C7CA7 /* CategoriesView.swift in Sources */,
+				F6FD24FC2762811700976E25 /* SettingsViewModel.swift in Sources */,
+				F60F56382761057A007A2F22 /* ExpenseModel.swift in Sources */,
+				F616236D2749301C00B7DAAE /* ExpenseRowView.swift in Sources */,
+				F6C3C2812752CB2E009EB227 /* EditCategoryView.swift in Sources */,
+				F6447D1D2747D03F006C7CA7 /* Spendio.xcdatamodeld in Sources */,
+				F6447D412747EDE2006C7CA7 /* MainView.swift in Sources */,
+				F6447D112747D03E006C7CA7 /* SpendioApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6447D1E2747D03F006C7CA7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6FD25002762A54000976E25 /* FormValidationsTests.swift in Sources */,
+				F60DA4732764D508005F13E1 /* CoreDataTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6447D282747D03F006C7CA7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F6447D242747D03F006C7CA7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F6447D0C2747D03E006C7CA7 /* Spendio */;
+			targetProxy = F6447D232747D03F006C7CA7 /* PBXContainerItemProxy */;
+		};
+		F6447D2E2747D03F006C7CA7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F6447D0C2747D03E006C7CA7 /* Spendio */;
+			targetProxy = F6447D2D2747D03F006C7CA7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F6447D342747D03F006C7CA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F6447D352747D03F006C7CA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F6447D372747D03F006C7CA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Spendio/Preview Content\"";
+				DEVELOPMENT_TEAM = X79UK4NVC3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Spendio/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please use face id to view information";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = khha20.Spendio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F6447D382747D03F006C7CA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Spendio/Preview Content\"";
+				DEVELOPMENT_TEAM = X79UK4NVC3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Spendio/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please use face id to view information";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = khha20.Spendio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		F6447D3A2747D03F006C7CA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X79UK4NVC3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = khha20.SpendioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Spendio.app/Spendio";
+			};
+			name = Debug;
+		};
+		F6447D3B2747D03F006C7CA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X79UK4NVC3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = khha20.SpendioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Spendio.app/Spendio";
+			};
+			name = Release;
+		};
+		F6447D3D2747D03F006C7CA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X79UK4NVC3;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = khha20.SpendioUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Spendio;
+			};
+			name = Debug;
+		};
+		F6447D3E2747D03F006C7CA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X79UK4NVC3;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = khha20.SpendioUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Spendio;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F6447D082747D03E006C7CA7 /* Build configuration list for PBXProject "Spendio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6447D342747D03F006C7CA7 /* Debug */,
+				F6447D352747D03F006C7CA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F6447D362747D03F006C7CA7 /* Build configuration list for PBXNativeTarget "Spendio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6447D372747D03F006C7CA7 /* Debug */,
+				F6447D382747D03F006C7CA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F6447D392747D03F006C7CA7 /* Build configuration list for PBXNativeTarget "SpendioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6447D3A2747D03F006C7CA7 /* Debug */,
+				F6447D3B2747D03F006C7CA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F6447D3C2747D03F006C7CA7 /* Build configuration list for PBXNativeTarget "SpendioUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6447D3D2747D03F006C7CA7 /* Debug */,
+				F6447D3E2747D03F006C7CA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F6447D1B2747D03F006C7CA7 /* Spendio.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F6447D1C2747D03F006C7CA7 /* Spendio.xcdatamodel */,
+			);
+			currentVersion = F6447D1C2747D03F006C7CA7 /* Spendio.xcdatamodel */;
+			path = Spendio.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F6447D052747D03E006C7CA7 /* Project object */;
+}
